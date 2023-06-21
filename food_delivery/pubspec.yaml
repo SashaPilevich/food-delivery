@@ -32,6 +32,14 @@ dependencies:
     sdk: flutter
   core:
     path: ./core
+  domain:
+    path: ./domain
+  core_ui:
+    path: ./core_ui
+  navigation:
+    path: ./navigation
+  home:
+    path: ./features/home
 
 
   # The following adds the Cupertino Icons font to your application.
