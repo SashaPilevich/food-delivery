@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.pink,
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: Colors.pink,
       ),
       primaryColor: AppColors.pink,
       canvasColor: AppColors.grey,
@@ -38,9 +38,7 @@ class AppTheme {
 
   static ThemeData get darkTheme {
     return ThemeData(
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.orange,
-      ),
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange),
       primaryColor: AppColors.orange,
       canvasColor: AppColors.black,
       fontFamily: 'RobotoCondensed',

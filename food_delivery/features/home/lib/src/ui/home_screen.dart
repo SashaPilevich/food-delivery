@@ -24,6 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Food Delivery'),
+          actions: const <Widget>[
+            CustomSwitchTheme(),
+          ],
         ),
         body: BlocBuilder<DishesBloc, DishesState>(
           builder: (BuildContext context, DishesState state) {
