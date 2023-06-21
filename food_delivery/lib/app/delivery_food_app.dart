@@ -17,7 +17,7 @@ class DeliveryFoodApp extends StatelessWidget {
             theme: state is ThemeChangedState && state.isDark
                 ? AppTheme.darkTheme
                 : AppTheme.lightTheme,
-            home: HomeScreen(),
+            home: const HomeScreen(),
           );
         },
       ),
