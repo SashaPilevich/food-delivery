@@ -1,4 +1,6 @@
-class DishModel {
+import 'package:core/core.dart';
+
+class DishEntity {
   final String id;
   final String title;
   final String imageUrl;
@@ -7,7 +9,7 @@ class DishModel {
   final List<String>? ingredients;
   final String? category;
 
-  DishModel({
+  DishEntity({
     required this.id,
     required this.title,
     required this.imageUrl,
@@ -20,7 +22,7 @@ class DishModel {
   List<Object?> get props =>
       [id, title, imageUrl, cost, description, ingredients, category];
 
-  DishModel copyWith({
+  DishEntity copyWith({
     String? id,
     String? title,
     String? imageUrl,
@@ -29,7 +31,7 @@ class DishModel {
     List<String>? ingredients,
     String? category,
   }) {
-    return DishModel(
+    return DishEntity(
       id: id ?? this.id,
       title: title ?? this.title,
       imageUrl: imageUrl ?? this.imageUrl,
@@ -52,8 +54,8 @@ class DishModel {
     };
   }
 
-  factory DishModel.fromJson(Map<String, dynamic> json) {
-    return DishModel(
+  factory DishEntity.fromJson(Map<String, dynamic> json) {
+    return DishEntity(
       id: json['id'] ?? '',
       title: json['title'] ?? '',
       imageUrl: json['imageUrl'] ?? '',
@@ -62,5 +64,11 @@ class DishModel {
       ingredients: List<String>.from(json['ingredients'] ?? []),
       category: json['category'] ?? '',
     );
+  }
+
+  factory DishEntity.fromFirebase(
+      DocumentSnapshot<Map<String, dynamic>> document) {
+    final data = document.data() as Map<String, dynamic>;
+    return DishEntity.fromJson(data);
   }
 }
