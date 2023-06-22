@@ -1,7 +1,5 @@
 import 'package:core/core.dart';
-import 'package:domain/models/dish/dish_model.dart';
-import 'package:domain/usecases/export_usecases.dart';
-import 'package:domain/usecases/usecase.dart';
+import 'package:domain/domain.dart';
 
 part 'event.dart';
 part 'state.dart';

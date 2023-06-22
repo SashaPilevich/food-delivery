@@ -1,8 +1,5 @@
-import 'package:data/entity/dish_entity.dart';
-import 'package:data/mappers/dish_mapper.dart';
-import 'package:data/providers/data_provider.dart';
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
-import 'package:domain/models/dish/dish_model.dart';
 
 class DishesRepositoryImpl implements DishesRepository {
   final DataProvider _dataProvider;

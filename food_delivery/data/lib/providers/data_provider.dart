@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
-import 'package:data/entity/dish_entity.dart';
+import 'package:data/data.dart';
+
 part 'data_provider_impl.dart';
 
 abstract class DataProvider {

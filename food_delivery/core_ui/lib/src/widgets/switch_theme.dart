@@ -12,6 +12,7 @@ class CustomSwitchTheme extends StatefulWidget {
 
 class _CustomSwitchThemeState extends State<CustomSwitchTheme> {
   bool isDark = false;
+
   @override
   Widget build(BuildContext context) {
     return Switch(
@@ -20,8 +21,7 @@ class _CustomSwitchThemeState extends State<CustomSwitchTheme> {
       value: isDark,
       onChanged: (value) {
         isDark = !isDark;
-        ThemeBloc bloc = BlocProvider.of<ThemeBloc>(context);
-        bloc.add(ChangeThemeEvent(isDark));
+        BlocProvider.of<ThemeBloc>(context).add(ChangeThemeEvent(isDark));
         setState(() {});
       },
     );

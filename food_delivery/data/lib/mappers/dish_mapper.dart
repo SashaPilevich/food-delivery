@@ -1,5 +1,6 @@
 import 'package:data/entity/dish_entity.dart';
-import 'package:domain/models/dish/dish_model.dart';
+import 'package:domain/domain.dart';
+
 
 abstract class DishMapper {
   static DishEntity toEntity(DishModel model) {

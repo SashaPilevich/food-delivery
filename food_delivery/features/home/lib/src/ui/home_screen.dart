@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core/di/data_di.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:domain/usecases/export_usecases.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:home/src/bloc/dishes/bloc.dart';
 

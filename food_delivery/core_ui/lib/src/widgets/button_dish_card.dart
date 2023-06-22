@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ButtonDishCard extends StatelessWidget {
   final String label;
+  
   const ButtonDishCard({
     required this.label,
     super.key,
