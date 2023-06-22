@@ -1,15 +1,12 @@
 import 'package:core/core.dart';
 import 'package:data/entity/dish_entity.dart';
+part 'data_provider_impl.dart';
 
-class DataProvider {
-  final FirebaseFirestore firebaseFirestore;
-  const DataProvider(
-    this.firebaseFirestore,
-  );
+abstract class DataProvider {
+  factory DataProvider(
+    FirebaseFirestore firebaseFirestore,
+  ) = _DataProvider;
 
-  Future<List<DishEntity>> getAllDishes() async {
-    final QuerySnapshot<Map<String, dynamic>> dataRef =
-        await firebaseFirestore.collection('dishes').get();
-    return dataRef.docs.map((e) => DishEntity.fromFirebase(e)).toList();
-  }
+  Future<List<DishEntity>> getAllDishes();
 }
+

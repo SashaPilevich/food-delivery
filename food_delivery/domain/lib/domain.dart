@@ -1,4 +1,4 @@
 library domain;
 
-export 'package:domain/repositories/dishes_repository.dart';
-
+export 'repositories/dishes_repository.dart';
+export 'usecases/export_usecases.dart';

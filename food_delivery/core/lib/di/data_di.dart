@@ -1,8 +1,6 @@
 import 'package:core/core.dart';
-import 'package:data/providers/data_provider.dart';
-import 'package:data/repositories/dishes_repository_impl.dart';
-import 'package:domain/repositories/dishes_repository.dart';
-import 'package:domain/usecases/export_usecases.dart';
+import 'package:data/data.dart';
+import 'package:domain/domain.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt getIt = GetIt.instance;
