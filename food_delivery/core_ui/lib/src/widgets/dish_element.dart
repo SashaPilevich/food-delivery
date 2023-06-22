@@ -1,6 +1,5 @@
 import 'package:domain/models/dish/dish_model.dart';
 import 'package:flutter/material.dart';
-
 import 'button_dish_card.dart';
 import 'image_dish_card.dart';
 
@@ -60,3 +59,4 @@ class DishElement extends StatelessWidget {
     );
   }
 }
+

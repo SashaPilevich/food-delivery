@@ -33,6 +33,9 @@ class AppTheme {
           fontWeight: FontWeight.w600,
         ),
       ),
+      cardTheme: const CardTheme(
+        color: AppColors.white,
+      ),
     );
   }
 
