@@ -15,7 +15,9 @@ class DishElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      splashColor: Theme.of(context).primaryColor,
+      borderRadius: const BorderRadius.all(Radius.circular(15)),
       onTap: onTap,
       child: Card(
         shadowColor: const Color.fromARGB(255, 103, 42, 62),
