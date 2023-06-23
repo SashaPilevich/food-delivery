@@ -21,45 +21,48 @@ class _HomeScreenState extends State<HomeScreen> {
       )..add(
           LoadListOfDishes(),
         ),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Food Delivery'),
-          actions: const <Widget>[
-            CustomSwitchTheme(),
-          ],
-        ),
-        body: BlocBuilder<DishesBloc, DishesState>(
-          builder: (BuildContext context, DishesState state) {
-            if (state is DishesLoadingState) {
-              return const LoadingIndicator();
-            }
-            if (state is DishesErrorState) {
-              return Center(
-                child: Text(
-                    state.exception?.toString() ?? 'Something went wrong...'),
-              );
-            }
-            if (state is DishesLoadedState) {
-              return GridView(
-                  padding: const EdgeInsets.all(15),
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 2 / 2.3,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20,
-                  ),
-                  children: <Widget>[
-                    ...List.generate(
-                      state.listOfDishes.length,
-                      (index) => DishElement(
-                        dish: state.listOfDishes[index],
-                        onTap: () {},
-                      ),
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Food Delivery'),
+            actions: const <Widget>[
+              CustomSwitchTheme(),
+            ],
+          ),
+          body: BlocBuilder<DishesBloc, DishesState>(
+            builder: (BuildContext context, DishesState state) {
+              if (state is DishesLoadingState) {
+                return const LoadingIndicator();
+              }
+              if (state is DishesErrorState) {
+                return Center(
+                  child: Text(
+                      state.exception?.toString() ?? 'Something went wrong...'),
+                );
+              }
+              if (state is DishesLoadedState) {
+                return GridView(
+                    padding: const EdgeInsets.all(15),
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      childAspectRatio: 2 / 2.3,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
                     ),
-                  ]);
-            }
-            return Container();
-          },
+                    children: <Widget>[
+                      ...List.generate(
+                        state.listOfDishes.length,
+                        (index) => DishElement(
+                          dish: state.listOfDishes[index],
+                          onTap: () {},
+                        ),
+                      ),
+                    ]);
+              }
+              return Container();
+            },
+          ),
         ),
       ),
     );
