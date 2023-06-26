@@ -1,5 +1,13 @@
 part of 'bloc.dart';
 
-abstract class DishesEvent{}
+abstract class DishesEvent {
+  const DishesEvent();
+}
 
-class LoadListOfDishes extends DishesEvent{}
+class LoadingListOfDishes extends DishesEvent {
+  LoadingListOfDishes();
+}
+
+class LoadListOfDishes extends DishesEvent {
+  LoadListOfDishes();
+}

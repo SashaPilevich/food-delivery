@@ -10,11 +10,11 @@ class DeliveryFoodApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<ThemeBloc>(
       create: (context) => ThemeBloc(),
-      child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (BuildContext context, ThemeState state) {
+      child: BlocBuilder<ThemeBloc, ThemeChangedState>(
+        builder: (BuildContext context, ThemeChangedState state) {
           return MaterialApp(
             title: 'Food Delivery',
-            theme: state is ThemeChangedState && state.isDark
+            theme: state.isDark
                 ? AppTheme.darkTheme
                 : AppTheme.lightTheme,
             home: const HomeScreen(),

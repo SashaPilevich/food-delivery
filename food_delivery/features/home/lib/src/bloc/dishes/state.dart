@@ -1,23 +1,25 @@
 part of 'bloc.dart';
 
-abstract class DishesState {}
-
-class DishesInitialState extends DishesState {}
-
-class DishesLoadingState extends DishesState {}
-
-class DishesLoadedState extends DishesState {
+class DishesState {
+  final bool isLoading;
   final List<DishModel> listOfDishes;
-
-  DishesLoadedState({
-    required this.listOfDishes,
-  });
-}
-
-class DishesErrorState extends DishesState {
   final Object? exception;
 
-  DishesErrorState({
-    required this.exception,
+  DishesState({
+    this.isLoading = true,
+    this.listOfDishes = const [],
+    this.exception,
   });
+
+  DishesState copyWith({
+    bool? isLoading,
+    List<DishModel>? listOfDishes,
+    Object? exception,
+  }) {
+    return DishesState(
+      isLoading: isLoading ?? this.isLoading,
+      listOfDishes: listOfDishes ?? this.listOfDishes,
+      exception: exception ?? this.exception,
+    );
+  }
 }

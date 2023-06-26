@@ -9,18 +9,31 @@ final DataDI dataDI = DataDI();
 class DataDI {
   Future<void> initDependencies() async {
     _initFirebaseOptions();
+    _initFirebase();
     _initDataProvider();
     _initDishes();
   }
 
   void _initFirebaseOptions() {
     getIt.registerLazySingleton<FirebaseOptions>(
-        () => DefaultFirebaseOptions.currentPlatform);
+      () => DefaultFirebaseOptions.currentPlatform,
+    );
+  }
+
+  void _initFirebase() {
+    getIt.registerSingletonAsync<FirebaseApp>(() async {
+      final FirebaseOptions options = getIt.get<FirebaseOptions>();
+      return Firebase.initializeApp(
+        options: options,
+      );
+    });
   }
 
   void _initDataProvider() {
     getIt.registerLazySingleton<DataProvider>(
-      () => DataProvider(FirebaseFirestore.instance),
+      () => DataProviderImpl(
+        FirebaseFirestore.instance,
+      ),
     );
   }
 

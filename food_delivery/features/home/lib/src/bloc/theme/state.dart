@@ -1,11 +1,15 @@
 part of 'bloc.dart';
 
-abstract class ThemeState {}
-
-class ThemeInitialState extends ThemeState {}
-
-class ThemeChangedState extends ThemeState {
+class ThemeChangedState {
   final bool isDark;
 
   ThemeChangedState({required this.isDark});
+
+  ThemeChangedState copyWith({
+    bool? isDark,
+  }) {
+    return ThemeChangedState(
+      isDark: isDark ?? this.isDark,
+    );
+  }
 }

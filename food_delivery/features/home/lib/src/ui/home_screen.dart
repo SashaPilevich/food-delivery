@@ -18,9 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocProvider<DishesBloc>(
       create: (context) => DishesBloc(
         fetchAllDishesUseCase: getIt.get<FetchAllDishesUseCase>(),
-      )..add(
-          LoadListOfDishes(),
-        ),
+      ),
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
@@ -31,16 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           body: BlocBuilder<DishesBloc, DishesState>(
             builder: (BuildContext context, DishesState state) {
-              if (state is DishesLoadingState) {
-                return const LoadingIndicator();
-              }
-              if (state is DishesErrorState) {
+              if (state.exception != null) {
                 return Center(
                   child: Text(
                       state.exception?.toString() ?? 'Something went wrong...'),
                 );
               }
-              if (state is DishesLoadedState) {
+              if (state.listOfDishes.isNotEmpty) {
                 return GridView(
                     padding: const EdgeInsets.all(15),
                     gridDelegate:
@@ -59,8 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ]);
+              } else {
+                return const LoadingIndicator();
               }
-              return Container();
             },
           ),
         ),

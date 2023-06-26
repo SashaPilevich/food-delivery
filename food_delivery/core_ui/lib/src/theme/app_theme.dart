@@ -1,4 +1,5 @@
 import 'package:core_ui/src/theme/app_colors.dart';
+import 'package:core_ui/src/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -9,29 +10,15 @@ class AppTheme {
       ),
       primaryColor: AppColors.pink,
       canvasColor: AppColors.grey,
-      fontFamily: 'RobotoCondensed',
       appBarTheme: const AppBarTheme(
-        titleTextStyle: TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.w700,
-        ),
+        titleTextStyle: AppTextTheme.robotoCondensed22SemiBold,
       ),
-      textTheme: const TextTheme(
-        titleLarge: TextStyle(
-          color: AppColors.pink,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-        titleMedium: TextStyle(
-          color: AppColors.pink,
-          fontSize: 17,
-          fontWeight: FontWeight.bold,
-        ),
-        labelMedium: TextStyle(
-          color: AppColors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
+      textTheme: TextTheme(
+        titleLarge:
+            AppTextTheme.robotoCondensed20Bold.apply(color: AppColors.pink),
+        titleMedium:
+            AppTextTheme.robotoCondensed18Bold.apply(color: AppColors.pink),
+        labelMedium: AppTextTheme.robotoCondensed16Medium,
       ),
       cardTheme: const CardTheme(
         color: AppColors.white,
@@ -46,30 +33,17 @@ class AppTheme {
       canvasColor: AppColors.black,
       fontFamily: 'RobotoCondensed',
       appBarTheme: const AppBarTheme(
-        titleTextStyle: TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.w700,
-        ),
+        titleTextStyle: AppTextTheme.robotoCondensed22SemiBold,
       ),
-      textTheme: const TextTheme(
-        titleLarge: TextStyle(
-          color: AppColors.white,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
-        titleMedium: TextStyle(
-          color: AppColors.white,
-          fontSize: 17,
-          fontWeight: FontWeight.bold,
-        ),
-        labelMedium: TextStyle(
-          color: AppColors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
+      textTheme: TextTheme(
+        titleLarge:
+            AppTextTheme.robotoCondensed20Bold.apply(color: AppColors.white),
+        titleMedium:
+            AppTextTheme.robotoCondensed18Bold.apply(color: AppColors.white),
+        labelMedium: AppTextTheme.robotoCondensed16Medium,
       ),
       cardTheme: const CardTheme(
-        color: Color.fromARGB(255, 75, 71, 71),
+        color: AppColors.darkGrey,
       ),
       filledButtonTheme: const FilledButtonThemeData(
         style: ButtonStyle(

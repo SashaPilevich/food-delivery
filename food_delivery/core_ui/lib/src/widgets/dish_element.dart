@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'button_dish_card.dart';
@@ -5,8 +6,8 @@ import 'image_dish_card.dart';
 
 class DishElement extends StatelessWidget {
   final DishModel dish;
-  final Function() onTap;
-  
+  final VoidCallback onTap;
+
   const DishElement({
     required this.dish,
     required this.onTap,
@@ -15,29 +16,30 @@ class DishElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
+    final TextTheme textThemeData = themeData.textTheme;
     return InkWell(
-      splashColor: Theme.of(context).primaryColor,
+      splashColor: themeData.primaryColor,
       borderRadius: const BorderRadius.all(Radius.circular(15)),
       onTap: onTap,
       child: Card(
-        shadowColor: const Color.fromARGB(255, 103, 42, 62),
+        shadowColor: AppColors.lightPink,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
         child: Container(
           padding: const EdgeInsets.only(
             top: 8,
-            bottom: 0,
             left: 15,
             right: 15,
           ),
           child: Column(
             children: <Widget>[
-              ImageDishCard(imageUrl:dish.imageUrl),
+              ImageDishCard(imageUrl: dish.imageUrl),
               const SizedBox(height: 10),
               Text(
                 dish.title,
-                style: Theme.of(context).textTheme.titleLarge,
+                style: textThemeData.titleLarge,
               ),
               const SizedBox(height: 8),
               Row(
@@ -45,7 +47,7 @@ class DishElement extends StatelessWidget {
                   Expanded(
                     child: Text(
                       '\$${dish.cost}',
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: textThemeData.titleMedium,
                     ),
                   ),
                   const Expanded(
@@ -54,7 +56,7 @@ class DishElement extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
@@ -62,4 +64,3 @@ class DishElement extends StatelessWidget {
     );
   }
 }
-

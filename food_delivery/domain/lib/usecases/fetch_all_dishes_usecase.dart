@@ -4,8 +4,9 @@ class FetchAllDishesUseCase
     implements FutureUseCase<NoParams, List<DishModel>> {
   final DishesRepository _dishesRepository;
 
-  const FetchAllDishesUseCase({required DishesRepository dishesRepository})
-      : _dishesRepository = dishesRepository;
+  const FetchAllDishesUseCase({
+    required DishesRepository dishesRepository,
+  }) : _dishesRepository = dishesRepository;
 
   @override
   Future<List<DishModel>> execute(NoParams input) async {

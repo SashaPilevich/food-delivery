@@ -19,28 +19,15 @@ class DishEntity {
     this.category,
   });
 
-  List<Object?> get props =>
-      [id, title, imageUrl, cost, description, ingredients, category];
-
-  DishEntity copyWith({
-    String? id,
-    String? title,
-    String? imageUrl,
-    int? cost,
-    String? description,
-    List<String>? ingredients,
-    String? category,
-  }) {
-    return DishEntity(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      imageUrl: imageUrl ?? this.imageUrl,
-      cost: cost ?? this.cost,
-      description: description ?? this.description,
-      ingredients: ingredients ?? this.ingredients,
-      category: category ?? this.category,
-    );
-  }
+  List<Object?> get props => [
+        id,
+        title,
+        imageUrl,
+        cost,
+        description,
+        ingredients,
+        category,
+      ];
 
   Map<String, dynamic> toJson() {
     return {
@@ -54,7 +41,9 @@ class DishEntity {
     };
   }
 
-  factory DishEntity.fromJson(Map<String, dynamic> json) {
+  factory DishEntity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DishEntity(
       id: json['id'] ?? '',
       title: json['title'] ?? '',
@@ -67,8 +56,9 @@ class DishEntity {
   }
 
   factory DishEntity.fromFirebase(
-      DocumentSnapshot<Map<String, dynamic>> document) {
-    final data = document.data() as Map<String, dynamic>;
+    DocumentSnapshot<Map<String, dynamic>> document,
+  ) {
+    final Map<String, dynamic> data = document.data() as Map<String, dynamic>;
     return DishEntity.fromJson(data);
   }
 }
