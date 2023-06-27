@@ -1,7 +1,6 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:readmore/readmore.dart';
 
 class SelectDishScreen extends StatelessWidget {
   final DishModel dish;
@@ -47,17 +46,8 @@ class SelectDishScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       width: 370,
-                      child: ReadMoreText(
-                        dish.description ?? 'Description not available',
-                        trimLines: 2,
-                        trimMode: TrimMode.Line,
-                        trimCollapsedText: 'Show more',
-                        trimExpandedText: 'Show less',
-                        style: textTheme.titleSmall,
-                        moreStyle: AppTextTheme.robotoCondensed18Regular
-                            .copyWith(color: themeData.primaryColor),
-                        lessStyle: AppTextTheme.robotoCondensed18Regular
-                            .copyWith(color: themeData.primaryColor),
+                      child: CustomReadMoreText(
+                        text: dish.description,
                       ),
                     ),
                     const SizedBox(
@@ -74,19 +64,7 @@ class SelectDishScreen extends StatelessWidget {
                     ),
                     SizedBox(
                       width: 370,
-                      child: Text.rich(
-                        TextSpan(
-                          children: [
-                            ...List.generate(
-                                dish.ingredients?.length ?? 0,
-                                (index) => TextSpan(
-                                      text:
-                                          '\u2022${dish.ingredients?[index] ?? ''}',
-                                      style: textTheme.titleSmall,
-                                    )),
-                          ],
-                        ),
-                      ),
+                      child: CustomTextRich(listOfIngredients: dish.ingredients,)
                     ),
                     const SizedBox(
                       height: 30,

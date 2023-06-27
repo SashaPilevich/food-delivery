@@ -17,6 +17,7 @@ dependencies:
     path: ../domain
   home:
     path: ../features/home
+  readmore: ^2.2.0
 
 dev_dependencies:
   flutter_test:
