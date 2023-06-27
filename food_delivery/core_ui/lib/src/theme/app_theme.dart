@@ -14,11 +14,19 @@ class AppTheme {
         titleTextStyle: AppTextTheme.robotoCondensed22SemiBold,
       ),
       textTheme: TextTheme(
-        titleLarge:
-            AppTextTheme.robotoCondensed20Bold.apply(color: AppColors.pink),
-        titleMedium:
-            AppTextTheme.robotoCondensed18Bold.apply(color: AppColors.pink),
+        titleLarge: AppTextTheme.robotoCondensed20Bold.apply(
+          color: AppColors.pink,
+        ),
+        titleMedium: AppTextTheme.robotoCondensed18Bold.apply(
+          color: AppColors.pink,
+        ),
+        titleSmall: AppTextTheme.robotoCondensed18Regular.apply(
+          color: AppColors.darkGrey,
+        ),
         labelMedium: AppTextTheme.robotoCondensed16Medium,
+        headlineLarge: AppTextTheme.robotoCondensed26SemiBold.apply(
+          color: AppColors.pink,
+        ),
       ),
       cardTheme: const CardTheme(
         color: AppColors.white,
@@ -33,25 +41,37 @@ class AppTheme {
 
   static ThemeData get darkTheme {
     return ThemeData(
-      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange),
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: Colors.orange,
+      ),
       primaryColor: AppColors.orange,
       canvasColor: AppColors.black,
       appBarTheme: const AppBarTheme(
         titleTextStyle: AppTextTheme.robotoCondensed22SemiBold,
       ),
       textTheme: TextTheme(
-        titleLarge:
-            AppTextTheme.robotoCondensed20Bold.apply(color: AppColors.white),
-        titleMedium:
-            AppTextTheme.robotoCondensed18Bold.apply(color: AppColors.white),
+        titleLarge: AppTextTheme.robotoCondensed20Bold.apply(
+          color: AppColors.white,
+        ),
+        titleMedium: AppTextTheme.robotoCondensed18Bold.apply(
+          color: AppColors.white,
+        ),
+        titleSmall: AppTextTheme.robotoCondensed18Regular.apply(
+          color: AppColors.white,
+        ),
         labelMedium: AppTextTheme.robotoCondensed16Medium,
+        headlineLarge: AppTextTheme.robotoCondensed26SemiBold.apply(
+          color: AppColors.orange,
+        ),
       ),
       cardTheme: const CardTheme(
         color: AppColors.darkGrey,
       ),
       filledButtonTheme: const FilledButtonThemeData(
         style: ButtonStyle(
-          foregroundColor: MaterialStatePropertyAll(AppColors.white),
+          foregroundColor: MaterialStatePropertyAll(
+            AppColors.white,
+          ),
         ),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(

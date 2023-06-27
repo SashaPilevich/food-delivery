@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ImageDishCard extends StatelessWidget {
+class ImageDishSelect extends StatelessWidget {
   final String imageUrl;
 
-  const ImageDishCard({
-    super.key,
+  const ImageDishSelect({
     required this.imageUrl,
+    super.key,
   });
 
   @override
@@ -14,7 +14,7 @@ class ImageDishCard extends StatelessWidget {
       tag: imageUrl,
       child: Image.network(
         imageUrl,
-        height: 100,
+        height: 300,
       ),
     );
   }

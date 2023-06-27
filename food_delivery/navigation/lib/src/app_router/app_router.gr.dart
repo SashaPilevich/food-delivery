@@ -23,6 +23,16 @@ class _$AppRouter extends RootStackRouter {
         child: const HomePage(),
       );
     },
+    SelectDishScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<SelectDishScreenRouteArgs>();
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: SelectDishScreen(
+          dish: args.dish,
+          key: args.key,
+        ),
+      );
+    },
     HomeScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -76,7 +86,11 @@ class _$AppRouter extends RootStackRouter {
               parent: HomePageRoute.name,
             ),
           ],
-        )
+        ),
+        RouteConfig(
+          SelectDishScreenRoute.name,
+          path: '/select-dish-screen',
+        ),
       ];
 }
 
@@ -91,6 +105,40 @@ class HomePageRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomePageRoute';
+}
+
+/// generated route for
+/// [SelectDishScreen]
+class SelectDishScreenRoute extends PageRouteInfo<SelectDishScreenRouteArgs> {
+  SelectDishScreenRoute({
+    required DishModel dish,
+    Key? key,
+  }) : super(
+          SelectDishScreenRoute.name,
+          path: '/select-dish-screen',
+          args: SelectDishScreenRouteArgs(
+            dish: dish,
+            key: key,
+          ),
+        );
+
+  static const String name = 'SelectDishScreenRoute';
+}
+
+class SelectDishScreenRouteArgs {
+  const SelectDishScreenRouteArgs({
+    required this.dish,
+    this.key,
+  });
+
+  final DishModel dish;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SelectDishScreenRouteArgs{dish: $dish, key: $key}';
+  }
 }
 
 /// generated route for

@@ -4,6 +4,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:home/src/bloc/dishes/bloc.dart';
+import 'package:navigation/navigation.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -44,7 +45,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         state.listOfDishes.length,
                         (index) => DishElement(
                           dish: state.listOfDishes[index],
-                          onTap: () {},
+                          onTap: () {
+                            context.navigateTo(
+                              SelectDishScreenRoute(
+                                dish: state.listOfDishes[index],
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ]);
