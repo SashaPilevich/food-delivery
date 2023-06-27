@@ -1,5 +1,5 @@
-name: navigation
-description: navigation
+name: settings
+description: settings
 version: 0.0.1
 homepage:
 publish_to: 'none'
@@ -16,4 +16,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+
+flutter:
 
