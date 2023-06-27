@@ -11,9 +11,26 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  core:
+    path: ../core
+  domain:
+    path: ../domain
+  home:
+    path: ../features/home
+  cart:
+    path: ../features/cart
+  order_history:
+    path: ../features/order_history
+  settings:
+    path: ../features/settings
+  auto_route: ^5.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  auto_route_generator: ^5.0.2
+  build_runner: ^2.4.5
+
+
 

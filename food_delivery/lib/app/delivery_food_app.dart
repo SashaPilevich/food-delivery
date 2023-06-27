@@ -1,7 +1,9 @@
 import 'package:core/core.dart';
+import 'package:core/di/data_di.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:home/home.dart';
+import 'package:navigation/navigation.dart';
 
 class DeliveryFoodApp extends StatelessWidget {
   const DeliveryFoodApp({super.key});
@@ -12,12 +14,14 @@ class DeliveryFoodApp extends StatelessWidget {
       create: (context) => ThemeBloc(),
       child: BlocBuilder<ThemeBloc, ThemeChangedState>(
         builder: (BuildContext context, ThemeChangedState state) {
-          return MaterialApp(
+          return MaterialApp.router(
+            routerDelegate: getIt.get<AppRouter>().delegate(),
+            routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
             title: 'Food Delivery',
             theme: state.isDark
                 ? AppTheme.darkTheme
                 : AppTheme.lightTheme,
-            home: const HomeScreen(),
+            
           );
         },
       ),
