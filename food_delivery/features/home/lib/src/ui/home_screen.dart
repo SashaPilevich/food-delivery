@@ -21,12 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Food Delivery'),
-            actions: const <Widget>[
-              CustomSwitchTheme(),
-            ],
-          ),
           body: BlocBuilder<DishesBloc, DishesState>(
             builder: (BuildContext context, DishesState state) {
               if (state.exception != null) {
