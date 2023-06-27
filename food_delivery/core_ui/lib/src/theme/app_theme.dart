@@ -23,6 +23,11 @@ class AppTheme {
       cardTheme: const CardTheme(
         color: AppColors.white,
       ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: AppColors.white,
+        unselectedItemColor: AppColors.darkGrey,
+        selectedItemColor: AppColors.pink,
+      ),
     );
   }
 
@@ -31,7 +36,6 @@ class AppTheme {
       colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange),
       primaryColor: AppColors.orange,
       canvasColor: AppColors.black,
-      fontFamily: 'RobotoCondensed',
       appBarTheme: const AppBarTheme(
         titleTextStyle: AppTextTheme.robotoCondensed22SemiBold,
       ),
@@ -49,6 +53,11 @@ class AppTheme {
         style: ButtonStyle(
           foregroundColor: MaterialStatePropertyAll(AppColors.white),
         ),
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: AppColors.darkGrey,
+        unselectedItemColor: AppColors.white,
+        selectedItemColor: AppColors.orange,
       ),
     );
   }
