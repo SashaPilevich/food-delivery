@@ -34,29 +34,30 @@ class _HomeScreenState extends State<HomeScreen> {
               }
               if (state.listOfDishes.isNotEmpty) {
                 return GridView(
-                    padding: const EdgeInsets.all(15),
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent:
-                          isPortrait ? screenHeight * 0.4 : screenHeight * 0.5,
-                      childAspectRatio: isPortrait ? 2 / 2.3 : 2.4 / 2.8,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20,
-                    ),
-                    children: <Widget>[
-                      ...List.generate(
-                        state.listOfDishes.length,
-                        (index) => DishElement(
-                          dish: state.listOfDishes[index],
-                          onTap: () {
-                            context.navigateTo(
-                              SelectDishScreenRoute(
-                                dish: state.listOfDishes[index],
-                              ),
-                            );
-                          },
-                        ),
+                  padding: const EdgeInsets.all(15),
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent:
+                        isPortrait ? screenHeight * 0.4 : screenHeight * 0.5,
+                    childAspectRatio: isPortrait ? 2 / 2.3 : 2.4 / 2.8,
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20,
+                  ),
+                  children: <Widget>[
+                    ...List.generate(
+                      state.listOfDishes.length,
+                      (index) => DishElement(
+                        dish: state.listOfDishes[index],
+                        onTap: () {
+                          context.navigateTo(
+                            SelectDishScreenRoute(
+                              dish: state.listOfDishes[index],
+                            ),
+                          );
+                        },
                       ),
-                    ]);
+                    ),
+                  ],
+                );
               } else {
                 return const LoadingIndicator();
               }
