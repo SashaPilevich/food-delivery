@@ -11,20 +11,20 @@ class AppTheme {
       primaryColor: AppColors.pink,
       canvasColor: AppColors.grey,
       appBarTheme: const AppBarTheme(
-        titleTextStyle: AppTextTheme.robotoCondensed22SemiBold,
+        titleTextStyle: AppTextTheme.mulish22Bold,
       ),
       textTheme: TextTheme(
-        titleLarge: AppTextTheme.robotoCondensed20Bold.apply(
+        titleLarge: AppTextTheme.mulish20Black.apply(
           color: AppColors.pink,
         ),
-        titleMedium: AppTextTheme.robotoCondensed18Bold.apply(
+        titleMedium: AppTextTheme.mulish18Black.apply(
           color: AppColors.pink,
         ),
-        titleSmall: AppTextTheme.robotoCondensed18Regular.apply(
+        titleSmall: AppTextTheme.mulish18Regular.apply(
           color: AppColors.lightGrey,
         ),
-        labelMedium: AppTextTheme.robotoCondensed16Medium,
-        headlineLarge: AppTextTheme.robotoCondensed26SemiBold.apply(
+        labelMedium: AppTextTheme.mulish16Bold,
+        headlineLarge: AppTextTheme.mulish26Bold.apply(
           color: AppColors.pink,
         ),
       ),
@@ -47,20 +47,23 @@ class AppTheme {
       primaryColor: AppColors.orange,
       canvasColor: AppColors.black,
       appBarTheme: const AppBarTheme(
-        titleTextStyle: AppTextTheme.robotoCondensed22SemiBold,
+        titleTextStyle: AppTextTheme.mulish22Bold,
+        iconTheme: IconThemeData(
+          color: AppColors.white,
+        ),
       ),
       textTheme: TextTheme(
-        titleLarge: AppTextTheme.robotoCondensed20Bold.apply(
+        titleLarge: AppTextTheme.mulish20Black.apply(
           color: AppColors.white,
         ),
-        titleMedium: AppTextTheme.robotoCondensed18Bold.apply(
+        titleMedium: AppTextTheme.mulish18Black.apply(
           color: AppColors.white,
         ),
-        titleSmall: AppTextTheme.robotoCondensed18Regular.apply(
+        titleSmall: AppTextTheme.mulish18Regular.apply(
           color: AppColors.white,
         ),
-        labelMedium: AppTextTheme.robotoCondensed16Medium,
-        headlineLarge: AppTextTheme.robotoCondensed26SemiBold.apply(
+        labelMedium: AppTextTheme.mulish16Bold,
+        headlineLarge: AppTextTheme.mulish26Bold.apply(
           color: AppColors.orange,
         ),
       ),

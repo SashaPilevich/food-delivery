@@ -21,11 +21,11 @@ class HomePage extends StatelessWidget {
           const CustomSwitchTheme(),
           IconButton(
             onPressed: () {
-              if (context.locale == const Locale('en','US')) {
+              if (context.locale == const Locale('en', 'US')) {
                 context.setLocale(
                   const Locale('pl', 'PL'),
                 );
-              } else  {
+              } else {
                 context.setLocale(
                   const Locale('en', 'US'),
                 );
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
             icon: const Icon(
               Icons.language,
             ),
-          )
+          ),
         ],
       ),
       bottomNavigationBuilder: (context, tabsRouter) =>

@@ -11,14 +11,13 @@ class ButtonDishCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextTheme textStyle = Theme.of(context).textTheme;
-    return FittedBox(
-      fit: BoxFit.contain,
-      child: FilledButton(
-        onPressed: () {},
-        style: FilledButton.styleFrom(
-          minimumSize: const Size(60, 30),
-          textStyle: textStyle.labelMedium,
-        ),
+    return FilledButton(
+      onPressed: () {},
+      style: FilledButton.styleFrom(
+        minimumSize: const Size(60, 30),
+        textStyle: textStyle.labelMedium,
+      ),
+      child: FittedBox(
         child: Text(label),
       ),
     );

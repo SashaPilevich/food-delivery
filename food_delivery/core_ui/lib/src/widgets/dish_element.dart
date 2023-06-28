@@ -38,9 +38,11 @@ class DishElement extends StatelessWidget {
             children: <Widget>[
               ImageDishCard(imageUrl: dish.imageUrl),
               const SizedBox(height: 10),
-              Text(
-                dish.title,
-                style: textThemeData.titleLarge,
+              FittedBox(
+                child: Text(
+                  dish.title,
+                  style: textThemeData.titleMedium,
+                ),
               ),
               const SizedBox(height: 8),
               Row(

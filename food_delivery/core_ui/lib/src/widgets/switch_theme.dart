@@ -11,7 +11,7 @@ class CustomSwitchTheme extends StatelessWidget {
     final bloc = BlocProvider.of<ThemeBloc>(context);
     return BlocBuilder<ThemeBloc, ThemeChangedState>(
       bloc: bloc,
-      builder: (BuildContext context,ThemeChangedState state) {
+      builder: (BuildContext context, ThemeChangedState state) {
         return Switch(
           activeColor: AppColors.black,
           activeTrackColor: AppColors.white,

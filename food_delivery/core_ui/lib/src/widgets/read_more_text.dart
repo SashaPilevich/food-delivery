@@ -22,11 +22,12 @@ class CustomReadMoreText extends StatelessWidget {
       trimCollapsedText: 'showMore'.tr(),
       trimExpandedText: 'showLess'.tr(),
       style: textTheme.titleSmall,
-      moreStyle: AppTextTheme.robotoCondensed18Regular
-          .copyWith(color: themeData.primaryColor),
-      lessStyle: AppTextTheme.robotoCondensed18Regular
-          .copyWith(color: themeData.primaryColor),
+      moreStyle: AppTextTheme.mulish16Bold.apply(
+        color: themeData.primaryColor,
+      ),
+      lessStyle: AppTextTheme.mulish16Bold.apply(
+        color: themeData.primaryColor,
+      ),
     );
   }
 }
-

@@ -1,47 +1,59 @@
 import 'package:flutter/material.dart';
 
 class AppTextTheme {
-  static const String _robotoCondensedFamily = 'RobotoCondensed';
+  static const String _mulishFamily = 'Mulish';
 
-  static const TextStyle robotoCondensed16Medium = TextStyle(
+  static const TextStyle mulish16SemiBold = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
-    fontFamily: _robotoCondensedFamily,
+    fontFamily: _mulishFamily,
   );
 
-  static const TextStyle robotoCondensed18Regular = TextStyle(
+  static const TextStyle mulish16Bold = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    fontFamily: _mulishFamily,
+  );
+
+  static const TextStyle mulish18Regular = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w400,
-    fontFamily: _robotoCondensedFamily,
+    fontFamily: _mulishFamily,
   );
 
-  static const TextStyle robotoCondensed18Medium = TextStyle(
+  static const TextStyle mulish18SemiBold = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
-    fontFamily: _robotoCondensedFamily,
+    fontFamily: _mulishFamily,
   );
 
-  static const TextStyle robotoCondensed18Bold = TextStyle(
+  static const TextStyle mulish18Bold = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    fontFamily: _mulishFamily,
+  );
+
+  static const TextStyle mulish18Black = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.bold,
-    fontFamily: _robotoCondensedFamily,
+    fontFamily: _mulishFamily,
   );
 
-  static const TextStyle robotoCondensed20Bold = TextStyle(
+  static const TextStyle mulish20Black = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
-    fontFamily: _robotoCondensedFamily,
+    fontFamily: _mulishFamily,
   );
 
-  static const TextStyle robotoCondensed22SemiBold = TextStyle(
+  static const TextStyle mulish22Bold = TextStyle(
     fontSize: 22,
     fontWeight: FontWeight.w700,
-    fontFamily: _robotoCondensedFamily,
+    fontFamily: _mulishFamily,
   );
 
-  static const TextStyle robotoCondensed26SemiBold = TextStyle(
+  static const TextStyle mulish26Bold = TextStyle(
     fontSize: 26,
     fontWeight: FontWeight.w700,
-    fontFamily: _robotoCondensedFamily,
+    fontFamily: _mulishFamily,
   );
 }

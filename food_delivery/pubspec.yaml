@@ -23,9 +23,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   easy_localization: ^3.0.2
 
-# flutter_localizations:
-#   sdk: flutter
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -53,4 +50,19 @@ flutter:
           weight: 300
         - asset: assets/fonts/RobotoCondensed-Italic.ttf
           style: italic
+    - family: Mulish
+      fonts:
+        - asset: assets/fonts/Mulish-Regular.ttf
+        - asset: assets/fonts/Mulish-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Mulish-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Mulish-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Mulish-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Mulish-Black.ttf
+          weight: 900
+
+
   
