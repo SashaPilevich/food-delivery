@@ -21,7 +21,7 @@ class AppTheme {
           color: AppColors.pink,
         ),
         titleSmall: AppTextTheme.robotoCondensed18Regular.apply(
-          color: AppColors.darkGrey,
+          color: AppColors.lightGrey,
         ),
         labelMedium: AppTextTheme.robotoCondensed16Medium,
         headlineLarge: AppTextTheme.robotoCondensed26SemiBold.apply(

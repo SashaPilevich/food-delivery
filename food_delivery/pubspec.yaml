@@ -21,6 +21,10 @@ dependencies:
   home:
     path: ./features/home
   cupertino_icons: ^1.0.2
+  easy_localization: ^3.0.2
+
+# flutter_localizations:
+#   sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +33,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
+  assets:
+    - assets/translations/
   fonts:
     - family: Raleway
       fonts:
@@ -46,3 +53,4 @@ flutter:
           weight: 300
         - asset: assets/fonts/RobotoCondensed-Italic.ttf
           style: italic
+  

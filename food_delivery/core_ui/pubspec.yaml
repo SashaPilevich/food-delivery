@@ -18,9 +18,12 @@ dependencies:
   home:
     path: ../features/home
   readmore: ^2.2.0
+  easy_localization: ^3.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+
+flutter:
 

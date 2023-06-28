@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -14,28 +15,28 @@ class CustomBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final BottomNavigationBarThemeData bottomNavigationBarTheme =
         Theme.of(context).bottomNavigationBarTheme;
-    const List<BottomNavigationBarItem> items = [
+    final List<BottomNavigationBarItem> items = [
       BottomNavigationBarItem(
-        icon: Icon(
+        icon: const Icon(
           Icons.home,
         ),
-        label: 'Home',
+        label: 'home'.tr(),
       ),
       BottomNavigationBarItem(
-          icon: Icon(
+          icon: const Icon(
             Icons.shopping_bag_outlined,
           ),
-          label: 'Cart'),
+          label: 'cart'.tr()),
       BottomNavigationBarItem(
-          icon: Icon(
+          icon: const Icon(
             Icons.list,
           ),
-          label: 'Order History'),
+          label: 'orderHistory'.tr()),
       BottomNavigationBarItem(
-          icon: Icon(
+          icon: const Icon(
             Icons.settings,
           ),
-          label: 'Settings'),
+          label: 'settings'.tr()),
     ];
     return BottomNavigationBar(
       items: items,

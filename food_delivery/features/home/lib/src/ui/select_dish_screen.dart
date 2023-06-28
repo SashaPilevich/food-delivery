@@ -1,5 +1,6 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class SelectDishScreen extends StatelessWidget {
@@ -54,7 +55,7 @@ class SelectDishScreen extends StatelessWidget {
                       height: 30,
                     ),
                     Text(
-                      'Ingredients',
+                      'ingredients'.tr(),
                       style: textTheme.titleMedium?.copyWith(
                         color: themeData.primaryColor,
                       ),
@@ -70,7 +71,7 @@ class SelectDishScreen extends StatelessWidget {
                       height: 30,
                     ),
                     Text(
-                      'Cost: \$${dish.cost}',
+                      '${'cost'.tr()}: \$${dish.cost}',
                       style: textTheme.titleMedium?.copyWith(
                         color: themeData.primaryColor,
                       ),

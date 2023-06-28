@@ -1,5 +1,6 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'button_dish_card.dart';
 import 'image_dish_card.dart';
@@ -29,7 +30,7 @@ class DishElement extends StatelessWidget {
         ),
         child: Container(
           padding: const EdgeInsets.only(
-            top: 8,
+            top: 6,
             left: 15,
             right: 15,
           ),
@@ -50,9 +51,9 @@ class DishElement extends StatelessWidget {
                       style: textThemeData.titleMedium,
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                     child: ButtonDishCard(
-                      label: '+Add',
+                      label: '+${'add'.tr()}',
                     ),
                   ),
                 ],
