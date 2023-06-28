@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core/di/data_di.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

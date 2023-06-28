@@ -1,5 +1,4 @@
-import 'package:core/di/app_navigation_di.dart';
-import 'package:core/di/data_di.dart';
+import 'package:core/core.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/app/delivery_food_app.dart';
@@ -9,7 +8,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   dataDI.initDependencies();
   navigationDI.initDependencies();
-  await getIt.allReady();
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(

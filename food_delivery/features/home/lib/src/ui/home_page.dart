@@ -16,7 +16,9 @@ class HomePage extends StatelessWidget {
         SettingsScreenRoute(),
       ],
       appBarBuilder: (context, tabsRouter) => AppBar(
-        title: Text('foodDelivery'.tr()),
+        title: Text(
+          'foodDelivery'.tr(),
+        ),
         actions: <Widget>[
           const CustomSwitchTheme(),
           IconButton(

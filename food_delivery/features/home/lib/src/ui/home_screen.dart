@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core/di/data_di.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +15,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final Orientation orientation = MediaQuery.of(context).orientation;
+    final bool isPortrait = orientation == Orientation.portrait;
     return BlocProvider<DishesBloc>(
       create: (context) => DishesBloc(
         fetchAllDishesUseCase: getIt.get<FetchAllDishesUseCase>(),
@@ -33,10 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
               if (state.listOfDishes.isNotEmpty) {
                 return GridView(
                     padding: const EdgeInsets.all(15),
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200,
-                      childAspectRatio: 2 / 2.3,
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent:
+                          isPortrait ? screenHeight * 0.4 : screenHeight * 0.5,
+                      childAspectRatio: isPortrait ? 2 / 2.3 : 2.4 / 2.8,
                       crossAxisSpacing: 20,
                       mainAxisSpacing: 20,
                     ),

@@ -15,73 +15,77 @@ class SelectDishScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final TextTheme textTheme = themeData.textTheme;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(dish.title),
-      ),
-      body: Container(
-        padding: const EdgeInsets.only(
-          top: 30,
-          left: 20,
-          right: 20,
+    final double screenWidth = MediaQuery.of(context).size.width;
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(dish.title),
         ),
-        child: Column(
-          children: <Widget>[
-            Center(
-              child: ImageDishSelect(imageUrl: dish.imageUrl),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      dish.title,
-                      style: textTheme.headlineLarge,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    SizedBox(
-                      width: 370,
-                      child: CustomReadMoreText(
-                        text: dish.description,
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.only(
+            top: 30,
+            left: 20,
+            right: 20,
+            bottom: 30,
+          ),
+          child: Column(
+            children: <Widget>[
+              Center(
+                child: ImageDishSelect(imageUrl: dish.imageUrl),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        dish.title,
+                        style: textTheme.headlineLarge,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Text(
-                      'ingredients'.tr(),
-                      style: textTheme.titleMedium?.copyWith(
-                        color: themeData.primaryColor,
+                      const SizedBox(
+                        height: 30,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                        width: 370,
-                        child: CustomTextRich(
-                          listOfIngredients: dish.ingredients,
-                        )),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Text(
-                      '${'cost'.tr()}: \$${dish.cost}',
-                      style: textTheme.titleMedium?.copyWith(
-                        color: themeData.primaryColor,
+                      SizedBox(
+                        width: screenWidth * 0.9,
+                        child: CustomReadMoreText(
+                          text: dish.description,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        'ingredients'.tr(),
+                        style: textTheme.titleMedium?.copyWith(
+                          color: themeData.primaryColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                          width: screenWidth * 0.9,
+                          child: CustomTextRich(
+                            listOfIngredients: dish.ingredients,
+                          )),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Text(
+                        '${'cost'.tr()}: \$${dish.cost}',
+                        style: textTheme.titleMedium?.copyWith(
+                          color: themeData.primaryColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

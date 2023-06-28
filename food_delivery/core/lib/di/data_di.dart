@@ -20,13 +20,10 @@ class DataDI {
     );
   }
 
-  void _initFirebase() {
-    getIt.registerSingletonAsync<FirebaseApp>(() async {
-      final FirebaseOptions options = getIt.get<FirebaseOptions>();
-      return Firebase.initializeApp(
-        options: options,
-      );
-    });
+  void _initFirebase() async {
+    await Firebase.initializeApp(
+      options: getIt<FirebaseOptions>(),
+    );
   }
 
   void _initDataProvider() {

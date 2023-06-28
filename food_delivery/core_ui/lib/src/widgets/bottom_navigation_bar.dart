@@ -23,20 +23,23 @@ class CustomBottomNavigationBar extends StatelessWidget {
         label: 'home'.tr(),
       ),
       BottomNavigationBarItem(
-          icon: const Icon(
-            Icons.shopping_bag_outlined,
-          ),
-          label: 'cart'.tr()),
+        icon: const Icon(
+          Icons.shopping_bag_outlined,
+        ),
+        label: 'cart'.tr(),
+      ),
       BottomNavigationBarItem(
-          icon: const Icon(
-            Icons.list,
-          ),
-          label: 'orderHistory'.tr()),
+        icon: const Icon(
+          Icons.list,
+        ),
+        label: 'orderHistory'.tr(),
+      ),
       BottomNavigationBarItem(
-          icon: const Icon(
-            Icons.settings,
-          ),
-          label: 'settings'.tr()),
+        icon: const Icon(
+          Icons.settings,
+        ),
+        label: 'settings'.tr(),
+      ),
     ];
     return BottomNavigationBar(
       items: items,

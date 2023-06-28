@@ -32,5 +32,6 @@ dev_dependencies:
   auto_route_generator: ^5.0.2
   build_runner: ^2.4.5
 
+flutter:
 
 

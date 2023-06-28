@@ -15,11 +15,12 @@ class CustomTextRich extends StatelessWidget {
       TextSpan(
         children: [
           ...List.generate(
-              listOfIngredients?.length ?? 0,
-              (index) => TextSpan(
-                    text: '\u2022${listOfIngredients?[index] ?? ''}',
-                    style: textTheme.titleSmall,
-                  )),
+            listOfIngredients?.length ?? 0,
+            (index) => TextSpan(
+              text: '\u2022${listOfIngredients?[index] ?? ''}',
+              style: textTheme.titleSmall,
+            ),
+          ),
         ],
       ),
     );
