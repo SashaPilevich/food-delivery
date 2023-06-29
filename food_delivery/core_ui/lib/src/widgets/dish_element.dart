@@ -1,6 +1,6 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'button_dish_card.dart';
 import 'image_dish_card.dart';
@@ -18,7 +18,7 @@ class DishElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    final TextTheme textThemeData = themeData.textTheme;
+
     return InkWell(
       splashColor: themeData.primaryColor,
       borderRadius: const BorderRadius.all(Radius.circular(15)),
@@ -41,7 +41,7 @@ class DishElement extends StatelessWidget {
               FittedBox(
                 child: Text(
                   dish.title,
-                  style: textThemeData.titleMedium,
+                  style: themeData.textTheme.titleMedium,
                 ),
               ),
               const SizedBox(height: 8),
@@ -50,13 +50,11 @@ class DishElement extends StatelessWidget {
                   Expanded(
                     child: Text(
                       '\$${dish.cost}',
-                      style: textThemeData.titleMedium,
+                      style: themeData.textTheme.titleMedium,
                     ),
                   ),
-                  Expanded(
-                    child: ButtonDishCard(
-                      label: '+${'add'.tr()}',
-                    ),
+                  ButtonDishCard(
+                    label: '+${'add'.tr()}',
                   ),
                 ],
               ),

@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/app/delivery_food_app.dart';
 import 'generated/codegen_loader.g.dart';
@@ -7,7 +6,7 @@ import 'generated/codegen_loader.g.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   dataDI.initDependencies();
-  navigationDI.initDependencies();
+  appDI.initDependencies();
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(

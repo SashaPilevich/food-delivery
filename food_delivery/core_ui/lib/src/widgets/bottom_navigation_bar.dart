@@ -1,4 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:core_ui/src/util/enum/bottom_navigation_bar.dart';
+import 'package:core_ui/src/util/extensions/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -13,42 +14,25 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final BottomNavigationBarThemeData bottomNavigationBarTheme =
-        Theme.of(context).bottomNavigationBarTheme;
-    final List<BottomNavigationBarItem> items = [
-      BottomNavigationBarItem(
-        icon: const Icon(
-          Icons.home,
-        ),
-        label: 'home'.tr(),
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(
-          Icons.shopping_bag_outlined,
-        ),
-        label: 'cart'.tr(),
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(
-          Icons.list,
-        ),
-        label: 'orderHistory'.tr(),
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(
-          Icons.settings,
-        ),
-        label: 'settings'.tr(),
-      ),
-    ];
+    final ThemeData themeData = Theme.of(context);
+    final List<BottomNavigationBarItem> items = CustomBottomNavigationBarItem
+        .values
+        .map((CustomBottomNavigationBarItem item) {
+      return BottomNavigationBarItem(
+        icon: item.icon,
+        label: item.label,
+      );
+    }).toList();
+
     return BottomNavigationBar(
       items: items,
       currentIndex: currentIndex,
       onTap: onTap,
       type: BottomNavigationBarType.fixed,
-      backgroundColor: bottomNavigationBarTheme.backgroundColor,
-      selectedItemColor: bottomNavigationBarTheme.selectedItemColor,
-      unselectedItemColor: bottomNavigationBarTheme.unselectedItemColor,
+      backgroundColor: themeData.bottomNavigationBarTheme.backgroundColor,
+      selectedItemColor: themeData.bottomNavigationBarTheme.selectedItemColor,
+      unselectedItemColor:
+          themeData.bottomNavigationBarTheme.unselectedItemColor,
     );
   }
 }

@@ -17,9 +17,7 @@ class ButtonDishCard extends StatelessWidget {
         minimumSize: const Size(60, 30),
         textStyle: textStyle.labelMedium,
       ),
-      child: FittedBox(
-        child: Text(label),
-      ),
+      child: Text(label),
     );
   }
 }

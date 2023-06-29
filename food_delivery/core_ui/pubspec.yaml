@@ -20,7 +20,7 @@ dependencies:
   navigation:
     path: ../navigation
   readmore: ^2.2.0
-  easy_localization: ^3.0.2
+  
 
 dev_dependencies:
   flutter_test:

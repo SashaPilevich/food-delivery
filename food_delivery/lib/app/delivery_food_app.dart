@@ -11,7 +11,7 @@ class DeliveryFoodApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ThemeBloc>(
-      create: (context) => ThemeBloc(),
+      create: (_) => ThemeBloc(),
       child: BlocBuilder<ThemeBloc, ThemeChangedState>(
         builder: (BuildContext context, ThemeChangedState state) {
           return MaterialApp.router(

@@ -67,10 +67,11 @@ class SelectDishScreen extends StatelessWidget {
                         height: 20,
                       ),
                       SizedBox(
-                          width: screenWidth * 0.9,
-                          child: CustomTextRich(
-                            listOfIngredients: dish.ingredients,
-                          )),
+                        width: screenWidth * 0.9,
+                        child: CustomTextRich(
+                          listOfIngredients: dish.ingredients,
+                        ),
+                      ),
                       const SizedBox(
                         height: 30,
                       ),

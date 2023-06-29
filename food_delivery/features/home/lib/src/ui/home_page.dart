@@ -15,35 +15,34 @@ class HomePage extends StatelessWidget {
         OrderHistoryScreenRoute(),
         SettingsScreenRoute(),
       ],
-      appBarBuilder: (context, tabsRouter) => AppBar(
-        title: Text(
-          'foodDelivery'.tr(),
-        ),
-        actions: <Widget>[
-          const CustomSwitchTheme(),
-          IconButton(
-            onPressed: () {
-              if (context.locale == const Locale('en', 'US')) {
-                context.setLocale(
-                  const Locale('pl', 'PL'),
-                );
-              } else {
-                context.setLocale(
-                  const Locale('en', 'US'),
-                );
-              }
-            },
-            icon: const Icon(
-              Icons.language,
-            ),
+      appBarBuilder: (_, TabsRouter tabsRouter) {
+        return AppBar(
+          title: Text(
+            'foodDelivery'.tr(),
           ),
-        ],
-      ),
-      bottomNavigationBuilder: (context, tabsRouter) =>
-          CustomBottomNavigationBar(
-        currentIndex: tabsRouter.activeIndex,
-        onTap: tabsRouter.setActiveIndex,
-      ),
+          actions: <Widget>[
+            const CustomSwitchTheme(),
+            IconButton(
+              onPressed: () {
+                if (context.locale == const Locale('en', 'US')) {
+                  context.setLocale(const Locale('pl', 'PL'));
+                } else {
+                  context.setLocale(const Locale('en', 'US'));
+                }
+              },
+              icon: const Icon(
+                Icons.language,
+              ),
+            ),
+          ],
+        );
+      },
+      bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
+        return CustomBottomNavigationBar(
+          currentIndex: tabsRouter.activeIndex,
+          onTap: tabsRouter.setActiveIndex,
+        );
+      },
     );
   }
 }

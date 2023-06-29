@@ -4,13 +4,14 @@ class CustomTextRich extends StatelessWidget {
   final List<String>? listOfIngredients;
 
   const CustomTextRich({
-    required this.listOfIngredients,
+    this.listOfIngredients,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
+    final ThemeData themeData = Theme.of(context);
+
     return Text.rich(
       TextSpan(
         children: [
@@ -18,7 +19,7 @@ class CustomTextRich extends StatelessWidget {
             listOfIngredients?.length ?? 0,
             (index) => TextSpan(
               text: '\u2022${listOfIngredients?[index] ?? ''}',
-              style: textTheme.titleSmall,
+              style: themeData.textTheme.titleSmall,
             ),
           ),
         ],

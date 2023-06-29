@@ -1,13 +1,20 @@
 {
-  "foodDelivery":"Food Delivery",
-  "add":"Add",
-  "home":"Home",
-  "cart":"Cart",
-  "orderHistory":"Order History",
-  "settings":"Settings",
-  "ingredients":"Ingredients",
-  "cost":"Cost",
-  "showMore":"Show More",
-  "showLess":"Show Less"
+  "homePage":{
+    "foodDelivery":"Food Delivery",
+    "home":"Home",
+    "cart":"Cart",
+    "orderHistory":"Order History",
+    "settings":"Settings"
+  },
+  "homeScreen":{
+    "add":"Add"
+  },
+  "selectDishScreen":{
+    "ingredients":"Ingredients",
+    "cost":"Cost",
+    "showMore":"Show More",
+    "showLess":"Show Less",
+    "descriptionNotAvailable":"Description Not Available"
+  }
 }
 

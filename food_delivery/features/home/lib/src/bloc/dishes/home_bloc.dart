@@ -1,12 +1,11 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
-part 'event.dart';
-part 'state.dart';
+part 'home_event.dart';
+part 'home_state.dart';
 
 class DishesBloc extends Bloc<DishesEvent, DishesState> {
   final FetchAllDishesUseCase _fetchAllDishesUseCase;
-  List<DishModel> dishes = <DishModel>[];
 
   DishesBloc({
     required FetchAllDishesUseCase fetchAllDishesUseCase,
@@ -32,9 +31,13 @@ class DishesBloc extends Bloc<DishesEvent, DishesState> {
     }
   }
 
-  void _loadDishes(LoadListOfDishes event, Emitter<DishesState> emit) async {
+  Future<void> _loadDishes(
+    LoadListOfDishes event,
+    Emitter<DishesState> emit,
+  ) async {
     try {
-      dishes = await _fetchAllDishesUseCase.execute(const NoParams());
+      final List<DishModel> dishes =
+          await _fetchAllDishesUseCase.execute(const NoParams());
       emit(state.copyWith(listOfDishes: dishes));
     } catch (e) {
       emit(

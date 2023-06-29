@@ -10,11 +10,13 @@ class ImageDishSelect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+
     return Hero(
       tag: imageUrl,
       child: Image.network(
         imageUrl,
-        height: 300,
+        height: mediaQueryData.size.height * 0.35,
       ),
     );
   }
