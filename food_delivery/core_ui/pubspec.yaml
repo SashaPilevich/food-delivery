@@ -17,6 +17,8 @@ dependencies:
     path: ../domain
   home:
     path: ../features/home
+  navigation:
+    path: ../navigation
   readmore: ^2.2.0
   easy_localization: ^3.0.2
 
@@ -26,5 +28,3 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-
-

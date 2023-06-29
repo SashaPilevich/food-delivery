@@ -14,17 +14,17 @@ class AppTheme {
         titleTextStyle: AppTextTheme.mulish22Bold,
       ),
       textTheme: TextTheme(
-        titleLarge: AppTextTheme.mulish20Black.apply(
+        titleLarge: AppTextTheme.mulish20Black.copyWith(
           color: AppColors.pink,
         ),
-        titleMedium: AppTextTheme.mulish18Black.apply(
+        titleMedium: AppTextTheme.mulish18Black.copyWith(
           color: AppColors.pink,
         ),
-        titleSmall: AppTextTheme.mulish18Regular.apply(
+        titleSmall: AppTextTheme.mulish18Regular.copyWith(
           color: AppColors.lightGrey,
         ),
         labelMedium: AppTextTheme.mulish16Bold,
-        headlineLarge: AppTextTheme.mulish26Bold.apply(
+        headlineLarge: AppTextTheme.mulish26Bold.copyWith(
           color: AppColors.pink,
         ),
       ),
@@ -53,17 +53,17 @@ class AppTheme {
         ),
       ),
       textTheme: TextTheme(
-        titleLarge: AppTextTheme.mulish20Black.apply(
+        titleLarge: AppTextTheme.mulish20Black.copyWith(
           color: AppColors.white,
         ),
-        titleMedium: AppTextTheme.mulish18Black.apply(
+        titleMedium: AppTextTheme.mulish18Black.copyWith(
           color: AppColors.white,
         ),
-        titleSmall: AppTextTheme.mulish18Regular.apply(
+        titleSmall: AppTextTheme.mulish18Regular.copyWith(
           color: AppColors.white,
         ),
         labelMedium: AppTextTheme.mulish16Bold,
-        headlineLarge: AppTextTheme.mulish26Bold.apply(
+        headlineLarge: AppTextTheme.mulish26Bold.copyWith(
           color: AppColors.orange,
         ),
       ),
