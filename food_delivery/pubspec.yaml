@@ -62,5 +62,4 @@ flutter:
         - asset: assets/fonts/Mulish-ExtraBold.ttf
           weight: 800
         - asset: assets/fonts/Mulish-Black.ttf
-          weight: 900
-          
+          weight: 900        
