@@ -1,4 +1,4 @@
-part of 'bloc.dart';
+part of 'theme_bloc.dart';
 
 class ThemeChangedState {
   final bool isDark;

@@ -1,20 +1,19 @@
 import 'package:core/core.dart';
 
-part 'event.dart';
-part 'state.dart';
+part 'theme_event.dart';
+part 'theme_state.dart';
 
 class ThemeBloc extends Bloc<ChangeThemeEvent, ThemeChangedState> {
-  bool _isDark = false;
-
   ThemeBloc() : super(ThemeChangedState(isDark: false)) {
     on<ChangeThemeEvent>(_toggleTheme);
   }
 
-  void _toggleTheme(
-      ChangeThemeEvent event, Emitter<ThemeChangedState> emit) async {
-    _isDark = !_isDark;
+  Future<void> _toggleTheme(
+    ChangeThemeEvent event,
+    Emitter<ThemeChangedState> emit,
+  ) async {
     emit(
-      state.copyWith(isDark: _isDark),
+      state.copyWith(isDark: !state.isDark),
     );
   }
 }

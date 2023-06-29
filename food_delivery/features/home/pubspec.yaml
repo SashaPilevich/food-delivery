@@ -19,9 +19,11 @@ dependencies:
     path: ../../core_ui
   navigation:
     path: ../../navigation
+  easy_localization: ^3.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
 
+flutter:

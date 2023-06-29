@@ -10,9 +10,14 @@ class ImageDishCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(
-      imageUrl,
-      height: 100,
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+
+    return Hero(
+      tag: imageUrl,
+      child: Image.network(
+        imageUrl,
+        height: mediaQueryData.size.height * 0.12,
+      ),
     );
   }
 }

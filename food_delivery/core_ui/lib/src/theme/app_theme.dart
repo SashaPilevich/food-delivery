@@ -11,44 +11,76 @@ class AppTheme {
       primaryColor: AppColors.pink,
       canvasColor: AppColors.grey,
       appBarTheme: const AppBarTheme(
-        titleTextStyle: AppTextTheme.robotoCondensed22SemiBold,
+        titleTextStyle: AppTextTheme.mulish22Bold,
       ),
       textTheme: TextTheme(
-        titleLarge:
-            AppTextTheme.robotoCondensed20Bold.apply(color: AppColors.pink),
-        titleMedium:
-            AppTextTheme.robotoCondensed18Bold.apply(color: AppColors.pink),
-        labelMedium: AppTextTheme.robotoCondensed16Medium,
+        titleLarge: AppTextTheme.mulish20Black.copyWith(
+          color: AppColors.pink,
+        ),
+        titleMedium: AppTextTheme.mulish18Black.copyWith(
+          color: AppColors.pink,
+        ),
+        titleSmall: AppTextTheme.mulish18Regular.copyWith(
+          color: AppColors.lightGrey,
+        ),
+        labelMedium: AppTextTheme.mulish16Bold,
+        headlineLarge: AppTextTheme.mulish26Bold.copyWith(
+          color: AppColors.pink,
+        ),
       ),
       cardTheme: const CardTheme(
         color: AppColors.white,
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: AppColors.white,
+        unselectedItemColor: AppColors.darkGrey,
+        selectedItemColor: AppColors.pink,
       ),
     );
   }
 
   static ThemeData get darkTheme {
     return ThemeData(
-      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange),
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: Colors.orange,
+      ),
       primaryColor: AppColors.orange,
       canvasColor: AppColors.black,
-      fontFamily: 'RobotoCondensed',
       appBarTheme: const AppBarTheme(
-        titleTextStyle: AppTextTheme.robotoCondensed22SemiBold,
+        titleTextStyle: AppTextTheme.mulish22Bold,
+        iconTheme: IconThemeData(
+          color: AppColors.white,
+        ),
       ),
       textTheme: TextTheme(
-        titleLarge:
-            AppTextTheme.robotoCondensed20Bold.apply(color: AppColors.white),
-        titleMedium:
-            AppTextTheme.robotoCondensed18Bold.apply(color: AppColors.white),
-        labelMedium: AppTextTheme.robotoCondensed16Medium,
+        titleLarge: AppTextTheme.mulish20Black.copyWith(
+          color: AppColors.white,
+        ),
+        titleMedium: AppTextTheme.mulish18Black.copyWith(
+          color: AppColors.white,
+        ),
+        titleSmall: AppTextTheme.mulish18Regular.copyWith(
+          color: AppColors.white,
+        ),
+        labelMedium: AppTextTheme.mulish16Bold,
+        headlineLarge: AppTextTheme.mulish26Bold.copyWith(
+          color: AppColors.orange,
+        ),
       ),
       cardTheme: const CardTheme(
         color: AppColors.darkGrey,
       ),
       filledButtonTheme: const FilledButtonThemeData(
         style: ButtonStyle(
-          foregroundColor: MaterialStatePropertyAll(AppColors.white),
+          foregroundColor: MaterialStatePropertyAll(
+            AppColors.white,
+          ),
         ),
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: AppColors.darkGrey,
+        unselectedItemColor: AppColors.white,
+        selectedItemColor: AppColors.orange,
       ),
     );
   }
