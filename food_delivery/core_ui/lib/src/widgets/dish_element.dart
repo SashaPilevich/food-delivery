@@ -21,30 +21,34 @@ class DishElement extends StatelessWidget {
 
     return InkWell(
       splashColor: themeData.primaryColor,
-      borderRadius: const BorderRadius.all(Radius.circular(15)),
+      borderRadius: const BorderRadius.all(
+        Radius.circular(AppBorderRadius.borderRadius_15),
+      ),
       onTap: onTap,
       child: Card(
         shadowColor: AppColors.lightPink,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
+          borderRadius: BorderRadius.all(
+            Radius.circular(AppBorderRadius.borderRadius_15),
+          ),
         ),
         child: Container(
           padding: const EdgeInsets.only(
-            top: 6,
-            left: 15,
-            right: 15,
+            top: AppPadding.padding_10,
+            left: AppPadding.padding_15,
+            right: AppPadding.padding_15,
           ),
           child: Column(
             children: <Widget>[
               ImageDishCard(imageUrl: dish.imageUrl),
-              const SizedBox(height: 10),
+              const SizedBox(height: AppSize.size_10),
               FittedBox(
                 child: Text(
                   dish.title,
                   style: themeData.textTheme.titleMedium,
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: AppSize.size_10),
               Row(
                 children: <Widget>[
                   Expanded(

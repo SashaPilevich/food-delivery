@@ -1,7 +1,6 @@
 name: order_history
 description: order_history
 version: 0.0.1
-homepage:
 publish_to: 'none'
 
 environment:

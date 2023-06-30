@@ -134,7 +134,7 @@ packages:
     source: path
     version: "0.0.1"
   domain:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: domain
       relative: true

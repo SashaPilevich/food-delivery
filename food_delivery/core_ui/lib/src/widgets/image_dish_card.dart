@@ -16,7 +16,7 @@ class ImageDishCard extends StatelessWidget {
       tag: imageUrl,
       child: Image.network(
         imageUrl,
-        height: mediaQueryData.size.height * 0.12,
+        height: mediaQueryData.size.height * 0.13,
       ),
     );
   }

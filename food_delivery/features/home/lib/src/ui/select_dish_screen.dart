@@ -1,6 +1,6 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class SelectDishScreen extends StatelessWidget {
@@ -14,8 +14,8 @@ class SelectDishScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    final TextTheme textTheme = themeData.textTheme;
-    final double screenWidth = MediaQuery.of(context).size.width;
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -23,10 +23,10 @@ class SelectDishScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.only(
-            top: 30,
-            left: 20,
-            right: 20,
-            bottom: 30,
+            top: AppPadding.padding_30,
+            left: AppPadding.padding_20,
+            right: AppPadding.padding_20,
+            bottom: AppPadding.padding_30,
           ),
           child: Column(
             children: <Widget>[
@@ -43,41 +43,41 @@ class SelectDishScreen extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         dish.title,
-                        style: textTheme.headlineLarge,
+                        style: themeData.textTheme.headlineLarge,
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: AppSize.size_30,
                       ),
                       SizedBox(
-                        width: screenWidth * 0.9,
+                        width: mediaQueryData.size.width * 0.9,
                         child: CustomReadMoreText(
                           text: dish.description,
                         ),
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: AppSize.size_30,
                       ),
                       Text(
                         'ingredients'.tr(),
-                        style: textTheme.titleMedium?.copyWith(
+                        style: themeData.textTheme.titleMedium?.copyWith(
                           color: themeData.primaryColor,
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: AppSize.size_20,
                       ),
                       SizedBox(
-                        width: screenWidth * 0.9,
+                        width: mediaQueryData.size.width * 0.9,
                         child: CustomTextRich(
                           listOfIngredients: dish.ingredients,
                         ),
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: AppSize.size_30,
                       ),
                       Text(
                         '${'cost'.tr()}: \$${dish.cost}',
-                        style: textTheme.titleMedium?.copyWith(
+                        style: themeData.textTheme.titleMedium?.copyWith(
                           color: themeData.primaryColor,
                         ),
                       ),

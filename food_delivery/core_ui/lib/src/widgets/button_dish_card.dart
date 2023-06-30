@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class ButtonDishCard extends StatelessWidget {
@@ -14,7 +15,7 @@ class ButtonDishCard extends StatelessWidget {
     return FilledButton(
       onPressed: () {},
       style: FilledButton.styleFrom(
-        minimumSize: const Size(60, 30),
+        minimumSize: const Size(AppSize.size_60, AppSize.size_30),
         textStyle: textStyle.labelMedium,
       ),
       child: Text(label),

@@ -9,7 +9,6 @@ class CustomSwitchTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<ThemeBloc>(context);
-
     return BlocBuilder<ThemeBloc, ThemeChangedState>(
       builder: (_, ThemeChangedState state) {
         return Switch(
@@ -26,3 +25,4 @@ class CustomSwitchTheme extends StatelessWidget {
     );
   }
 }
+

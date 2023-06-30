@@ -1,7 +1,6 @@
 name: settings
 description: settings
 version: 0.0.1
-homepage:
 publish_to: 'none'
 
 environment:

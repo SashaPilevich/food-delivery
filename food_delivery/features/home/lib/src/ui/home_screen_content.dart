@@ -9,7 +9,7 @@ class HomeScreenContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenHeight = MediaQuery.of(context).size.height;
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return SafeArea(
       child: Scaffold(
@@ -24,12 +24,12 @@ class HomeScreenContent extends StatelessWidget {
             }
             if (state.listOfDishes.isNotEmpty) {
               return GridView(
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(AppPadding.padding_15),
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: screenHeight * 0.4,
-                  childAspectRatio: 2 / 2.3,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
+                  maxCrossAxisExtent: mediaQueryData.size.height * 0.4,
+                  childAspectRatio: 2 / 2.5,
+                  crossAxisSpacing: AppSpacing.spacing_20,
+                  mainAxisSpacing: AppSpacing.spacing_20,
                 ),
                 children: <Widget>[
                   ...List.generate(
