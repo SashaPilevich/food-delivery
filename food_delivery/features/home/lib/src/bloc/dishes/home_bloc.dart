@@ -18,7 +18,9 @@ class DishesBloc extends Bloc<DishesEvent, DishesState> {
   }
 
   Future<void> _loadingDishes(
-      LoadingListOfDishes event, Emitter<DishesState> emit) async {
+    LoadingListOfDishes event,
+    Emitter<DishesState> emit,
+  ) async {
     if (state.listOfDishes.isEmpty) {
       emit(
         state.copyWith(isLoading: true),
