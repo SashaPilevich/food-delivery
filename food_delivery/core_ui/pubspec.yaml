@@ -16,6 +16,8 @@ dependencies:
     path: ../domain
   home:
     path: ../features/home
+  cart:
+    path: ../features/cart
   navigation:
     path: ../navigation
   readmore: ^2.2.0
