@@ -18,6 +18,8 @@ dependencies:
     path: ../../core_ui
   navigation:
     path: ../../navigation
+  cart:
+    path: ../cart
 
 dev_dependencies:
   flutter_test:

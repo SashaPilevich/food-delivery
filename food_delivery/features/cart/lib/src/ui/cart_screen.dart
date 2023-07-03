@@ -9,45 +9,40 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CartBloc>(
-      create: (BuildContext context) => CartBloc(),
-      child: Scaffold(
-        body: BlocBuilder<CartBloc, CartState>(
-          builder: (BuildContext context, CartState state) {
-            if (state.cart.cartItems.isNotEmpty) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Expanded(
-                    child: ListView.builder(
-                      padding: const EdgeInsets.all(AppPadding.padding_10),
-                      itemCount: state.cart.cartItems.keys.length,
-                      itemBuilder: (context, index) {
-                        return CartElement(
-                          cartElement:
-                              state.cart.cartItems.keys.elementAt(index),
-                          quantity: state.cart.cartItems.entries
-                              .elementAt(index)
-                              .value,
-                        );
-                      },
-                    ),
+    return Scaffold(
+      body: BlocBuilder<CartBloc, CartState>(
+        builder: (BuildContext context, CartState state) {
+          if (state.cart.cartItems.isNotEmpty) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(AppPadding.padding_10),
+                    itemCount: state.cart.cartItems.keys.length,
+                    itemBuilder: (context, index) {
+                      return CartElement(
+                        cartElement: state.cart.cartItems.keys.elementAt(index),
+                        quantity:
+                            state.cart.cartItems.entries.elementAt(index).value,
+                      );
+                    },
                   ),
-                  TotalPrice(
-                    totalPrice: state.cart.totalPrice,
-                    onPressed: () {},
-                  ),
-                ],
-              );
-            } else {
-              return EmptyCart(
-                onPressed: () {
-                  context.navigateTo(const HomeScreenRoute());
-                },
-              );
-            }
-          },
-        ),
+                ),
+                TotalPrice(
+                  totalPrice: state.cart.totalPrice,
+                  onPressed: () {},
+                ),
+              ],
+            );
+          } else {
+            return EmptyCart(
+              onPressed: () {
+                context.navigateTo(const HomeScreenRoute());
+              },
+            );
+          }
+        },
       ),
     );
   }

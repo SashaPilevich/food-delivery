@@ -7,7 +7,8 @@
     "settings":"Settings"
   },
   "homeScreen":{
-    "add":"Add"
+    "add":"Add",
+    "dishAddedToTheCart":"The dish has been added to the cart!"
   },
   "selectDishScreen":{
     "ingredients":"Ingredients",

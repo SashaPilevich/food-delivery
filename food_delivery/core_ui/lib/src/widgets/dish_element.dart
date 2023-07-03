@@ -1,3 +1,4 @@
+import 'package:cart/cart.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
@@ -59,7 +60,22 @@ class DishElement extends StatelessWidget {
                   ),
                   ButtonDishCard(
                     label: '+${'homeScreen.add'.tr()}',
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<CartBloc>().add(
+                            AddDishToCart(dish: dish),
+                          );
+                      final SnackBar snackBar = SnackBar(
+                        content: Text(
+                          'homeScreen.dishAddedToTheCart'.tr(),
+                          style: themeData.textTheme.titleMedium!
+                              .copyWith(color: AppColors.white),
+                        ),
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: themeData.primaryColor,
+                        duration: const Duration(milliseconds: 1500),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
                   ),
                 ],
               ),

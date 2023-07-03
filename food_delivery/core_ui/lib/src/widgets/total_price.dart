@@ -48,6 +48,9 @@ class TotalPrice extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.9,
           child: ElevatedButton(
             onPressed: onPressed,
+            style: ElevatedButton.styleFrom(
+              textStyle: themeData.textTheme.labelMedium,
+            ),
             child: Text('cartScreen.makeAnOrder'.tr()),
           ),
         ),

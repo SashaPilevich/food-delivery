@@ -27,6 +27,9 @@ class AppTheme {
         headlineLarge: AppTextTheme.mulish26Bold.copyWith(
           color: AppColors.pink,
         ),
+        headlineMedium: AppTextTheme.mulish16Bold.copyWith(
+          color: AppColors.black,
+        ),
       ),
       cardTheme: const CardTheme(
         color: AppColors.white,
@@ -66,11 +69,21 @@ class AppTheme {
         headlineLarge: AppTextTheme.mulish26Bold.copyWith(
           color: AppColors.orange,
         ),
+        headlineMedium: AppTextTheme.mulish16Bold.copyWith(
+          color: AppColors.white,
+        ),
       ),
       cardTheme: const CardTheme(
         color: AppColors.darkGrey,
       ),
       filledButtonTheme: const FilledButtonThemeData(
+        style: ButtonStyle(
+          foregroundColor: MaterialStatePropertyAll(
+            AppColors.white,
+          ),
+        ),
+      ),
+      elevatedButtonTheme: const ElevatedButtonThemeData(
         style: ButtonStyle(
           foregroundColor: MaterialStatePropertyAll(
             AppColors.white,

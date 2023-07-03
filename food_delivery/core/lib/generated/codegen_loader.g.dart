@@ -23,7 +23,8 @@ class CodegenLoader extends AssetLoader{
     "settings": "Settings"
   },
   "homeScreen": {
-    "add": "Add"
+    "add": "Add",
+    "dishAddedToTheCart": "The dish has been added to the cart!"
   },
   "selectDishScreen": {
     "ingredients": "Ingredients",
@@ -48,7 +49,8 @@ static const Map<String,dynamic> pl_PL = {
     "settings": "Ustawienia"
   },
   "homeScreen": {
-    "add": "Dodaj"
+    "add": "Dodaj",
+    "dishAddedToTheCart": "Danie zostało dodane do koszyka!"
   },
   "selectDishScreen": {
     "ingredients": "Składniki",
