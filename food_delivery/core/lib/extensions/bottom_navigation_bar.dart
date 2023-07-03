@@ -5,13 +5,13 @@ extension CustomBottomNavigationBarItemEx on CustomBottomNavigationBarItem {
   String get label {
     switch (this) {
       case CustomBottomNavigationBarItem.home:
-        return 'home'.tr();
+        return 'homePage.home'.tr();
       case CustomBottomNavigationBarItem.cart:
-        return 'cart'.tr();
+        return 'homePage.cart'.tr();
       case CustomBottomNavigationBarItem.orderHistory:
-        return 'orderHistory'.tr();
+        return 'homePage.orderHistory'.tr();
       case CustomBottomNavigationBarItem.settings:
-        return 'settings'.tr();
+        return 'homePage.settings'.tr();
       default:
         return '';
     }

@@ -15,6 +15,11 @@
     "showMore":"Show More",
     "showLess":"Show Less",
     "descriptionNotAvailable":"Description Not Available"
+  },
+  "cartScreen":{
+    "yourShoppingCartIsEmpty":"Your shopping cart is empty",
+    "chooseDishes":"Choose dishes",
+    "totalPrice":"Total Price",
+    "makeAnOrder":"Make An Order"
   }
 }
-

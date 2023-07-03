@@ -8,4 +8,5 @@ export 'di/app_di.dart';
 export 'di/data_di.dart';
 export 'enums/enums.dart';
 export 'extensions/extensions.dart';
+export 'generated/codegen_loader.g.dart';
 export 'package:easy_localization/easy_localization.dart';

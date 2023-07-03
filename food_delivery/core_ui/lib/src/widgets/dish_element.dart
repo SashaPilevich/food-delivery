@@ -58,7 +58,7 @@ class DishElement extends StatelessWidget {
                     ),
                   ),
                   ButtonDishCard(
-                    label: '+${'add'.tr()}',
+                    label: '+${'homeScreen.add'.tr()}',
                   ),
                 ],
               ),

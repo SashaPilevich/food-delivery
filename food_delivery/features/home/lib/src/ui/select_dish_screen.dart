@@ -58,7 +58,7 @@ class SelectDishScreen extends StatelessWidget {
                         height: AppSize.size_30,
                       ),
                       Text(
-                        'ingredients'.tr(),
+                        'selectDishScreen.ingredients'.tr(),
                         style: themeData.textTheme.titleMedium?.copyWith(
                           color: themeData.primaryColor,
                         ),
@@ -76,7 +76,7 @@ class SelectDishScreen extends StatelessWidget {
                         height: AppSize.size_30,
                       ),
                       Text(
-                        '${'cost'.tr()}: \$${dish.cost}',
+                        '${'selectDishScreen.cost'.tr()}: \$${dish.cost}',
                         style: themeData.textTheme.titleMedium?.copyWith(
                           color: themeData.primaryColor,
                         ),

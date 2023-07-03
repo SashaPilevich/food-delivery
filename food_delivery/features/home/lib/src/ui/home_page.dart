@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
       appBarBuilder: (_, TabsRouter tabsRouter) {
         return AppBar(
           title: Text(
-            'foodDelivery'.tr(),
+            'homePage.foodDelivery'.tr(),
           ),
           actions: <Widget>[
             const CustomSwitchTheme(),
