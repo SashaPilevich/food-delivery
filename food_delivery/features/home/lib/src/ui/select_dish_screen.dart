@@ -34,7 +34,7 @@ class SelectDishScreen extends StatelessWidget {
                 child: ImageDishSelect(imageUrl: dish.imageUrl),
               ),
               const SizedBox(
-                height: 30,
+                height: AppSize.size_30,
               ),
               Row(
                 children: <Widget>[

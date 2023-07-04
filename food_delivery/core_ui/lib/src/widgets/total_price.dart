@@ -15,16 +15,17 @@ class TotalPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return Column(
       children: <Widget>[
         const Divider(
-          thickness: 2,
+          thickness: AppSize.size_2,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
             vertical: AppPadding.padding_10,
-            horizontal: 25,
+            horizontal: AppPadding.padding_25,
           ),
           child: Column(
             children: <Widget>[
@@ -45,7 +46,7 @@ class TotalPrice extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * 0.9,
+          width: mediaQueryData.size.width * 0.9,
           child: ElevatedButton(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(

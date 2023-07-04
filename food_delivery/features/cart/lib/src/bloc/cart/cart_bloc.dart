@@ -11,7 +11,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   Future<void> _addDishToCart(
-      AddDishToCart event, Emitter<CartState> emit) async {
+    AddDishToCart event,
+    Emitter<CartState> emit,
+  ) async {
     final Map<DishModel, int> updatedCartItems = Map.from(state.cart.cartItems);
 
     if (updatedCartItems.containsKey(event.dish)) {
@@ -31,7 +33,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   Future<void> _removeDishFromCart(
-      RemoveDishFromCart event, Emitter<CartState> emit) async {
+    RemoveDishFromCart event,
+    Emitter<CartState> emit,
+  ) async {
     final Map<DishModel, int> updatedCartItems = Map.from(state.cart.cartItems);
 
     if (updatedCartItems[event.dish]! > 1) {

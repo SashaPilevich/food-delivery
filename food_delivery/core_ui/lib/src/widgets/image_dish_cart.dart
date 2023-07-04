@@ -15,7 +15,6 @@ class ImageDishCart extends StatelessWidget {
     return Image.network(
       imageUrl,
       height: mediaQueryData.size.height * 0.13,
-      fit: BoxFit.cover,
     );
   }
 }

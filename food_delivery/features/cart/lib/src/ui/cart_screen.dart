@@ -11,7 +11,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<CartBloc, CartState>(
-        builder: (BuildContext context, CartState state) {
+        builder: (_, CartState state) {
           if (state.cart.cartItems.isNotEmpty) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -20,7 +20,7 @@ class CartScreen extends StatelessWidget {
                   child: ListView.builder(
                     padding: const EdgeInsets.all(AppPadding.padding_10),
                     itemCount: state.cart.cartItems.keys.length,
-                    itemBuilder: (context, index) {
+                    itemBuilder: (_, int index) {
                       return CartElement(
                         cartElement: state.cart.cartItems.keys.elementAt(index),
                         quantity:
