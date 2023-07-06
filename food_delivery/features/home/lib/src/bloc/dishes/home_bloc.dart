@@ -11,14 +11,16 @@ class DishesBloc extends Bloc<DishesEvent, DishesState> {
     required FetchAllDishesUseCase fetchAllDishesUseCase,
   })  : _fetchAllDishesUseCase = fetchAllDishesUseCase,
         super(DishesState()) {
-    on<LoadingListOfDishes>(_loadingDishes);
+    on<InitListOfDishes>(_initDishes);
     on<LoadListOfDishes>(_loadDishes);
 
-    add(LoadingListOfDishes());
+    add(InitListOfDishes());
   }
 
-  Future<void> _loadingDishes(
-      LoadingListOfDishes event, Emitter<DishesState> emit) async {
+  Future<void> _initDishes(
+    InitListOfDishes event,
+    Emitter<DishesState> emit,
+  ) async {
     if (state.listOfDishes.isEmpty) {
       emit(
         state.copyWith(isLoading: true),

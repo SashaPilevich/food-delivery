@@ -1,7 +1,6 @@
 name: home
 description: home
 version: 0.0.1
-homepage:
 publish_to: 'none'
 
 environment:
@@ -19,7 +18,8 @@ dependencies:
     path: ../../core_ui
   navigation:
     path: ../../navigation
-  easy_localization: ^3.0.2
+  cart:
+    path: ../cart
 
 dev_dependencies:
   flutter_test:

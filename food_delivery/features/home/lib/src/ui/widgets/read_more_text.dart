@@ -16,11 +16,11 @@ class CustomReadMoreText extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
 
     return ReadMoreText(
-      text ?? 'descriptionNotAvailable'.tr(),
+      text ?? 'selectDishScreen.descriptionNotAvailable'.tr(),
       trimLines: 2,
       trimMode: TrimMode.Line,
-      trimCollapsedText: 'showMore'.tr(),
-      trimExpandedText: 'showLess'.tr(),
+      trimCollapsedText: 'selectDishScreen.showMore'.tr(),
+      trimExpandedText: 'selectDishScreen.showLess'.tr(),
       style: themeData.textTheme.titleSmall,
       moreStyle: AppTextTheme.mulish16Bold.copyWith(
         color: themeData.primaryColor,

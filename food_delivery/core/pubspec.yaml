@@ -1,7 +1,6 @@
 name: core
 description: core
 version: 0.0.1
-homepage:
 publish_to: 'none'
 
 environment:
@@ -17,8 +16,6 @@ dependencies:
     path: ../domain
   navigation:
     path: ../navigation
-  core_ui:
-    path: ../core_ui
   firebase_core: ^2.14.0
   cloud_firestore: ^4.8.1
   flutter_bloc: ^8.1.3

@@ -1,5 +1,4 @@
-import 'package:core_ui/src/util/enum/bottom_navigation_bar.dart';
-import 'package:core_ui/src/util/extensions/bottom_navigation_bar.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {

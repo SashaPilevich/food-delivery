@@ -1,21 +1,25 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class ButtonDishCard extends StatelessWidget {
   final String label;
+  final VoidCallback onPressed;
 
   const ButtonDishCard({
     required this.label,
+    required this.onPressed,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textStyle = Theme.of(context).textTheme;
+    final ThemeData themeData = Theme.of(context);
+
     return FilledButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: FilledButton.styleFrom(
-        minimumSize: const Size(60, 30),
-        textStyle: textStyle.labelMedium,
+        minimumSize: const Size(AppSize.size60, AppSize.size30),
+        textStyle: themeData.textTheme.labelMedium,
       ),
       child: Text(label),
     );

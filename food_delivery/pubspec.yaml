@@ -1,7 +1,6 @@
 name: food_delivery
 description: food_delivery
 publish_to: 'none' 
-
 version: 1.0.0+1
 
 environment:
@@ -12,8 +11,6 @@ dependencies:
     sdk: flutter
   core:
     path: ./core
-  domain:
-    path: ./domain
   core_ui:
     path: ./core_ui
   navigation:

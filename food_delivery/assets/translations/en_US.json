@@ -7,7 +7,8 @@
     "settings":"Settings"
   },
   "homeScreen":{
-    "add":"Add"
+    "add":"Add",
+    "dishAddedToTheCart":"The dish has been added to the cart!"
   },
   "selectDishScreen":{
     "ingredients":"Ingredients",
@@ -15,6 +16,11 @@
     "showMore":"Show More",
     "showLess":"Show Less",
     "descriptionNotAvailable":"Description Not Available"
+  },
+  "cartScreen":{
+    "yourShoppingCartIsEmpty":"Your shopping cart is empty",
+    "chooseDishes":"Choose dishes",
+    "totalPrice":"Total Price",
+    "makeAnOrder":"Make An Order"
   }
 }
-
