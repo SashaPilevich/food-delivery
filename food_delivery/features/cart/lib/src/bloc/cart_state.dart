@@ -5,7 +5,7 @@ class CartState {
 
   CartState({
     this.cart = const CartModel(
-      cartItems: {},
+      dishes: [],
       totalPrice: 0,
     ),
   });

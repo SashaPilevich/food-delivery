@@ -5,45 +5,49 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 class CartElement extends StatelessWidget {
-  final DishModel cartElement;
-  final int quantity;
+  final CartDish cartElement;
 
   const CartElement({
     required this.cartElement,
-    required this.quantity,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    final CartBloc cartBloc = BlocProvider.of<CartBloc>(context);
     final ThemeData themeData = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return Card(
       child: Container(
         padding: const EdgeInsets.only(
-            top: AppPadding.padding_20,
-            left: AppPadding.padding_15,
-            right: AppPadding.padding_15,
-            bottom: AppPadding.padding_20),
+          top: AppPadding.padding20,
+          left: AppPadding.padding15,
+          right: AppPadding.padding15,
+          bottom: AppPadding.padding20,
+        ),
         child: Row(
           children: <Widget>[
-            ImageDishCart(imageUrl: cartElement.imageUrl),
+            AppImage(
+              src: cartElement.dish.imageUrl,
+              height: mediaQueryData.size.height * 0.13,
+            ),
             const SizedBox(
-              width: AppSize.size_30,
+              width: AppSize.size30,
             ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    cartElement.title,
+                    cartElement.dish.title,
                     style: themeData.textTheme.headlineMedium,
                   ),
                   const SizedBox(
-                    height: AppSize.size_10,
+                    height: AppSize.size10,
                   ),
                   Text(
-                    '\$${cartElement.cost}',
+                    '\$${cartElement.dish.cost}',
                     style: themeData.textTheme.titleMedium,
                   ),
                 ],
@@ -53,8 +57,8 @@ class CartElement extends StatelessWidget {
               children: <Widget>[
                 IconButton(
                   onPressed: () {
-                    context.read<CartBloc>().add(
-                          RemoveDishFromCart(dish: cartElement),
+                    cartBloc.add(
+                          RemoveDishFromCart(dish: cartElement.dish),
                         );
                   },
                   icon: Icon(
@@ -63,13 +67,13 @@ class CartElement extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '$quantity',
+                  '${cartElement.quantity}',
                   style: themeData.textTheme.headlineMedium,
                 ),
                 IconButton(
                   onPressed: () {
-                    context.read<CartBloc>().add(
-                          AddDishToCart(dish: cartElement),
+                    cartBloc.add(
+                          AddDishToCart(dish: cartElement.dish),
                         );
                   },
                   icon: Icon(

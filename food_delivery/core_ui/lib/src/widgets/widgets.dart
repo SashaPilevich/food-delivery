@@ -1,11 +1,4 @@
 export 'loading_indicator.dart';
-export 'dish_element.dart';
 export 'switch_theme.dart';
-export 'image_dish_select.dart';
 export 'bottom_navigation_bar.dart';
-export 'read_more_text.dart';
-export 'text_rich.dart';
-export 'cart_element.dart';
-export 'image_dish_cart.dart';
-export 'total_price.dart';
-export 'empty_cart.dart';
+export 'app_image.dart';

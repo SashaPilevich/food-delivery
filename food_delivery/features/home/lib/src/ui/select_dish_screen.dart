@@ -2,6 +2,8 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'widgets/read_more_text.dart';
+import 'widgets/text_rich.dart';
 
 class SelectDishScreen extends StatelessWidget {
   final DishModel dish;
@@ -23,18 +25,24 @@ class SelectDishScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.only(
-            top: AppPadding.padding_30,
-            left: AppPadding.padding_20,
-            right: AppPadding.padding_20,
-            bottom: AppPadding.padding_30,
+            top: AppPadding.padding30,
+            left: AppPadding.padding20,
+            right: AppPadding.padding20,
+            bottom: AppPadding.padding30,
           ),
           child: Column(
             children: <Widget>[
               Center(
-                child: ImageDishSelect(imageUrl: dish.imageUrl),
+                child: Hero(
+                  tag: dish.imageUrl,
+                  child: AppImage(
+                    src: dish.imageUrl,
+                    height: mediaQueryData.size.height * 0.35,
+                  ),
+                ),
               ),
               const SizedBox(
-                height: AppSize.size_30,
+                height: AppSize.size30,
               ),
               Row(
                 children: <Widget>[
@@ -46,7 +54,7 @@ class SelectDishScreen extends StatelessWidget {
                         style: themeData.textTheme.headlineLarge,
                       ),
                       const SizedBox(
-                        height: AppSize.size_30,
+                        height: AppSize.size30,
                       ),
                       SizedBox(
                         width: mediaQueryData.size.width * 0.9,
@@ -55,7 +63,7 @@ class SelectDishScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: AppSize.size_30,
+                        height: AppSize.size30,
                       ),
                       Text(
                         'selectDishScreen.ingredients'.tr(),
@@ -64,7 +72,7 @@ class SelectDishScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: AppSize.size_20,
+                        height: AppSize.size20,
                       ),
                       SizedBox(
                         width: mediaQueryData.size.width * 0.9,
@@ -73,7 +81,7 @@ class SelectDishScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: AppSize.size_30,
+                        height: AppSize.size30,
                       ),
                       Text(
                         '${'selectDishScreen.cost'.tr()}: \$${dish.cost}',

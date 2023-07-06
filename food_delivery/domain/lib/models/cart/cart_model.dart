@@ -1,26 +1,26 @@
 import 'package:domain/domain.dart';
 
 class CartModel {
-  final Map<DishModel, int> cartItems;
+  final List<CartDish> dishes;
   final int totalPrice;
 
   const CartModel({
-    required this.cartItems,
+    required this.dishes,
     required this.totalPrice,
   });
 
-  List<Object?> get props => [
-        cartItems,
-        totalPrice,
-      ];
-
   CartModel copyWith({
-    Map<DishModel, int>? cartItems,
+    List<CartDish>? dishes,
     int? totalPrice,
   }) {
     return CartModel(
-      cartItems: cartItems ?? this.cartItems,
+      dishes: dishes ?? this.dishes,
       totalPrice: totalPrice ?? this.totalPrice,
     );
   }
+
+  List<Object?> get props => [
+        dishes,
+        totalPrice,
+      ];
 }

@@ -4,7 +4,6 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'button_dish_card.dart';
-import 'image_dish_card.dart';
 
 class DishElement extends StatelessWidget {
   final DishModel dish;
@@ -19,37 +18,45 @@ class DishElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final CartBloc cartBloc = BlocProvider.of<CartBloc>(context);
 
     return InkWell(
       splashColor: themeData.primaryColor,
       borderRadius: const BorderRadius.all(
-        Radius.circular(AppBorderRadius.borderRadius_15),
+        Radius.circular(AppBorderRadius.borderRadius15),
       ),
       onTap: onTap,
       child: Card(
         shadowColor: AppColors.lightPink,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(AppBorderRadius.borderRadius_15),
+            Radius.circular(AppBorderRadius.borderRadius15),
           ),
         ),
         child: Container(
           padding: const EdgeInsets.only(
-            top: AppPadding.padding_10,
-            left: AppPadding.padding_15,
-            right: AppPadding.padding_15,
+            top: AppPadding.padding10,
+            left: AppPadding.padding15,
+            right: AppPadding.padding15,
           ),
           child: Column(
             children: <Widget>[
-              ImageDishCard(imageUrl: dish.imageUrl),
-              const SizedBox(height: AppSize.size_10),
+              Hero(
+                tag: dish.imageUrl,
+                child: AppImage(
+                  src: dish.imageUrl,
+                  height: mediaQueryData.size.height * 0.13,
+                ),
+              ),
+              const SizedBox(height: AppSize.size10),
               FittedBox(
                 child: Text(
                   dish.title,
                   style: themeData.textTheme.titleMedium,
                 ),
               ),
-              const SizedBox(height: AppSize.size_10),
+              const SizedBox(height: AppSize.size10),
               Row(
                 children: <Widget>[
                   Expanded(
@@ -61,14 +68,15 @@ class DishElement extends StatelessWidget {
                   ButtonDishCard(
                     label: '+${'homeScreen.add'.tr()}',
                     onPressed: () {
-                      context.read<CartBloc>().add(
-                            AddDishToCart(dish: dish),
-                          );
+                      cartBloc.add(
+                        AddDishToCart(dish: dish),
+                      );
                       final SnackBar snackBar = SnackBar(
                         content: Text(
                           'homeScreen.dishAddedToTheCart'.tr(),
-                          style: themeData.textTheme.titleMedium!
-                              .copyWith(color: AppColors.white),
+                          style: themeData.textTheme.titleMedium!.copyWith(
+                            color: AppColors.white,
+                          ),
                         ),
                         behavior: SnackBarBehavior.floating,
                         backgroundColor: themeData.primaryColor,

@@ -23,7 +23,7 @@ class EmptyCart extends StatelessWidget {
             style: themeData.textTheme.titleLarge,
           ),
           const SizedBox(
-            height: AppSize.size_30,
+            height: AppSize.size30,
           ),
           FilledButton(
             onPressed: onPressed,

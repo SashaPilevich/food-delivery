@@ -20,12 +20,12 @@ class TotalPrice extends StatelessWidget {
     return Column(
       children: <Widget>[
         const Divider(
-          thickness: AppSize.size_2,
+          thickness: AppSize.size2,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: AppPadding.padding_10,
-            horizontal: AppPadding.padding_25,
+            vertical: AppPadding.padding10,
+            horizontal: AppPadding.padding25,
           ),
           child: Column(
             children: <Widget>[
@@ -56,7 +56,7 @@ class TotalPrice extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: AppSize.size_20,
+          height: AppSize.size20,
         ),
       ],
     );

@@ -4,8 +4,8 @@ abstract class DishesEvent {
   const DishesEvent();
 }
 
-class LoadingListOfDishes extends DishesEvent {
-  LoadingListOfDishes();
+class InitListOfDishes extends DishesEvent {
+  InitListOfDishes();
 }
 
 class LoadListOfDishes extends DishesEvent {

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:home/src/bloc/dishes/home_bloc.dart';
 import 'package:navigation/navigation.dart';
 
+import 'widgets/dish_element.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -24,12 +26,12 @@ class HomeScreen extends StatelessWidget {
             }
             if (state.listOfDishes.isNotEmpty) {
               return GridView(
-                padding: const EdgeInsets.all(AppPadding.padding_15),
+                padding: const EdgeInsets.all(AppPadding.padding15),
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: mediaQueryData.size.height * 0.4,
                   childAspectRatio: 2 / 2.5,
-                  crossAxisSpacing: AppSpacing.spacing_20,
-                  mainAxisSpacing: AppSpacing.spacing_20,
+                  crossAxisSpacing: AppSpacing.spacing20,
+                  mainAxisSpacing: AppSpacing.spacing20,
                 ),
                 children: <Widget>[
                   ...List.generate(
