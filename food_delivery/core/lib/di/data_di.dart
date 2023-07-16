@@ -17,6 +17,8 @@ class DataDI {
     _initAdapter();
     _initThemePreferencesProvider();
     _initTheme();
+    _initFontSizePreferencesProvider();
+    _initFontSize();
   }
 
   void _initFirebaseOptions() {
@@ -104,6 +106,30 @@ class DataDI {
     getIt.registerLazySingleton<SetThemeTypeUseCase>(
       () => SetThemeTypeUseCase(
         themeRepository: getIt.get<ThemeRepository>(),
+      ),
+    );
+  }
+
+  void _initFontSizePreferencesProvider() {
+    getIt.registerLazySingleton<FontSizePreferencesProvider>(
+      () => FontSizePreferencesProviderImpl(),
+    );
+  }
+
+  void _initFontSize() {
+    getIt.registerLazySingleton<FontSizeRepository>(
+      () => FontSizeRepositoryImpl(
+        fontSizePreferencesProvider: getIt.get<FontSizePreferencesProvider>(),
+      ),
+    );
+    getIt.registerLazySingleton<CheckFontSizeUseCase>(
+      () => CheckFontSizeUseCase(
+        fontSizeRepository: getIt.get<FontSizeRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<SetFontSizeUseCase>(
+      () => SetFontSizeUseCase(
+        fontSizeRepository: getIt.get<FontSizeRepository>(),
       ),
     );
   }

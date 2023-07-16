@@ -18,10 +18,29 @@ class DeliveryFoodApp extends StatelessWidget {
             setThemeTypeUseCase: getIt.get(),
           ),
         ),
+        BlocProvider<FontSizeBloc>(
+          create: (_) => FontSizeBloc(
+            checkFontSizeUseCase: getIt.get(),
+            setFontSizeUseCase: getIt.get(),
+          ),
+        ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (BuildContext context, ThemeState state) {
           return MaterialApp.router(
+            builder: (context, child) {
+              final mediaQueryData = MediaQuery.of(context);
+              return BlocBuilder<FontSizeBloc, FontSizeState>(
+                builder: (_, FontSizeState state) {
+                  return MediaQuery(
+                    data: mediaQueryData.copyWith(
+                      textScaleFactor: state.textScale,
+                    ),
+                    child: child!,
+                  );
+                },
+              );
+            },
             routerDelegate: getIt.get<AppRouter>().delegate(),
             routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
             title: 'Food Delivery',

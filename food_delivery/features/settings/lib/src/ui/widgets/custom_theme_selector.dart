@@ -33,7 +33,6 @@ class CustomThemeSelector extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 100,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
