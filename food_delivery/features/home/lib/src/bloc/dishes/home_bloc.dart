@@ -40,7 +40,14 @@ class DishesBloc extends Bloc<DishesEvent, DishesState> {
     try {
       final List<DishModel> dishes =
           await _fetchAllDishesUseCase.execute(const NoParams());
-      emit(state.copyWith(listOfDishes: dishes));
+      final bool isInternetConnection =
+          await InternetConnectionChecker().hasConnection;
+      emit(
+        state.copyWith(isInternetConnection: isInternetConnection),
+      );
+      emit(
+        state.copyWith(listOfDishes: dishes),
+      );
     } catch (e) {
       emit(
         state.copyWith(exception: e),

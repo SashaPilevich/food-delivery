@@ -35,7 +35,7 @@ class SelectDishScreen extends StatelessWidget {
               Center(
                 child: Hero(
                   tag: dish.imageUrl,
-                  child: AppImage(
+                  child: AppCacheImage(
                     src: dish.imageUrl,
                     height: mediaQueryData.size.height * 0.35,
                   ),
