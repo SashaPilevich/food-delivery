@@ -20,7 +20,7 @@ class SystemThemeSwitch extends StatelessWidget {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               SizedBox(
                 width: mediaQuery.size.width * 0.7,
                 child: Text(

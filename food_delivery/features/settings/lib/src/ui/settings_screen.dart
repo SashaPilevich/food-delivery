@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:settings/src/ui/widgets/font_size_scale.dart';
 import 'package:settings/src/ui/widgets/select_language.dart';
-
 import 'widgets/theme_settings.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -21,9 +20,6 @@ class SettingsScreen extends StatelessWidget {
             thickness: 2,
           ),
           SelectLanguage(),
-          Divider(
-            thickness: 2,
-          ),
         ],
       ),
     );
