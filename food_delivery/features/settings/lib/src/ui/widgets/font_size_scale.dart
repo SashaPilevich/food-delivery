@@ -22,7 +22,7 @@ class FontSizeScale extends StatelessWidget {
                   AppPadding.padding30,
                 ),
                 child: Text(
-                  'Change font size',
+                  'settingsScreen.changeFontSize'.tr(),
                   style: themeData.textTheme.titleMedium!.copyWith(
                     color: Theme.of(context).primaryColor,
                   ),

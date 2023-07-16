@@ -34,20 +34,6 @@ class HomePage extends StatelessWidget {
             title: Text(
               'homePage.foodDelivery'.tr(),
             ),
-            actions: <Widget>[
-              IconButton(
-                onPressed: () {
-                  if (context.locale == const Locale('en', 'US')) {
-                    context.setLocale(const Locale('pl', 'PL'));
-                  } else {
-                    context.setLocale(const Locale('en', 'US'));
-                  }
-                },
-                icon: const Icon(
-                  Icons.language,
-                ),
-              ),
-            ],
           );
         },
         bottomNavigationBuilder: (_, TabsRouter tabsRouter) {

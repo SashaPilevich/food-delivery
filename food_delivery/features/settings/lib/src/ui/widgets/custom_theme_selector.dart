@@ -9,6 +9,7 @@ class CustomThemeSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
     final ThemeBloc bloc = BlocProvider.of<ThemeBloc>(context);
 
     return BlocBuilder<ThemeBloc, ThemeState>(
@@ -26,10 +27,15 @@ class CustomThemeSelector extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
-                  'Use custom theme: ',
-                  style: themeData.textTheme.titleMedium!.copyWith(
-                    color: themeData.primaryColor,
+                SizedBox(
+                  width: mediaQuery.size.width * 0.5,
+                  child: Text(
+                    'settingsScreen.useCustomTheme'.tr(),
+                    style: themeData.textTheme.titleMedium!.copyWith(
+                      color: themeData.primaryColor,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    maxLines: 2,
                   ),
                 ),
                 SizedBox(

@@ -8,7 +8,9 @@
   },
   "homeScreen":{
     "add":"Dodaj",
-    "dishAddedToTheCart":"Danie zostało dodane do koszyka!"
+    "dishAddedToTheCart":"Danie zostało dodane do koszyka!",
+    "noInternet":"Brak połączenia z Internetem. Wszystkie dane zostaną pobrane z pamięci podręcznej.",
+    "hasInternet":"Dostępne jest połączenie z Internetem."
   },
   "selectDishScreen":{
     "ingredients":"Składniki",
@@ -22,5 +24,12 @@
     "chooseDishes":"Wybierz dania",
     "totalPrice":"Cena Całkowita",
     "makeAnOrder":"Złóż zamówienie"
+  },
+  "settingsScreen":{
+    "useSystemTheme":"Użyj motywu systemowego",
+    "useCustomTheme":"Użyj niestandardowego motywu:",
+    "changeFontSize":"Zmień rozmiar czcionki",
+    "selectLanguage":"Wybierz język:",
+    "contactUs":"Skontaktuj się z nami"
   }
 }

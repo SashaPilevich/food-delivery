@@ -8,7 +8,9 @@
   },
   "homeScreen":{
     "add":"Add",
-    "dishAddedToTheCart":"The dish has been added to the cart!"
+    "dishAddedToTheCart":"The dish has been added to the cart!",
+    "noInternet":"No internet connection. All data will be taken from the cache.",
+    "hasInternet":"Internet connection is available."
   },
   "selectDishScreen":{
     "ingredients":"Ingredients",
@@ -22,5 +24,12 @@
     "chooseDishes":"Choose dishes",
     "totalPrice":"Total Price",
     "makeAnOrder":"Make An Order"
+  },
+  "settingsScreen":{
+    "useSystemTheme":"Use system theme",
+    "useCustomTheme":"Use custom theme:",
+    "changeFontSize":"Change font size",
+    "selectLanguage":"Select language:",
+    "contactUs":"Contact us"
   }
 }

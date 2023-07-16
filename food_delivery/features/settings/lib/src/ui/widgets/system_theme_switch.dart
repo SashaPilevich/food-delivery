@@ -10,6 +10,7 @@ class SystemThemeSwitch extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeBloc bloc = BlocProvider.of<ThemeBloc>(context);
     final ThemeData themeData = Theme.of(context);
+    final MediaQueryData mediaQuery = MediaQuery.of(context);
 
     return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (_, ThemeState state) {
@@ -20,10 +21,15 @@ class SystemThemeSwitch extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Use system theme',
-                style: themeData.textTheme.titleMedium!.copyWith(
-                  color: themeData.primaryColor,
+              SizedBox(
+                width: mediaQuery.size.width * 0.7,
+                child: Text(
+                  'settingsScreen.useSystemTheme'.tr(),
+                  style: themeData.textTheme.titleMedium!.copyWith(
+                    color: themeData.primaryColor,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  maxLines: 2,
                 ),
               ),
               Switch(

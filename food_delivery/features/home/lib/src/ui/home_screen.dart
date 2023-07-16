@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
                 Flushbar(
                   flushbarPosition: FlushbarPosition.TOP,
                   messageText: Text(
-                    'Internet Connection is available.',
+                    'homeScreen.hasInternet'.tr(),
                     style: themeData.textTheme.titleSmall,
                   ),
                   icon: const Icon(
@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                 Flushbar(
                   flushbarPosition: FlushbarPosition.TOP,
                   messageText: Text(
-                    'No Internet Connection. All data will give from local cache.',
+                    'homeScreen.noInternet'.tr(),
                     style: themeData.textTheme.titleSmall,
                   ),
                   icon: const Icon(
