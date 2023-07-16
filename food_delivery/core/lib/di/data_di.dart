@@ -15,6 +15,8 @@ class DataDI {
     _initDishes();
     _initHive();
     _initAdapter();
+    _initThemePreferencesProvider();
+    _initTheme();
   }
 
   void _initFirebaseOptions() {
@@ -68,6 +70,40 @@ class DataDI {
     getIt.registerLazySingleton<FetchAllDishesUseCase>(
       () => FetchAllDishesUseCase(
         dishesRepository: getIt.get<DishesRepository>(),
+      ),
+    );
+  }
+
+  void _initThemePreferencesProvider() {
+    getIt.registerLazySingleton<ThemePreferencesProvider>(
+      () => ThemePreferencesProviderImpl(),
+    );
+  }
+
+  void _initTheme() {
+    getIt.registerLazySingleton<ThemeRepository>(
+      () => ThemeRepositoryImpl(
+        themePreferencesProvider: getIt.get<ThemePreferencesProvider>(),
+      ),
+    );
+    getIt.registerLazySingleton<CheckThemeModeUseCase>(
+      () => CheckThemeModeUseCase(
+        themeRepository: getIt.get<ThemeRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<CheckThemeTypeUseCase>(
+      () => CheckThemeTypeUseCase(
+        themeRepository: getIt.get<ThemeRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<SetThemeModeUseCase>(
+      () => SetThemeModeUseCase(
+        themeRepository: getIt.get<ThemeRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<SetThemeTypeUseCase>(
+      () => SetThemeTypeUseCase(
+        themeRepository: getIt.get<ThemeRepository>(),
       ),
     );
   }

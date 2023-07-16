@@ -35,7 +35,6 @@ class HomePage extends StatelessWidget {
               'homePage.foodDelivery'.tr(),
             ),
             actions: <Widget>[
-              const CustomSwitchTheme(),
               IconButton(
                 onPressed: () {
                   if (context.locale == const Locale('en', 'US')) {

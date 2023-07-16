@@ -2,9 +2,8 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flushbar/flutter_flushbar.dart';
-import 'package:home/src/bloc/dishes/home_bloc.dart';
+import 'package:home/home.dart';
 import 'package:navigation/navigation.dart';
-
 import 'widgets/dish_element.dart';
 
 class HomeScreen extends StatelessWidget {
