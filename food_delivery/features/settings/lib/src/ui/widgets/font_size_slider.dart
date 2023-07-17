@@ -3,8 +3,8 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:settings/settings.dart';
 
-class FontSizeScale extends StatelessWidget {
-  const FontSizeScale({super.key});
+class FontSizeSlider extends StatelessWidget {
+  const FontSizeSlider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class FontSizeScale extends StatelessWidget {
         return Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               Container(
                 padding: const EdgeInsets.all(
                   AppPadding.padding30,

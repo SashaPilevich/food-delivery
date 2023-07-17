@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData themeData = Theme.of(context);
     final DishesBloc bloc = BlocProvider.of<DishesBloc>(context);
+
     return RefreshIndicator(
       onRefresh: () async {
         bloc.add(LoadListOfDishes());
@@ -34,7 +35,9 @@ class HomeScreen extends StatelessWidget {
                     color: AppColors.green,
                   ),
                   duration: const Duration(seconds: 2),
-                  padding: const EdgeInsets.all(AppPadding.padding20),
+                  padding: const EdgeInsets.all(
+                    AppPadding.padding20,
+                  ),
                 ).show(context);
               } else {
                 Flushbar(
@@ -48,7 +51,9 @@ class HomeScreen extends StatelessWidget {
                     color: AppColors.red,
                   ),
                   duration: const Duration(seconds: 2),
-                  padding: const EdgeInsets.all(AppPadding.padding10),
+                  padding: const EdgeInsets.all(
+                    AppPadding.padding10,
+                  ),
                 ).show(context);
               }
             },
@@ -62,7 +67,9 @@ class HomeScreen extends StatelessWidget {
               }
               if (state.listOfDishes.isNotEmpty) {
                 return GridView(
-                  padding: const EdgeInsets.all(AppPadding.padding15),
+                  padding: const EdgeInsets.all(
+                    AppPadding.padding15,
+                  ),
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: mediaQueryData.size.height * 0.4,
                     childAspectRatio: 2 / 2.5,

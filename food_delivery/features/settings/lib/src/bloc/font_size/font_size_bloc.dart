@@ -32,7 +32,7 @@ class FontSizeBloc extends Bloc<FontSizeEvent, FontSizeState> {
     ChangeFontSize event,
     Emitter<FontSizeState> emit,
   ) async {
-    emit(state.copyWith(textScale: event.textScale));
     await _setFontSizeUseCase.execute(event.textScale);
+    emit(state.copyWith(textScale: event.textScale));
   }
 }

@@ -19,6 +19,8 @@ dependencies:
     path: ./features/home
   settings:
     path: ./features/settings
+  domain:
+    path: ./domain
   cupertino_icons: ^1.0.2
 
 dev_dependencies:

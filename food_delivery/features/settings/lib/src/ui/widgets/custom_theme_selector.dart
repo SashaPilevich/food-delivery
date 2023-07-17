@@ -48,10 +48,6 @@ class CustomThemeSelector extends StatelessWidget {
                             ChangeThemeMode(isDark: false),
                           );
                         },
-                        selectedIcon: const Icon(
-                          Icons.light_mode_sharp,
-                          color: AppColors.grey,
-                        ),
                         icon: const Icon(
                           Icons.light_mode_sharp,
                           color: AppColors.pink,
@@ -63,10 +59,6 @@ class CustomThemeSelector extends StatelessWidget {
                             ChangeThemeMode(isDark: true),
                           );
                         },
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(AppColors.orange),
-                        ),
                         icon: const Icon(
                           Icons.dark_mode_sharp,
                           color: AppColors.orange,

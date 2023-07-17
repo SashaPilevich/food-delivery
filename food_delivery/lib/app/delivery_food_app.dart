@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 import 'package:settings/settings.dart';
@@ -12,16 +13,16 @@ class DeliveryFoodApp extends StatelessWidget {
       providers: [
         BlocProvider<ThemeBloc>(
           create: (_) => ThemeBloc(
-            checkThemeModeUseCase: getIt.get(),
-            checkThemeTypeUseCase: getIt.get(),
-            setThemeModeUseCase: getIt.get(),
-            setThemeTypeUseCase: getIt.get(),
+            checkThemeModeUseCase: getIt.get<CheckThemeModeUseCase>(),
+            checkThemeTypeUseCase: getIt.get<CheckThemeTypeUseCase>(),
+            setThemeModeUseCase: getIt.get<SetThemeModeUseCase>(),
+            setThemeTypeUseCase: getIt.get<SetThemeTypeUseCase>(),
           ),
         ),
         BlocProvider<FontSizeBloc>(
           create: (_) => FontSizeBloc(
-            checkFontSizeUseCase: getIt.get(),
-            setFontSizeUseCase: getIt.get(),
+            checkFontSizeUseCase: getIt.get<CheckFontSizeUseCase>(),
+            setFontSizeUseCase: getIt.get<SetFontSizeUseCase>(),
           ),
         ),
       ],
@@ -30,6 +31,7 @@ class DeliveryFoodApp extends StatelessWidget {
           return MaterialApp.router(
             builder: (context, child) {
               final mediaQueryData = MediaQuery.of(context);
+
               return BlocBuilder<FontSizeBloc, FontSizeState>(
                 builder: (_, FontSizeState state) {
                   return MediaQuery(

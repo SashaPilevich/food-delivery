@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:settings/src/ui/widgets/font_size_scale.dart';
+import 'package:settings/src/ui/widgets/font_size_slider.dart';
 import 'package:settings/src/ui/widgets/select_language.dart';
 import 'widgets/theme_settings.dart';
 
@@ -15,7 +15,7 @@ class SettingsScreen extends StatelessWidget {
           Divider(
             thickness: 2,
           ),
-          FontSizeScale(),
+          FontSizeSlider(),
           Divider(
             thickness: 2,
           ),
