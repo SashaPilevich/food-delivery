@@ -5,7 +5,13 @@ part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(CartState()) {
+  CartBloc()
+      : super(CartState.empty(
+          const CartModel(
+            dishes: [],
+            totalPrice: 0,
+          ),
+        )) {
     on<AddDishToCart>(_addDishToCart);
     on<RemoveDishFromCart>(_removeDishFromCart);
   }
