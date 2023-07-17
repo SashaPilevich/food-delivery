@@ -4,26 +4,26 @@ class DishesState {
   final bool isLoading;
   final List<DishModel> listOfDishes;
   final Object? exception;
-  final bool isInternetConnection;
+  final bool hasInternetConnection;
 
   DishesState({
     this.isLoading = true,
     this.listOfDishes = const [],
     this.exception,
-    this.isInternetConnection = true,
+    this.hasInternetConnection = true,
   });
 
   DishesState copyWith({
     bool? isLoading,
     List<DishModel>? listOfDishes,
     Object? exception,
-    bool? isInternetConnection,
+    bool? hasInternetConnection,
   }) {
     return DishesState(
       isLoading: isLoading ?? this.isLoading,
       listOfDishes: listOfDishes ?? this.listOfDishes,
       exception: exception ?? this.exception,
-      isInternetConnection: isInternetConnection ?? this.isInternetConnection,
+      hasInternetConnection: hasInternetConnection ?? this.hasInternetConnection,
     );
   }
 }

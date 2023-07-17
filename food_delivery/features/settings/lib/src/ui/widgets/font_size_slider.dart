@@ -8,11 +8,11 @@ class FontSizeSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FontSizeBloc fontSizeBloc = BlocProvider.of(context);
+    final SettingsBloc bloc = BlocProvider.of<SettingsBloc>(context);
     final ThemeData themeData = Theme.of(context);
 
-    return BlocBuilder<FontSizeBloc, FontSizeState>(
-      builder: (_, FontSizeState state) {
+    return BlocBuilder<SettingsBloc, SettingsState>(
+      builder: (_, SettingsState state) {
         return Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ class FontSizeSlider extends StatelessWidget {
                 max: 1.3,
                 divisions: 2,
                 onChanged: (double textScaleValue) {
-                  fontSizeBloc.add(
+                  bloc.add(
                     ChangeFontSize(textScale: textScaleValue),
                   );
                 },

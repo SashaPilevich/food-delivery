@@ -22,8 +22,8 @@ class HomeScreen extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           body: BlocConsumer<DishesBloc, DishesState>(
-            listener: (context, state) {
-              if (state.isInternetConnection) {
+            listener: (BuildContext context, DishesState state) {
+              if (state.hasInternetConnection) {
                 Flushbar(
                   flushbarPosition: FlushbarPosition.TOP,
                   messageText: Text(
@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                     Icons.done,
                     color: AppColors.green,
                   ),
-                  duration: const Duration(seconds: 2),
+                  duration: const Duration(seconds: 3),
                   padding: const EdgeInsets.all(
                     AppPadding.padding20,
                   ),
@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                     Icons.error,
                     color: AppColors.red,
                   ),
-                  duration: const Duration(seconds: 2),
+                  duration: const Duration(seconds: 3),
                   padding: const EdgeInsets.all(
                     AppPadding.padding10,
                   ),

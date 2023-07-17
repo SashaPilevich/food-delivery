@@ -15,10 +15,8 @@ class DataDI {
     _initDishes();
     _initHive();
     _initAdapter();
-    _initThemePreferencesProvider();
-    _initTheme();
-    _initFontSizePreferencesProvider();
-    _initFontSize();
+    _initSettings();
+    _initSettingsPreferencesProvider();
   }
 
   void _initFirebaseOptions() {
@@ -27,20 +25,20 @@ class DataDI {
     );
   }
 
-  void _initFirebase() async {
+  Future<void> _initFirebase() async {
     await Firebase.initializeApp(
       options: getIt<FirebaseOptions>(),
     );
     FirebaseFirestore.instance.clearPersistence();
   }
 
-  void _initAdapter() async {
+  void _initAdapter() {
     getIt.registerLazySingleton<DishEntityAdapter>(
       () => DishEntityAdapter(),
     );
   }
 
-  void _initHive() async {
+  Future<void> _initHive() async {
     await Hive.initFlutter();
     Hive.registerAdapter(
       getIt.get<DishEntityAdapter>(),
@@ -76,60 +74,46 @@ class DataDI {
     );
   }
 
-  void _initThemePreferencesProvider() {
-    getIt.registerLazySingleton<ThemePreferencesProvider>(
-      () => ThemePreferencesProviderImpl(),
+  void _initSettingsPreferencesProvider() {
+    getIt.registerLazySingleton<SettingsPreferencesProvider>(
+      () => SettingsPreferencesProvider(),
     );
   }
 
-  void _initTheme() {
-    getIt.registerLazySingleton<ThemeRepository>(
-      () => ThemeRepositoryImpl(
-        themePreferencesProvider: getIt.get<ThemePreferencesProvider>(),
+  void _initSettings() {
+    getIt.registerLazySingleton<SettingsRepository>(
+      () => SettingsRepositoryImpl(
+        settingsPreferencesProvider: getIt.get<SettingsPreferencesProvider>(),
       ),
     );
     getIt.registerLazySingleton<CheckThemeModeUseCase>(
       () => CheckThemeModeUseCase(
-        themeRepository: getIt.get<ThemeRepository>(),
+        settingsRepository: getIt.get<SettingsRepository>(),
       ),
     );
     getIt.registerLazySingleton<CheckThemeTypeUseCase>(
       () => CheckThemeTypeUseCase(
-        themeRepository: getIt.get<ThemeRepository>(),
+        settingsRepository: getIt.get<SettingsRepository>(),
       ),
     );
     getIt.registerLazySingleton<SetThemeModeUseCase>(
       () => SetThemeModeUseCase(
-        themeRepository: getIt.get<ThemeRepository>(),
+        settingsRepository: getIt.get<SettingsRepository>(),
       ),
     );
     getIt.registerLazySingleton<SetThemeTypeUseCase>(
       () => SetThemeTypeUseCase(
-        themeRepository: getIt.get<ThemeRepository>(),
-      ),
-    );
-  }
-
-  void _initFontSizePreferencesProvider() {
-    getIt.registerLazySingleton<FontSizePreferencesProvider>(
-      () => FontSizePreferencesProviderImpl(),
-    );
-  }
-
-  void _initFontSize() {
-    getIt.registerLazySingleton<FontSizeRepository>(
-      () => FontSizeRepositoryImpl(
-        fontSizePreferencesProvider: getIt.get<FontSizePreferencesProvider>(),
+        settingsRepository: getIt.get<SettingsRepository>(),
       ),
     );
     getIt.registerLazySingleton<CheckFontSizeUseCase>(
       () => CheckFontSizeUseCase(
-        fontSizeRepository: getIt.get<FontSizeRepository>(),
+        settingsRepository: getIt.get<SettingsRepository>(),
       ),
     );
     getIt.registerLazySingleton<SetFontSizeUseCase>(
       () => SetFontSizeUseCase(
-        fontSizeRepository: getIt.get<FontSizeRepository>(),
+        settingsRepository: getIt.get<SettingsRepository>(),
       ),
     );
   }

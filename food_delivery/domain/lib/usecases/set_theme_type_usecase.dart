@@ -1,13 +1,14 @@
 import 'package:domain/domain.dart';
 
-class SetThemeTypeUseCase {
-  final ThemeRepository _themeRepository;
+class SetThemeTypeUseCase implements FutureUseCase<bool,void>{
+  final SettingsRepository _settingsRepository;
 
   SetThemeTypeUseCase({
-    required ThemeRepository themeRepository,
-  }) : _themeRepository = themeRepository;
+    required SettingsRepository settingsRepository,
+  }) : _settingsRepository = settingsRepository;
 
+  @override
   Future<void> execute(bool input) async {
-    return _themeRepository.setThemeType(input);
+    return _settingsRepository.setThemeType(input);
   }
 }

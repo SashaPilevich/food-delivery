@@ -1,14 +1,14 @@
 import 'package:domain/domain.dart';
 
 class CheckThemeTypeUseCase implements FutureUseCase<NoParams, bool> {
-  final ThemeRepository _themeRepository;
+  final SettingsRepository _settingsRepository;
 
   CheckThemeTypeUseCase({
-    required ThemeRepository themeRepository,
-  }) : _themeRepository = themeRepository;
+    required SettingsRepository settingsRepository,
+  }) : _settingsRepository = settingsRepository;
 
   @override
   Future<bool> execute(NoParams input) async {
-    return _themeRepository.checkThemeType();
+    return _settingsRepository.checkThemeType();
   }
 }

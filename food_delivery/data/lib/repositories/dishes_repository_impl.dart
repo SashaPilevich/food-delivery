@@ -6,17 +6,17 @@ class DishesRepositoryImpl implements DishesRepository {
   final DataProvider _dataProvider;
   final LocalDataProvider _localDataProvider;
 
-  const DishesRepositoryImpl(
-      {required DataProvider dataProvider,
-      required LocalDataProvider localDataProvider})
-      : _dataProvider = dataProvider,
+  const DishesRepositoryImpl({
+    required DataProvider dataProvider,
+    required LocalDataProvider localDataProvider,
+  })  : _dataProvider = dataProvider,
         _localDataProvider = localDataProvider;
 
   @override
   Future<List<DishModel>> fetchAllDishes() async {
     final List<DishModel> dishes;
 
-    if (await InternetConnectionChecker().hasConnection) {
+    if (await NetworkInfo.checkInternetConnection()) {
       final List<DishEntity> result = await _dataProvider.getAllDishes();
       dishes = result.map((DishEntity e) => DishMapper.toModel(e)).toList();
       await _localDataProvider.saveDishesToCache(dishes);

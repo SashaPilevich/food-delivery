@@ -1,14 +1,14 @@
 import 'package:domain/domain.dart';
 
 class CheckFontSizeUseCase implements FutureUseCase<NoParams, double> {
-  final FontSizeRepository _fontSizeRepository;
+  final SettingsRepository _settingsRepository;
 
   CheckFontSizeUseCase({
-    required FontSizeRepository fontSizeRepository,
-  }) : _fontSizeRepository = fontSizeRepository;
+    required SettingsRepository settingsRepository,
+  }) : _settingsRepository = settingsRepository;
 
   @override
   Future<double> execute(NoParams input) async {
-    return _fontSizeRepository.checkFontSize();
+    return _settingsRepository.checkFontSize();
   }
 }

@@ -1,13 +1,14 @@
-import 'package:domain/repositories/font_size_repository.dart';
+import 'package:domain/domain.dart';
 
-class SetFontSizeUseCase {
-  final FontSizeRepository _fontSizeRepository;
+class SetFontSizeUseCase implements FutureUseCase<double,void>{
+  final SettingsRepository _settingsRepository;
 
   SetFontSizeUseCase({
-    required FontSizeRepository fontSizeRepository,
-  }) : _fontSizeRepository = fontSizeRepository;
+    required SettingsRepository settingsRepository,
+  }) : _settingsRepository = settingsRepository;
 
+  @override
   Future<void> execute(double input) async {
-    return _fontSizeRepository.setFontSize(input);
+    return _settingsRepository.setFontSize(input);
   }
 }

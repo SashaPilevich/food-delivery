@@ -29,7 +29,7 @@ class CartElement extends StatelessWidget {
         child: Row(
           children: <Widget>[
             AppCacheImage(
-              src: cartElement.dish.imageUrl,
+              imageUrl: cartElement.dish.imageUrl,
               height: mediaQueryData.size.height * 0.13,
             ),
             const SizedBox(

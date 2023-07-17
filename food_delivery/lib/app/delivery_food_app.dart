@@ -9,38 +9,26 @@ class DeliveryFoodApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<ThemeBloc>(
-          create: (_) => ThemeBloc(
-            checkThemeModeUseCase: getIt.get<CheckThemeModeUseCase>(),
-            checkThemeTypeUseCase: getIt.get<CheckThemeTypeUseCase>(),
-            setThemeModeUseCase: getIt.get<SetThemeModeUseCase>(),
-            setThemeTypeUseCase: getIt.get<SetThemeTypeUseCase>(),
-          ),
-        ),
-        BlocProvider<FontSizeBloc>(
-          create: (_) => FontSizeBloc(
-            checkFontSizeUseCase: getIt.get<CheckFontSizeUseCase>(),
-            setFontSizeUseCase: getIt.get<SetFontSizeUseCase>(),
-          ),
-        ),
-      ],
-      child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (BuildContext context, ThemeState state) {
+    return BlocProvider<SettingsBloc>(
+      create: (_) => SettingsBloc(
+        checkThemeModeUseCase: getIt.get<CheckThemeModeUseCase>(),
+        checkThemeTypeUseCase: getIt.get<CheckThemeTypeUseCase>(),
+        setThemeModeUseCase: getIt.get<SetThemeModeUseCase>(),
+        setThemeTypeUseCase: getIt.get<SetThemeTypeUseCase>(),
+        checkFontSizeUseCase: getIt.get<CheckFontSizeUseCase>(),
+        setFontSizeUseCase: getIt.get<SetFontSizeUseCase>(),
+      ),
+      child: BlocBuilder<SettingsBloc, SettingsState>(
+        builder: (BuildContext context, SettingsState state) {
           return MaterialApp.router(
-            builder: (context, child) {
-              final mediaQueryData = MediaQuery.of(context);
+            builder: (BuildContext context, Widget? child) {
+              final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
-              return BlocBuilder<FontSizeBloc, FontSizeState>(
-                builder: (_, FontSizeState state) {
-                  return MediaQuery(
-                    data: mediaQueryData.copyWith(
-                      textScaleFactor: state.textScale,
-                    ),
-                    child: child!,
-                  );
-                },
+              return MediaQuery(
+                data: mediaQueryData.copyWith(
+                  textScaleFactor: state.textScale,
+                ),
+                child: child!,
               );
             },
             routerDelegate: getIt.get<AppRouter>().delegate(),

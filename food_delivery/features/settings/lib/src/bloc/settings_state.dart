@@ -1,25 +1,29 @@
-part of 'theme_bloc.dart';
+part of 'settings_bloc.dart';
 
-class ThemeState {
+class SettingsState {
   final ThemeData themeData;
   final bool isSystemTheme;
   final bool isDark;
+  final double textScale;
 
-  ThemeState.empty(
+  SettingsState.empty(
     this.themeData,
     this.isSystemTheme,
     this.isDark,
+    this.textScale,
   );
 
-  ThemeState copyWith({
+  SettingsState copyWith({
     ThemeData? themeData,
     bool? isSystemTheme,
     bool? isDark,
+    double? textScale,
   }) {
-    return ThemeState.empty(
+    return SettingsState.empty(
       themeData ?? this.themeData,
       isSystemTheme ?? this.isSystemTheme,
       isDark ?? this.isDark,
+      textScale??this.textScale,
     );
   }
 }

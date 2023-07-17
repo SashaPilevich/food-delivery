@@ -8,12 +8,12 @@ class SystemThemeSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeBloc bloc = BlocProvider.of<ThemeBloc>(context);
+    final SettingsBloc bloc = BlocProvider.of<SettingsBloc>(context);
     final ThemeData themeData = Theme.of(context);
     final MediaQueryData mediaQuery = MediaQuery.of(context);
 
-    return BlocBuilder<ThemeBloc, ThemeState>(
-      builder: (_, ThemeState state) {
+    return BlocBuilder<SettingsBloc, SettingsState>(
+      builder: (_, SettingsState state) {
         return Container(
           padding: const EdgeInsets.all(
             AppPadding.padding15,

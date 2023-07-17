@@ -45,7 +45,7 @@ class DishElement extends StatelessWidget {
               Hero(
                 tag: dish.imageUrl,
                 child: AppCacheImage(
-                  src: dish.imageUrl,
+                  imageUrl: dish.imageUrl,
                   height: mediaQueryData.size.height * 0.13,
                 ),
               ),

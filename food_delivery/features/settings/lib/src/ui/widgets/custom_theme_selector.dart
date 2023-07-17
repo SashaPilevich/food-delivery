@@ -10,15 +10,15 @@ class CustomThemeSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final MediaQueryData mediaQuery = MediaQuery.of(context);
-    final ThemeBloc bloc = BlocProvider.of<ThemeBloc>(context);
+    final SettingsBloc bloc = BlocProvider.of<SettingsBloc>(context);
 
-    return BlocBuilder<ThemeBloc, ThemeState>(
+    return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (
         _,
-        ThemeState state,
+        SettingsState state,
       ) {
         if (state.isSystemTheme) {
-          return Container();
+          return const SizedBox.shrink();
         } else {
           return Container(
             padding: const EdgeInsets.all(
