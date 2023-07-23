@@ -10,3 +10,7 @@ export 'enums/enums.dart';
 export 'extensions/extensions.dart';
 export 'generated/codegen_loader.g.dart';
 export 'package:easy_localization/easy_localization.dart';
+export 'package:hive/hive.dart';
+export 'package:hive_flutter/hive_flutter.dart';
+export 'package:connectivity_plus/connectivity_plus.dart';
+export 'internet_connection/internet_connection_info.dart';

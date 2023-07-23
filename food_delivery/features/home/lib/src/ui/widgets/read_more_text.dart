@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:core_ui/src/theme/app_text_theme.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 

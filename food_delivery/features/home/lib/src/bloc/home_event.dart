@@ -11,3 +11,7 @@ class InitListOfDishes extends DishesEvent {
 class LoadListOfDishes extends DishesEvent {
   LoadListOfDishes();
 }
+
+class CheckInternetConnection extends DishesEvent {
+  CheckInternetConnection();
+}

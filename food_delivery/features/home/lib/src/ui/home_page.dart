@@ -1,4 +1,3 @@
-import 'package:cart/cart.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
@@ -11,17 +10,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
+    return 
         BlocProvider<DishesBloc>(
           create: (_) => DishesBloc(
             fetchAllDishesUseCase: getIt.get<FetchAllDishesUseCase>(),
           ),
-        ),
-        BlocProvider<CartBloc>(
-          create: (_) => CartBloc(),
-        ),
-      ],
       child: AutoTabsScaffold(
         routes: const <PageRouteInfo<dynamic>>[
           HomeScreenRoute(),
@@ -34,21 +27,6 @@ class HomePage extends StatelessWidget {
             title: Text(
               'homePage.foodDelivery'.tr(),
             ),
-            actions: <Widget>[
-              const CustomSwitchTheme(),
-              IconButton(
-                onPressed: () {
-                  if (context.locale == const Locale('en', 'US')) {
-                    context.setLocale(const Locale('pl', 'PL'));
-                  } else {
-                    context.setLocale(const Locale('en', 'US'));
-                  }
-                },
-                icon: const Icon(
-                  Icons.language,
-                ),
-              ),
-            ],
           );
         },
         bottomNavigationBuilder: (_, TabsRouter tabsRouter) {

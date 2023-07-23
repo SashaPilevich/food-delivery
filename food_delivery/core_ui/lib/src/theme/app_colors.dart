@@ -9,4 +9,6 @@ class AppColors {
   static const Color lightPink = Color.fromARGB(255, 103, 42, 62);
   static const Color lightGrey = Color.fromRGBO(158, 158, 158, 1);
   static const Color darkGrey = Color.fromARGB(255, 75, 71, 71);
+  static const Color green = Color.fromARGB(255, 76, 175, 80);
+  static const Color red = Color.fromRGBO(244, 67, 54, 1);
 }

@@ -17,6 +17,12 @@ dependencies:
     path: ./navigation
   home:
     path: ./features/home
+  settings:
+    path: ./features/settings
+  cart:
+    path: ./features/cart
+  domain:
+    path: ./domain
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
@@ -29,6 +35,8 @@ flutter:
   generate: true
   assets:
     - assets/translations/
+    - assets/image/poland.png
+    - assets/image/united-states.png
   fonts:
     - family: Raleway
       fonts:

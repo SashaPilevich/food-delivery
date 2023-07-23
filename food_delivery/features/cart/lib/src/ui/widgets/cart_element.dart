@@ -28,8 +28,8 @@ class CartElement extends StatelessWidget {
         ),
         child: Row(
           children: <Widget>[
-            AppImage(
-              src: cartElement.dish.imageUrl,
+            AppCacheImage(
+              imageUrl: cartElement.dish.imageUrl,
               height: mediaQueryData.size.height * 0.13,
             ),
             const SizedBox(
@@ -58,7 +58,7 @@ class CartElement extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     cartBloc.add(
-                          RemoveDishFromCart(dish: cartElement.dish),
+                          RemoveDishFromCart(cartDish: cartElement),
                         );
                   },
                   icon: Icon(

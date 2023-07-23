@@ -20,7 +20,7 @@ dependencies:
     path: ../features/cart
   navigation:
     path: ../navigation
-  readmore: ^2.2.0
+  cached_network_image: ^3.2.2
   
 dev_dependencies:
   flutter_test:

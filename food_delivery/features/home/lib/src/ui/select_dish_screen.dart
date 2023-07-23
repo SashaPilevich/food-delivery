@@ -1,3 +1,4 @@
+import 'package:cart/cart.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
@@ -17,6 +18,7 @@ class SelectDishScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final CartBloc cartBloc = BlocProvider.of<CartBloc>(context);
 
     return SafeArea(
       child: Scaffold(
@@ -35,8 +37,8 @@ class SelectDishScreen extends StatelessWidget {
               Center(
                 child: Hero(
                   tag: dish.imageUrl,
-                  child: AppImage(
-                    src: dish.imageUrl,
+                  child: AppCacheImage(
+                    imageUrl: dish.imageUrl,
                     height: mediaQueryData.size.height * 0.35,
                   ),
                 ),
@@ -87,6 +89,22 @@ class SelectDishScreen extends StatelessWidget {
                         '${'selectDishScreen.cost'.tr()}: \$${dish.cost}',
                         style: themeData.textTheme.titleMedium?.copyWith(
                           color: themeData.primaryColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: AppSize.size20,
+                      ),
+                      SizedBox(
+                        width: mediaQueryData.size.width * 0.9,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            cartBloc.add(
+                              AddDishToCart(dish: dish),
+                            );
+                          },
+                          child: Text(
+                            'selectDishScreen.addToCart'.tr(),
+                          ),
                         ),
                       ),
                     ],

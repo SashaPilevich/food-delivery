@@ -10,7 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  core:
+    path: ../../core
+  domain:
+    path: ../../domain
+  core_ui:
+    path: ../../core_ui
+  url_launcher: ^6.1.12
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

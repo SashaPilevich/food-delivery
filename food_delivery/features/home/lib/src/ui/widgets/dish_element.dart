@@ -36,7 +36,7 @@ class DishElement extends StatelessWidget {
         ),
         child: Container(
           padding: const EdgeInsets.only(
-            top: AppPadding.padding10,
+            top: AppPadding.padding8,
             left: AppPadding.padding15,
             right: AppPadding.padding15,
           ),
@@ -44,12 +44,14 @@ class DishElement extends StatelessWidget {
             children: <Widget>[
               Hero(
                 tag: dish.imageUrl,
-                child: AppImage(
-                  src: dish.imageUrl,
+                child: AppCacheImage(
+                  imageUrl: dish.imageUrl,
                   height: mediaQueryData.size.height * 0.13,
                 ),
               ),
-              const SizedBox(height: AppSize.size10),
+              const SizedBox(
+                height: AppSize.size10,
+              ),
               FittedBox(
                 child: Text(
                   dish.title,
