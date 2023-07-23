@@ -1,4 +1,4 @@
-import 'package:data/entity/cart_dish_entity.dart';
+import 'cart_dish_entity.dart';
 
 class CartEntity {
   final List<CartDishEntity> dishes;
