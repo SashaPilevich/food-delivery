@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:cart/cart.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
@@ -10,24 +11,36 @@ class DeliveryFoodApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(providers: [
-    
-    BlocProvider<SettingsBloc>(
-      create: (_) => SettingsBloc(
-        checkThemeModeUseCase: getIt.get<CheckThemeModeUseCase>(),
-        checkThemeTypeUseCase: getIt.get<CheckThemeTypeUseCase>(),
-        setThemeModeUseCase: getIt.get<SetThemeModeUseCase>(),
-        setThemeTypeUseCase: getIt.get<SetThemeTypeUseCase>(),
-        checkFontSizeUseCase: getIt.get<CheckFontSizeUseCase>(),
-        setFontSizeUseCase: getIt.get<SetFontSizeUseCase>(),
-      ),),
-      BlocProvider<CartBloc>(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<SettingsBloc>(
+          create: (_) => SettingsBloc(
+            checkThemeModeUseCase: getIt.get<CheckThemeModeUseCase>(),
+            checkThemeTypeUseCase: getIt.get<CheckThemeTypeUseCase>(),
+            setThemeModeUseCase: getIt.get<SetThemeModeUseCase>(),
+            setThemeTypeUseCase: getIt.get<SetThemeTypeUseCase>(),
+            checkFontSizeUseCase: getIt.get<CheckFontSizeUseCase>(),
+            setFontSizeUseCase: getIt.get<SetFontSizeUseCase>(),
+          ),
+        ),
+        BlocProvider<CartBloc>(
           create: (_) => CartBloc(
             getCartDishesUseCase: getIt.get<GetCartDishesUseCase>(),
             addCartDishUseCase: getIt.get<AddCartDishUseCase>(),
             removeCartDishUseCase: getIt.get<RemoveCartDishUseCase>(),
           ),
-        ),],
+        ),
+        BlocProvider<AuthBloc>(
+          create: (context) => AuthBloc(
+            signInUseCase: getIt.get<SignInUseCase>(),
+            signUpUseCase: getIt.get<SignUpUseCase>(),
+            signOutUseCase: getIt.get<SignOutUseCase>(),
+            signInWithGoogleUseCase: getIt.get<SignInWithGoogleUseCase>(),
+            resetPasswordUseCase: getIt.get<ResetPasswordUseCase>(),
+            getUserFromStorageUseCase: getIt.get<GetUserFromStorageUseCase>(),
+          )..add(InitAuth()),
+        ),
+      ],
       child: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (BuildContext context, SettingsState state) {
           return MaterialApp.router(

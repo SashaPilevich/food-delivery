@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
@@ -10,11 +11,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-        BlocProvider<DishesBloc>(
-          create: (_) => DishesBloc(
-            fetchAllDishesUseCase: getIt.get<FetchAllDishesUseCase>(),
-          ),
+    final AuthBloc bloc = BlocProvider.of(context);
+    final ThemeData themeData = Theme.of(context);
+    final String? userName = bloc.state.userModel.userName;
+
+    return BlocProvider<DishesBloc>(
+      create: (_) => DishesBloc(
+        fetchAllDishesUseCase: getIt.get<FetchAllDishesUseCase>(),
+      ),
       child: AutoTabsScaffold(
         routes: const <PageRouteInfo<dynamic>>[
           HomeScreenRoute(),
@@ -27,6 +31,27 @@ class HomePage extends StatelessWidget {
             title: Text(
               'homePage.foodDelivery'.tr(),
             ),
+            actions: [
+              if (userName != null)
+                Padding(
+                  padding: const EdgeInsets.all(
+                    AppPadding.padding15,
+                  ),
+                  child: Text(
+                    userName,
+                    style: themeData.textTheme.titleMedium!.copyWith(
+                      color: AppColors.white,
+                    ),
+                  ),
+                ),
+              IconButton(
+                onPressed: () {
+                  bloc.add(SignOutSubmitted());
+                  context.replaceRoute(SignInScreenRoute());
+                },
+                icon: const Icon(Icons.logout),
+              ),
+            ],
           );
         },
         bottomNavigationBuilder: (_, TabsRouter tabsRouter) {

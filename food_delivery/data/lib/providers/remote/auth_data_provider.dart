@@ -4,8 +4,6 @@ import 'package:data/data.dart';
 part 'auth_data_provider_impl.dart';
 
 abstract class AuthDataProvider {
-  Stream<UserEntity?> get user;
-
   Future<UserEntity> signUpWithEmailAndPassword({
     required String userName,
     required String email,
@@ -29,6 +27,9 @@ abstract class AuthDataProvider {
     required String uid,
     required String userName,
     required String email,
-    required String imageUrl,
+  });
+
+  Future<UserEntity> getUser({
+    required String uid,
   });
 }

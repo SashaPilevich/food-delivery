@@ -4,20 +4,17 @@ class UserEntity {
   final String uid;
   final String email;
   final String? userName;
-  final String? imageUrl;
 
   const UserEntity({
     required this.uid,
     required this.email,
     required this.userName,
-    required this.imageUrl,
   });
 
   List<Object?> get props => [
         uid,
         email,
         userName,
-        imageUrl,
       ];
 
   factory UserEntity.fromFirebaseAuthUser(
@@ -27,7 +24,6 @@ class UserEntity {
       uid: firebaseUser.uid,
       email: firebaseUser.email ?? '',
       userName: firebaseUser.displayName ?? '',
-      imageUrl: firebaseUser.photoURL ?? '',
     );
   }
 
@@ -38,7 +34,14 @@ class UserEntity {
       uid: userCredential.user!.uid,
       email: userCredential.user!.email ?? '',
       userName: userCredential.user!.displayName ?? '',
-      imageUrl: userCredential.user!.photoURL ?? '',
     );
   }
+
+  static const UserEntity empty = UserEntity(
+    uid: '',
+    email: '',
+    userName: '',
+  );
+
+  bool get isEmpty => this == UserEntity.empty;
 }

@@ -7,26 +7,26 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final AuthUserUseCase _authUserUseCase;
   final SignInUseCase _signInUseCase;
   final SignUpUseCase _signUpUseCase;
   final SignOutUseCase _signOutUseCase;
   final SignInWithGoogleUseCase _signInWithGoogleUseCase;
   final ResetPasswordUseCase _resetPasswordUseCase;
+  final GetUserFromStorageUseCase _getUserFromStorageUseCase;
 
   AuthBloc({
-    required AuthUserUseCase authUserUseCase,
     required SignInUseCase signInUseCase,
     required SignUpUseCase signUpUseCase,
     required SignOutUseCase signOutUseCase,
     required SignInWithGoogleUseCase signInWithGoogleUseCase,
     required ResetPasswordUseCase resetPasswordUseCase,
-  })  : _authUserUseCase = authUserUseCase,
-        _signInUseCase = signInUseCase,
+    required GetUserFromStorageUseCase getUserFromStorageUseCase,
+  })  : _signInUseCase = signInUseCase,
         _signUpUseCase = signUpUseCase,
         _signOutUseCase = signOutUseCase,
         _signInWithGoogleUseCase = signInWithGoogleUseCase,
         _resetPasswordUseCase = resetPasswordUseCase,
+        _getUserFromStorageUseCase = getUserFromStorageUseCase,
         super(AuthState()) {
     on<InitAuth>(_initAuth);
     on<UserNameFieldChange>(_userNameFieldChange);
@@ -43,23 +43,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     InitAuth event,
     Emitter<AuthState> emit,
   ) async {
-    final Stream<UserModel> authStateChangesStream =
-        _authUserUseCase.execute(const NoParams());
-    await for (UserModel user in authStateChangesStream) {
-      user.isEmpty
-          ? emit(
-              state.copyWith(
-                isLogged: false,
-                userModel: UserModel.empty,
-              ),
-            )
-          : emit(
-              state.copyWith(
-                isLogged: true,
-                userModel: user,
-              ),
-            );
-    }
+    final UserModel userFromStorage = await _getUserFromStorageUseCase.execute(
+      const NoParams(),
+    );
+    userFromStorage.uid == ''
+        ? emit(
+            state.copyWith(
+              isLogged: false,
+              userModel: UserModel.empty,
+            ),
+          )
+        : emit(
+            state.copyWith(
+              isLogged: true,
+              userModel: userFromStorage,
+            ),
+          );
   }
 
   Future<void> _userNameFieldChange(
@@ -69,7 +68,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(
       state.copyWith(userName: event.userName),
     );
-
     emit(
       state.copyWith(
         formStatus: SubmissionSuccess(),
@@ -117,7 +115,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       formStatus: FormSubmitting(),
     ));
     try {
-      await _signInUseCase.execute(
+      final UserModel userModel = await _signInUseCase.execute(
         SignInParams(
           email: state.email,
           password: state.password,
@@ -127,6 +125,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(
         state.copyWith(
           formStatus: SubmissionSuccess(),
+          userModel: userModel,
         ),
       );
 
@@ -151,7 +150,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       formStatus: FormSubmitting(),
     ));
     try {
-      await _signUpUseCase.execute(
+      final UserModel userModel = await _signUpUseCase.execute(
         SignUpParams(
           email: state.email,
           password: state.password,
@@ -161,6 +160,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(
         state.copyWith(
           formStatus: SubmissionSuccess(),
+          userModel: userModel,
         ),
       );
       getIt.get<AppRouter>().replace(
@@ -191,7 +191,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
-      await _signInWithGoogleUseCase.execute(
+      final user = await _signInWithGoogleUseCase.execute(
         const NoParams(),
       );
       emit(
@@ -199,7 +199,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           formStatus: SubmissionSuccess(),
         ),
       );
-      emit(state.copyWith(isLogged: true));
+      emit(state.copyWith(isLogged: true, userModel: user));
       getIt.get<AppRouter>().replace(
             const HomePageRoute(),
           );
@@ -226,7 +226,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
       emit(state.copyWith(isLogged: true));
       getIt.get<AppRouter>().replace(
-            const SignInScreenRoute(),
+            SignInScreenRoute(),
           );
     } on FirebaseAuthException catch (error) {
       emit(

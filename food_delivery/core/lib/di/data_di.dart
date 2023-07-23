@@ -52,6 +52,9 @@ class DataDI {
     getIt.registerLazySingleton<CartDishEntityAdapter>(
       () => CartDishEntityAdapter(),
     );
+    getIt.registerLazySingleton<UserEntityAdapter>(
+      () => UserEntityAdapter(),
+    );
   }
 
   Future<void> _initHive() async {
@@ -61,6 +64,9 @@ class DataDI {
     );
     Hive.registerAdapter(
       getIt.get<CartDishEntityAdapter>(),
+    );
+    Hive.registerAdapter(
+      getIt.get<UserEntityAdapter>(),
     );
   }
 
@@ -79,6 +85,9 @@ class DataDI {
     getIt.registerLazySingleton<CartLocalDataProvider>(
       () => CartLocalDataProvider(),
     );
+    getIt.registerLazySingleton<LocalAuthDataProvider>(
+      () => LocalAuthDataProviderImpl(),
+    );
   }
 
   void _initAuthDataProvider() {
@@ -86,7 +95,7 @@ class DataDI {
       () => AuthDataProviderImpl(
         firebaseAuth: getIt.get<FirebaseAuth>(),
         googleSignIn: getIt.get<GoogleSignIn>(),
-        firebaseFirestore: getIt.get<FirebaseFirestore>(),
+        firebaseFirestore: FirebaseFirestore.instance,
       ),
     );
   }
@@ -180,11 +189,7 @@ class DataDI {
     getIt.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
         authDataProvider: getIt.get<AuthDataProvider>(),
-      ),
-    );
-    getIt.registerLazySingleton<AuthUserUseCase>(
-      () => AuthUserUseCase(
-        authRepository: getIt.get<AuthRepository>(),
+        localAuthDataProvider: getIt.get<LocalAuthDataProvider>(),
       ),
     );
     getIt.registerLazySingleton<SignInUseCase>(
@@ -209,6 +214,11 @@ class DataDI {
     );
     getIt.registerLazySingleton<ResetPasswordUseCase>(
       () => ResetPasswordUseCase(
+        authRepository: getIt.get<AuthRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<GetUserFromStorageUseCase>(
+      () => GetUserFromStorageUseCase(
         authRepository: getIt.get<AuthRepository>(),
       ),
     );

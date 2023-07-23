@@ -7,7 +7,6 @@ abstract class UserMapper {
       uid: model.uid,
       email: model.email,
       userName: model.userName,
-      imageUrl: model.imageUrl,
     );
   }
 
@@ -16,7 +15,6 @@ abstract class UserMapper {
       uid: entity.uid,
       email: entity.email,
       userName: entity.userName,
-      imageUrl: entity.imageUrl,
     );
   }
 }

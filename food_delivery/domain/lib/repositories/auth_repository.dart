@@ -1,8 +1,6 @@
 import 'package:domain/domain.dart';
 
 abstract class AuthRepository {
-  Stream<UserModel> get user;
-
   Future<UserModel> signUp({
     required String userName,
     required String email,
@@ -21,4 +19,6 @@ abstract class AuthRepository {
   Future<void> resetPassword({
     required String email,
   });
+
+  Future<UserModel> getUserFromStorage();
 }

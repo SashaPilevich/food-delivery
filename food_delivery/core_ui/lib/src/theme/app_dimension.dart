@@ -5,6 +5,7 @@ class AppPadding {
   static const double padding20 = 20.0;
   static const double padding25 = 25.0;
   static const double padding30 = 30.0;
+  static const double padding40 = 40.0;
 }
 
 class AppSize {

@@ -18,6 +18,7 @@ dependencies:
     path: ../../core_ui
   navigation:
     path: ../../navigation
+  font_awesome_flutter: ^10.5.0
 
 
 dev_dependencies:

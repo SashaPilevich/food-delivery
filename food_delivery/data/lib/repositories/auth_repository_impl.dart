@@ -3,19 +3,13 @@ import 'package:domain/domain.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthDataProvider _authDataProvider;
+  final LocalAuthDataProvider _localAuthDataProvider;
 
   const AuthRepositoryImpl({
     required AuthDataProvider authDataProvider,
-  }) : _authDataProvider = authDataProvider;
-
-  @override
-  Stream<UserModel> get user {
-    return _authDataProvider.user.map((UserEntity? userEntity) {
-      return userEntity == null
-          ? UserModel.empty
-          : UserMapper.toModel(userEntity);
-    });
-  }
+    required LocalAuthDataProvider localAuthDataProvider,
+  })  : _localAuthDataProvider = localAuthDataProvider,
+        _authDataProvider = authDataProvider;
 
   @override
   Future<UserModel> signUp({
@@ -29,8 +23,9 @@ class AuthRepositoryImpl implements AuthRepository {
       email: email,
       password: password,
     );
-    
-    return UserMapper.toModel(userEntity);
+    final UserModel userModel = UserMapper.toModel(userEntity);
+    await _localAuthDataProvider.saveUserToLocal(userModel);
+    return userModel;
   }
 
   @override
@@ -43,20 +38,23 @@ class AuthRepositoryImpl implements AuthRepository {
       email: email,
       password: password,
     );
-
-    return UserMapper.toModel(userEntity);
+    final UserModel userModel = UserMapper.toModel(userEntity);
+    await _localAuthDataProvider.saveUserToLocal(userModel);
+    return userModel;
   }
 
   @override
   Future<UserModel> signInWithGoogle() async {
-    final UserEntity authModel = await _authDataProvider.signInWithGoogle();
-  
-    return UserMapper.toModel(authModel);
+    final UserEntity userEntity = await _authDataProvider.signInWithGoogle();
+    final UserModel userModel = UserMapper.toModel(userEntity);
+    await _localAuthDataProvider.saveUserToLocal(userModel);
+    return userModel;
   }
 
   @override
   Future<void> signOut() async {
     await _authDataProvider.signOut();
+    await _localAuthDataProvider.deleteUserFromLocal();
   }
 
   @override
@@ -64,5 +62,12 @@ class AuthRepositoryImpl implements AuthRepository {
     required String email,
   }) async {
     await _authDataProvider.resetPassword(email: email);
+  }
+
+  @override
+  Future<UserModel> getUserFromStorage() async {
+    final UserEntity userEntity =
+        await _localAuthDataProvider.getUserFromLocal();
+    return UserMapper.toModel(userEntity);
   }
 }

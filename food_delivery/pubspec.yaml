@@ -21,6 +21,8 @@ dependencies:
     path: ./features/settings
   cart:
     path: ./features/cart
+  auth:
+    path: ./features/auth
   domain:
     path: ./domain
   cupertino_icons: ^1.0.2
@@ -37,6 +39,9 @@ flutter:
     - assets/translations/
     - assets/image/poland.png
     - assets/image/united-states.png
+    - assets/image/dinner.png
+    - assets/image/signup.png
+    - assets/image/forgot-password.png
   fonts:
     - family: Raleway
       fonts:

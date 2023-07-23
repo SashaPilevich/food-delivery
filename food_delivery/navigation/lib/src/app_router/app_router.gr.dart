@@ -24,21 +24,27 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     SignInScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<SignInScreenRouteArgs>(
+          orElse: () => const SignInScreenRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const SignInScreen(),
+        child: SignInScreen(key: args.key),
       );
     },
     SignUpScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<SignUpScreenRouteArgs>(
+          orElse: () => const SignUpScreenRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const SignUpScreen(),
+        child: SignUpScreen(key: args.key),
       );
     },
     ResetPasswordScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<ResetPasswordScreenRouteArgs>(
+          orElse: () => const ResetPasswordScreenRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const ResetPasswordScreen(),
+        child: ResetPasswordScreen(key: args.key),
       );
     },
     HomePageRoute.name: (routeData) {
@@ -148,38 +154,75 @@ class StartScreenRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SignInScreen]
-class SignInScreenRoute extends PageRouteInfo<void> {
-  const SignInScreenRoute()
+class SignInScreenRoute extends PageRouteInfo<SignInScreenRouteArgs> {
+  SignInScreenRoute({Key? key})
       : super(
           SignInScreenRoute.name,
           path: '/sign-in-screen',
+          args: SignInScreenRouteArgs(key: key),
         );
 
   static const String name = 'SignInScreenRoute';
 }
 
+class SignInScreenRouteArgs {
+  const SignInScreenRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SignInScreenRouteArgs{key: $key}';
+  }
+}
+
 /// generated route for
 /// [SignUpScreen]
-class SignUpScreenRoute extends PageRouteInfo<void> {
-  const SignUpScreenRoute()
+class SignUpScreenRoute extends PageRouteInfo<SignUpScreenRouteArgs> {
+  SignUpScreenRoute({Key? key})
       : super(
           SignUpScreenRoute.name,
           path: '/sign-up-screen',
+          args: SignUpScreenRouteArgs(key: key),
         );
 
   static const String name = 'SignUpScreenRoute';
 }
 
+class SignUpScreenRouteArgs {
+  const SignUpScreenRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SignUpScreenRouteArgs{key: $key}';
+  }
+}
+
 /// generated route for
 /// [ResetPasswordScreen]
-class ResetPasswordScreenRoute extends PageRouteInfo<void> {
-  const ResetPasswordScreenRoute()
+class ResetPasswordScreenRoute
+    extends PageRouteInfo<ResetPasswordScreenRouteArgs> {
+  ResetPasswordScreenRoute({Key? key})
       : super(
           ResetPasswordScreenRoute.name,
           path: '/reset-password-screen',
+          args: ResetPasswordScreenRouteArgs(key: key),
         );
 
   static const String name = 'ResetPasswordScreenRoute';
+}
+
+class ResetPasswordScreenRouteArgs {
+  const ResetPasswordScreenRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ResetPasswordScreenRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

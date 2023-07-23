@@ -14,16 +14,6 @@ class AuthDataProviderImpl implements AuthDataProvider {
         _firebaseFirestore = firebaseFirestore;
 
   @override
-  Stream<UserEntity?> get user {
-    return _firebaseAuth.authStateChanges().map((User? firebaseUser) {
-      if (firebaseUser == null) {
-        return null;
-      }
-      return UserEntity.fromFirebaseAuthUser(firebaseUser);
-    });
-  }
-
-  @override
   Future<UserEntity> signUpWithEmailAndPassword({
     required String userName,
     required String email,
@@ -34,14 +24,17 @@ class AuthDataProviderImpl implements AuthDataProvider {
       email: email,
       password: password,
     );
+
     await saveUser(
       uid: credential.user!.uid,
       email: credential.user!.email,
       userName: userName,
-      imageUrl:'',
     );
 
-    return UserEntity.fromFirebaseAuthUser(credential.user!);
+    final UserEntity userEntity = await getUser(
+      uid: credential.user!.uid,
+    );
+    return userEntity;
   }
 
   @override
@@ -54,8 +47,10 @@ class AuthDataProviderImpl implements AuthDataProvider {
       email: email,
       password: password,
     );
-
-    return UserEntity.fromFirebaseAuthUser(credential.user!);
+    final UserEntity userEntity = await getUser(
+      uid: credential.user!.uid,
+    );
+    return userEntity;
   }
 
   @override
@@ -83,9 +78,11 @@ class AuthDataProviderImpl implements AuthDataProvider {
       uid: userCredential.user!.uid,
       email: userCredential.user!.email,
       userName: userCredential.user!.displayName,
-      imageUrl: userCredential.user!.photoURL,
     );
-    return UserEntity.fromGoogleAuthUser(userCredential);
+    final UserEntity userEntity = await getUser(
+      uid: userCredential.user!.uid,
+    );
+    return userEntity;
   }
 
   @override
@@ -94,11 +91,11 @@ class AuthDataProviderImpl implements AuthDataProvider {
   }
 
   @override
-  Future<void> saveUser(
-      {required String uid,
-      required String? email,
-      required String? userName,
-      required String? imageUrl}) async {
+  Future<void> saveUser({
+    required String uid,
+    required String? email,
+    required String? userName,
+  }) async {
     final DocumentReference<Map<String, dynamic>> userDataFirebase =
         _firebaseFirestore.collection('users').doc(
               uid,
@@ -107,10 +104,24 @@ class AuthDataProviderImpl implements AuthDataProvider {
       'uid': uid,
       'email': email,
       'name': userName,
-      'imageUrl': imageUrl,
     };
     if (!(await userDataFirebase.get()).exists) {
       userDataFirebase.set(userData);
     }
+  }
+
+  @override
+  Future<UserEntity> getUser({
+    required String uid,
+  }) async {
+    final DocumentSnapshot<Map<String, dynamic>> userDoc =
+        await _firebaseFirestore.collection('users').doc(uid).get();
+    final Map<String, dynamic>? userData = userDoc.data();
+    final UserEntity userEntity = UserEntity(
+      uid: uid,
+      email: userData?['email'] ?? '',
+      userName: userData?['name'] ?? '',
+    );
+    return userEntity;
   }
 }
