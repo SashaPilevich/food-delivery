@@ -17,6 +17,30 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    StartScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const StartScreen(),
+      );
+    },
+    SignInScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SignInScreen(),
+      );
+    },
+    SignUpScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SignUpScreen(),
+      );
+    },
+    ResetPasswordScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const ResetPasswordScreen(),
+      );
+    },
     HomePageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -62,8 +86,24 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          HomePageRoute.name,
+          StartScreenRoute.name,
           path: '/',
+        ),
+        RouteConfig(
+          SignInScreenRoute.name,
+          path: '/sign-in-screen',
+        ),
+        RouteConfig(
+          SignUpScreenRoute.name,
+          path: '/sign-up-screen',
+        ),
+        RouteConfig(
+          ResetPasswordScreenRoute.name,
+          path: '/reset-password-screen',
+        ),
+        RouteConfig(
+          HomePageRoute.name,
+          path: '/home-page',
           children: [
             RouteConfig(
               HomeScreenRoute.name,
@@ -95,12 +135,60 @@ class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
+/// [StartScreen]
+class StartScreenRoute extends PageRouteInfo<void> {
+  const StartScreenRoute()
+      : super(
+          StartScreenRoute.name,
+          path: '/',
+        );
+
+  static const String name = 'StartScreenRoute';
+}
+
+/// generated route for
+/// [SignInScreen]
+class SignInScreenRoute extends PageRouteInfo<void> {
+  const SignInScreenRoute()
+      : super(
+          SignInScreenRoute.name,
+          path: '/sign-in-screen',
+        );
+
+  static const String name = 'SignInScreenRoute';
+}
+
+/// generated route for
+/// [SignUpScreen]
+class SignUpScreenRoute extends PageRouteInfo<void> {
+  const SignUpScreenRoute()
+      : super(
+          SignUpScreenRoute.name,
+          path: '/sign-up-screen',
+        );
+
+  static const String name = 'SignUpScreenRoute';
+}
+
+/// generated route for
+/// [ResetPasswordScreen]
+class ResetPasswordScreenRoute extends PageRouteInfo<void> {
+  const ResetPasswordScreenRoute()
+      : super(
+          ResetPasswordScreenRoute.name,
+          path: '/reset-password-screen',
+        );
+
+  static const String name = 'ResetPasswordScreenRoute';
+}
+
+/// generated route for
 /// [HomePage]
 class HomePageRoute extends PageRouteInfo<void> {
   const HomePageRoute({List<PageRouteInfo>? children})
       : super(
           HomePageRoute.name,
-          path: '/',
+          path: '/home-page',
           initialChildren: children,
         );
 

@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cart/cart.dart';
 import 'package:domain/domain.dart';
@@ -10,28 +11,20 @@ part 'app_router.gr.dart';
 
 @MaterialAutoRouter(
   routes: <AutoRoute>[
+    AutoRoute(page: StartScreen, initial: true),
+    AutoRoute(page: SignInScreen),
+    AutoRoute(page: SignUpScreen),
+    AutoRoute(page: ResetPasswordScreen),
     AutoRoute(
-      path: '/',
       page: HomePage,
       children: [
-        AutoRoute(
-          page: HomeScreen,
-          initial: true,
-        ),
-        AutoRoute(
-          page: CartScreen,
-        ),
-        AutoRoute(
-          page: OrderHistoryScreen,
-        ),
-        AutoRoute(
-          page: SettingsScreen,
-        ),
+        AutoRoute(page: HomeScreen, path: ''),
+        AutoRoute(page: CartScreen),
+        AutoRoute(page: OrderHistoryScreen),
+        AutoRoute(page: SettingsScreen),
       ],
     ),
-    AutoRoute(
-      page: SelectDishScreen,
-    ),
+    AutoRoute(page: SelectDishScreen),
   ],
 )
 class AppRouter extends _$AppRouter {}
