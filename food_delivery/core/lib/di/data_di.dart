@@ -17,6 +17,7 @@ class DataDI {
     _initAdapter();
     _initSettings();
     _initSettingsPreferencesProvider();
+    _initCart();
   }
 
   void _initFirebaseOptions() {
@@ -36,12 +37,18 @@ class DataDI {
     getIt.registerLazySingleton<DishEntityAdapter>(
       () => DishEntityAdapter(),
     );
+    getIt.registerLazySingleton<CartDishEntityAdapter>(
+      () => CartDishEntityAdapter(),
+    );
   }
 
   Future<void> _initHive() async {
     await Hive.initFlutter();
     Hive.registerAdapter(
       getIt.get<DishEntityAdapter>(),
+    );
+    Hive.registerAdapter(
+      getIt.get<CartDishEntityAdapter>(),
     );
   }
 
@@ -57,6 +64,9 @@ class DataDI {
     getIt.registerLazySingleton<LocalDataProvider>(
       () => LocalDataProviderImpl(),
     );
+    getIt.registerLazySingleton<CartLocalDataProvider>(
+      () => CartLocalDataProvider(),
+    );
   }
 
   void _initDishes() {
@@ -70,6 +80,32 @@ class DataDI {
     getIt.registerLazySingleton<FetchAllDishesUseCase>(
       () => FetchAllDishesUseCase(
         dishesRepository: getIt.get<DishesRepository>(),
+      ),
+    );
+  }
+
+  void _initCart() {
+    getIt.registerLazySingleton<CartRepository>(
+      () => CartRepositoryImpl(
+        cartLocalDataProvider: getIt.get<CartLocalDataProvider>(),
+      ),
+    );
+
+    getIt.registerLazySingleton<AddCartDishUseCase>(
+      () => AddCartDishUseCase(
+        cartRepository: getIt.get<CartRepository>(),
+      ),
+    );
+
+    getIt.registerLazySingleton<RemoveCartDishUseCase>(
+      () => RemoveCartDishUseCase(
+        cartRepository: getIt.get<CartRepository>(),
+      ),
+    );
+
+    getIt.registerLazySingleton<GetCartDishesUseCase>(
+      () => GetCartDishesUseCase(
+        cartRepository: getIt.get<CartRepository>(),
       ),
     );
   }

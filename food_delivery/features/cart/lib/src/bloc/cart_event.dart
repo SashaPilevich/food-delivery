@@ -4,6 +4,8 @@ abstract class CartEvent {
   const CartEvent();
 }
 
+class InitCart extends CartEvent {}
+
 class AddDishToCart extends CartEvent {
   final DishModel dish;
 
@@ -13,9 +15,9 @@ class AddDishToCart extends CartEvent {
 }
 
 class RemoveDishFromCart extends CartEvent {
-  final DishModel dish;
+  final CartDish cartDish;
 
   RemoveDishFromCart({
-    required this.dish,
+    required this.cartDish,
   });
 }

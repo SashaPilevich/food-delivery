@@ -13,4 +13,4 @@ export 'package:easy_localization/easy_localization.dart';
 export 'package:hive/hive.dart';
 export 'package:hive_flutter/hive_flutter.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
-export 'network/network_info.dart';
+export 'internet_connection/internet_connection_info.dart';

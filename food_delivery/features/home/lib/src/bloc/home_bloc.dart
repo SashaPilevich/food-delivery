@@ -67,7 +67,7 @@ class DishesBloc extends Bloc<DishesEvent, DishesState> {
     Emitter<DishesState> emit,
   ) async {
     final bool hasInternetConnection =
-        await NetworkInfo.checkInternetConnection();
+        await InternetConnectionInfo.checkInternetConnection();
     emit(
       state.copyWith(hasInternetConnection: hasInternetConnection),
     );

@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:core/core.dart';
 
 
-class NetworkInfo {
+class InternetConnectionInfo {
   
-  NetworkInfo();
+  InternetConnectionInfo();
 
   static Future<bool> checkInternetConnection() async {
     final ConnectivityResult connectivityResult =

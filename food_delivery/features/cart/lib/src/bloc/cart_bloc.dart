@@ -5,37 +5,60 @@ part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc()
-      : super(CartState.empty(
+  final AddCartDishUseCase _addCartDishUseCase;
+  final RemoveCartDishUseCase _removeCartDishUseCase;
+  final GetCartDishesUseCase _getCartDishesUseCase;
+  CartBloc({
+    required AddCartDishUseCase addCartDishUseCase,
+    required RemoveCartDishUseCase removeCartDishUseCase,
+    required GetCartDishesUseCase getCartDishesUseCase,
+  })  : _addCartDishUseCase = addCartDishUseCase,
+        _removeCartDishUseCase = removeCartDishUseCase,
+        _getCartDishesUseCase = getCartDishesUseCase,
+        super(CartState.empty(
           const CartModel(
             dishes: [],
             totalPrice: 0,
           ),
         )) {
+    on<InitCart>(_initCart);
     on<AddDishToCart>(_addDishToCart);
     on<RemoveDishFromCart>(_removeDishFromCart);
+
+    add(InitCart());
+  }
+
+  Future<void> _initCart(
+    InitCart event,
+    Emitter<CartState> emit,
+  ) async {
+    final List<CartDish> dishesInCart = await _getCartDishesUseCase.execute(
+      const NoParams(),
+    );
+    if (dishesInCart.isEmpty) {
+      emit(state.copyWith(cart: state.cart));
+    } else {
+      int totalPrice = 0;
+      for (final item in dishesInCart) {
+        totalPrice += item.dish.cost * item.quantity;
+      }
+      emit(
+        state.copyWith(
+          cart:
+              state.cart.copyWith(dishes: dishesInCart, totalPrice: totalPrice),
+        ),
+      );
+    }
   }
 
   Future<void> _addDishToCart(
     AddDishToCart event,
     Emitter<CartState> emit,
   ) async {
-    final List<CartDish> updatedCartItems = List.from(state.cart.dishes);
-    bool isDishExists = false;
-
-    for (int i = 0; i < updatedCartItems.length; i++) {
-      final CartDish cartDish = updatedCartItems[i];
-      if (cartDish.dish == event.dish) {
-        cartDish.quantity = cartDish.quantity + 1;
-        isDishExists = true;
-      }
-    }
-    if (!isDishExists) {
-      updatedCartItems.add(
-        CartDish(dish: event.dish, quantity: 1),
-      );
-    }
-
+    await _addCartDishUseCase.execute(event.dish);
+    final List<CartDish> updatedCartItems = await _getCartDishesUseCase.execute(
+      const NoParams(),
+    );
     emit(
       state.copyWith(
         cart: CartModel(
@@ -50,21 +73,15 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     RemoveDishFromCart event,
     Emitter<CartState> emit,
   ) async {
-    final List<CartDish> updatedCartItems = List.from(state.cart.dishes);
-
-    for (int i = 0; i < updatedCartItems.length; i++) {
-      final CartDish cartDish = updatedCartItems[i];
-      if (cartDish.dish == event.dish && cartDish.quantity > 1) {
-        cartDish.quantity = cartDish.quantity - 1;
-      } else if (cartDish.dish == event.dish && cartDish.quantity == 1) {
-        updatedCartItems.removeAt(i);
-      }
-    }
+    await _removeCartDishUseCase.execute(event.cartDish);
+    final List<CartDish> updatedCartItems = await _getCartDishesUseCase.execute(
+      const NoParams(),
+    );
     emit(
       state.copyWith(
         cart: CartModel(
           dishes: updatedCartItems,
-          totalPrice: state.cart.totalPrice - event.dish.cost,
+          totalPrice: state.cart.totalPrice - event.cartDish.dish.cost,
         ),
       ),
     );

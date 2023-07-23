@@ -1,3 +1,4 @@
+import 'package:cart/cart.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,9 @@ class DeliveryFoodApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<SettingsBloc>(
+    return MultiBlocProvider(providers: [
+    
+    BlocProvider<SettingsBloc>(
       create: (_) => SettingsBloc(
         checkThemeModeUseCase: getIt.get<CheckThemeModeUseCase>(),
         checkThemeTypeUseCase: getIt.get<CheckThemeTypeUseCase>(),
@@ -17,7 +20,14 @@ class DeliveryFoodApp extends StatelessWidget {
         setThemeTypeUseCase: getIt.get<SetThemeTypeUseCase>(),
         checkFontSizeUseCase: getIt.get<CheckFontSizeUseCase>(),
         setFontSizeUseCase: getIt.get<SetFontSizeUseCase>(),
-      ),
+      ),),
+      BlocProvider<CartBloc>(
+          create: (_) => CartBloc(
+            getCartDishesUseCase: getIt.get<GetCartDishesUseCase>(),
+            addCartDishUseCase: getIt.get<AddCartDishUseCase>(),
+            removeCartDishUseCase: getIt.get<RemoveCartDishUseCase>(),
+          ),
+        ),],
       child: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (BuildContext context, SettingsState state) {
           return MaterialApp.router(

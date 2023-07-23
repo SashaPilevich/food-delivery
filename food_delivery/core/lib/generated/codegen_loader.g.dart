@@ -33,7 +33,8 @@ class CodegenLoader extends AssetLoader{
     "cost": "Cost",
     "showMore": "Show More",
     "showLess": "Show Less",
-    "descriptionNotAvailable": "Description Not Available"
+    "descriptionNotAvailable": "Description Not Available",
+    "addToCart": "Add to cart"
   },
   "cartScreen": {
     "yourShoppingCartIsEmpty": "Your shopping cart is empty",
@@ -68,7 +69,8 @@ static const Map<String,dynamic> pl_PL = {
     "cost": "Koszt",
     "showMore": "Pokaż Więcej",
     "showLess": "Pokaż Mniej",
-    "descriptionNotAvailable": "Opis Niedostępny"
+    "descriptionNotAvailable": "Opis Niedostępny",
+    "addToCart": "Dodaj do koszyka"
   },
   "cartScreen": {
     "yourShoppingCartIsEmpty": "Twój koszyk jest pusty",

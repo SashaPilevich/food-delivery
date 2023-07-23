@@ -58,7 +58,7 @@ class CartElement extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     cartBloc.add(
-                          RemoveDishFromCart(dish: cartElement.dish),
+                          RemoveDishFromCart(cartDish: cartElement),
                         );
                   },
                   icon: Icon(

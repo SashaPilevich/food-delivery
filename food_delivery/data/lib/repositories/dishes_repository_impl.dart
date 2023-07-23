@@ -16,7 +16,7 @@ class DishesRepositoryImpl implements DishesRepository {
   Future<List<DishModel>> fetchAllDishes() async {
     final List<DishModel> dishes;
 
-    if (await NetworkInfo.checkInternetConnection()) {
+    if (await InternetConnectionInfo.checkInternetConnection()) {
       final List<DishEntity> result = await _dataProvider.getAllDishes();
       dishes = result.map((DishEntity e) => DishMapper.toModel(e)).toList();
       await _localDataProvider.saveDishesToCache(dishes);

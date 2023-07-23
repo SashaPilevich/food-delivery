@@ -17,7 +17,8 @@
     "cost":"Koszt",
     "showMore":"Pokaż Więcej",
     "showLess":"Pokaż Mniej",
-    "descriptionNotAvailable":"Opis Niedostępny"
+    "descriptionNotAvailable":"Opis Niedostępny",
+    "addToCart":"Dodaj do koszyka"
   },
   "cartScreen":{
     "yourShoppingCartIsEmpty":"Twój koszyk jest pusty",
