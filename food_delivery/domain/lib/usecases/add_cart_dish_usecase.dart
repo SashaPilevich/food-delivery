@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 
-class AddCartDishUseCase implements FutureUseCase<DishModel,void>{
+class AddCartDishUseCase implements FutureUseCase<DishModel, void> {
   final CartRepository _cartRepository;
 
   AddCartDishUseCase({
