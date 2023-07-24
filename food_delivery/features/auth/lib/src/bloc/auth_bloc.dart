@@ -1,6 +1,7 @@
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 
 part 'auth_event.dart';
@@ -37,6 +38,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignOutSubmitted>(_signOutSubmitted);
     on<SignInWithGoogleSubmitted>(_signInWithGoogle);
     on<ResetPasswordSubmitted>(_resetPassword);
+    on<NavigateToHomePage>(_navigateToHomePage);
+    on<NavigateToSignInScreen>(_navigateToSignInScreen);
   }
 
   Future<void> _initAuth(
@@ -236,5 +239,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ),
       );
     }
+  }
+
+  void _navigateToHomePage(
+    NavigateToHomePage event,
+    Emitter<AuthState> emit,
+  ) {
+    event.context.replaceRoute(
+      const HomePageRoute(),
+    );
+  }
+
+  void _navigateToSignInScreen(
+    NavigateToSignInScreen event,
+    Emitter<AuthState> emit,
+  ) {
+    event.context.replaceRoute(
+      SignInScreenRoute(),
+    );
   }
 }

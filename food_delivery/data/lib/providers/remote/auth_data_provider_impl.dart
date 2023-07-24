@@ -5,7 +5,7 @@ class AuthDataProviderImpl implements AuthDataProvider {
   final GoogleSignIn _googleSignIn;
   final FirebaseFirestore _firebaseFirestore;
 
-  AuthDataProviderImpl({
+  const AuthDataProviderImpl({
     required FirebaseAuth firebaseAuth,
     required GoogleSignIn googleSignIn,
     required FirebaseFirestore firebaseFirestore,

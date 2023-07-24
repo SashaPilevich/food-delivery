@@ -59,6 +59,12 @@ class ResetPasswordForm extends StatelessWidget {
                       formStatus.exception.toString(),
                     );
                   }
+                  if (formStatus is SubmissionSuccess) {
+                    _showSnackBar(
+                      context,
+                      'authScreens.checkEmail'.tr(),
+                    );
+                  }
                 },
                 listenWhen: (_, AuthState current) {
                   return current.isSubmissionFailed == true;

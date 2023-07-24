@@ -1,5 +1,3 @@
-import 'package:core/core.dart';
-
 class UserEntity {
   final String uid;
   final String email;
@@ -16,26 +14,6 @@ class UserEntity {
         email,
         userName,
       ];
-
-  factory UserEntity.fromFirebaseAuthUser(
-    User firebaseUser,
-  ) {
-    return UserEntity(
-      uid: firebaseUser.uid,
-      email: firebaseUser.email ?? '',
-      userName: firebaseUser.displayName ?? '',
-    );
-  }
-
-  factory UserEntity.fromGoogleAuthUser(
-    UserCredential userCredential,
-  ) {
-    return UserEntity(
-      uid: userCredential.user!.uid,
-      email: userCredential.user!.email ?? '',
-      userName: userCredential.user!.displayName ?? '',
-    );
-  }
 
   static const UserEntity empty = UserEntity(
     uid: '',

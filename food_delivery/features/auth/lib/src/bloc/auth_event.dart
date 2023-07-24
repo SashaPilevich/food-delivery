@@ -51,3 +51,17 @@ class PasswordFieldChange extends AuthEvent {
     required this.password,
   });
 }
+
+class NavigateToHomePage extends AuthEvent {
+  final BuildContext context;
+  NavigateToHomePage({
+    required this.context,
+  });
+}
+
+class NavigateToSignInScreen extends AuthEvent {
+  final BuildContext context;
+  NavigateToSignInScreen({
+    required this.context,
+  });
+}
