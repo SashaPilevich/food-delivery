@@ -194,7 +194,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
-      final user = await _signInWithGoogleUseCase.execute(
+      final UserModel user = await _signInWithGoogleUseCase.execute(
         const NoParams(),
       );
       emit(

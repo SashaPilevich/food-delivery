@@ -33,6 +33,9 @@ class DataDI {
     await Firebase.initializeApp(
       options: getIt<FirebaseOptions>(),
     );
+    getIt.registerLazySingleton<FirebaseFirestore>(
+      () => FirebaseFirestore.instance,
+    );
     getIt.registerLazySingleton<FirebaseAuth>(
       () => FirebaseAuth.instance,
     );
@@ -95,7 +98,7 @@ class DataDI {
       () => AuthDataProviderImpl(
         firebaseAuth: getIt.get<FirebaseAuth>(),
         googleSignIn: getIt.get<GoogleSignIn>(),
-        firebaseFirestore: FirebaseFirestore.instance,
+        firebaseFirestore: getIt.get<FirebaseFirestore>(),
       ),
     );
   }

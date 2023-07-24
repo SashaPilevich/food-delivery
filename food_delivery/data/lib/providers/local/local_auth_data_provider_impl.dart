@@ -1,7 +1,7 @@
 part of 'local_auth_data_provider.dart';
 
 class LocalAuthDataProviderImpl implements LocalAuthDataProvider {
-  const LocalAuthDataProviderImpl();
+  LocalAuthDataProviderImpl();
 
   @override
   Future<void> saveUserToLocal(UserModel userModel) async {
@@ -20,7 +20,7 @@ class LocalAuthDataProviderImpl implements LocalAuthDataProvider {
     if (userBox.isEmpty) {
       return UserEntity.empty;
     } else {
-      final UserEntity userEntity = userBox.values.single;
+      final UserEntity userEntity = userBox.values.first;
       return userEntity;
     }
   }

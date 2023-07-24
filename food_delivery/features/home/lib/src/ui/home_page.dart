@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
             title: Text(
               'homePage.foodDelivery'.tr(),
             ),
-            actions: [
+            actions: <Widget>[
               if (userName != null)
                 Padding(
                   padding: const EdgeInsets.all(
