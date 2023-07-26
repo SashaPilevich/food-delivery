@@ -2,7 +2,6 @@ import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:navigation/navigation.dart';
 import 'widgets.dart';
 
 class SignUpForm extends StatelessWidget {
@@ -102,9 +101,14 @@ class SignUpForm extends StatelessWidget {
                       formStatus.exception.toString(),
                     );
                   }
+                  if (formStatus is SubmissionSuccess) {
+                    bloc.add(
+                      NavigateToHomePage(context: context),
+                    );
+                  }
                 },
-                listenWhen: (_, AuthState current) {
-                  return current.isSubmissionFailed == true;
+                listenWhen: (AuthState previous, AuthState current) {
+                  return previous.formStatus != current.formStatus;
                 },
                 child: ButtonSubmit(
                   formKey: formKey,
@@ -123,8 +127,8 @@ class SignUpForm extends StatelessWidget {
                 title: 'authScreens.haveAccount'.tr(),
                 label: 'authScreens.signIn'.tr(),
                 onPressed: () {
-                  context.replaceRoute(
-                    SignInScreenRoute(),
+                  bloc.add(
+                    NavigateToSignInScreen(context: context),
                   );
                 },
               ),

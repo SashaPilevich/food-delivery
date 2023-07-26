@@ -98,9 +98,14 @@ class SignInForm extends StatelessWidget {
                       formStatus.exception.toString(),
                     );
                   }
+                  if (formStatus is SubmissionSuccess) {
+                    bloc.add(
+                      NavigateToHomePage(context: context),
+                    );
+                  }
                 },
-                listenWhen: (_, AuthState current) {
-                  return current.isSubmissionFailed == true;
+                listenWhen: (AuthState previous, AuthState current) {
+                  return previous.formStatus != current.formStatus;
                 },
                 child: ButtonSubmit(
                   formKey: formKey,
