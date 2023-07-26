@@ -101,6 +101,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignInSubmitted event,
     Emitter<AuthState> emit,
   ) async {
+    emit(
+      state.copyWith(
+        formStatus: FormSubmitting(),
+      ),
+    );
     try {
       final UserModel userModel = await _signInUseCase.execute(
         SignInParams(
@@ -128,6 +133,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SignUpSubmitted event,
     Emitter<AuthState> emit,
   ) async {
+    emit(
+      state.copyWith(
+        formStatus: FormSubmitting(),
+      ),
+    );
     try {
       final UserModel userModel = await _signUpUseCase.execute(
         SignUpParams(
@@ -177,10 +187,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       getIt.get<AppRouter>().replace(
             const HomePageRoute(),
           );
-    } on FirebaseAuthException catch (error) {
+    } catch (error) {
       emit(
         state.copyWith(
-          formStatus: SubmissionFailed(error.message),
+          formStatus: SubmissionFailed(error.toString()),
         ),
       );
     }
