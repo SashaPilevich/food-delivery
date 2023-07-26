@@ -47,7 +47,9 @@ class HomePage extends StatelessWidget {
               IconButton(
                 onPressed: () {
                   bloc.add(SignOutSubmitted());
-                  context.replaceRoute(SignInScreenRoute());
+                  bloc.add(
+                    NavigateToSignInScreen(context: context),
+                  );
                 },
                 icon: const Icon(Icons.logout),
               ),
