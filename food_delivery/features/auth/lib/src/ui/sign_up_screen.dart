@@ -3,26 +3,24 @@ import 'package:flutter/material.dart';
 import 'widgets/widgets.dart';
 
 class SignUpScreen extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
-
-  SignUpScreen({super.key});
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            const AuthDecoration(
+            AuthDecoration(
               imageUrl: 'assets/image/signup.png',
             ),
             Center(
               child: Column(
                 children: <Widget>[
-                  const SizedBox(
+                  SizedBox(
                     height: AppSize.size60,
                   ),
-                  SignUpForm(formKey: _formKey),
+                  SignUpForm(),
                 ],
               ),
             )

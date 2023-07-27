@@ -3,27 +3,24 @@ import 'package:flutter/material.dart';
 import 'widgets/widgets.dart';
 
 class SignInScreen extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
-
-  SignInScreen({super.key});
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            const AuthDecoration(
+            AuthDecoration(
               imageUrl: 'assets/image/dinner.png',
             ),
             Center(
               child: Column(
                 children: <Widget>[
-                  const SizedBox(
+                  SizedBox(
                     height: AppSize.size60,
                   ),
-                  SignInForm(formKey: _formKey),
+                  SignInForm(),
                 ],
               ),
             )

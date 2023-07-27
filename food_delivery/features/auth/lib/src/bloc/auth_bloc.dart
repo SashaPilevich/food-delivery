@@ -30,9 +30,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         _getUserFromStorageUseCase = getUserFromStorageUseCase,
         super(AuthState()) {
     on<InitAuth>(_initAuth);
-    on<UserNameFieldChange>(_userNameFieldChange);
-    on<EmailFieldChange>(_emailFieldChange);
-    on<PasswordFieldChange>(_passwordFieldChange);
     on<SignInSubmitted>(_signInSubmitted);
     on<SignUpSubmitted>(_signUpSubmitted);
     on<SignOutSubmitted>(_signOutSubmitted);
@@ -64,39 +61,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           );
   }
 
-  Future<void> _userNameFieldChange(
-    UserNameFieldChange event,
-    Emitter<AuthState> emit,
-  ) async {
-    emit(
-      state.copyWith(
-        userName: event.userName,
-      ),
-    );
-  }
-
-  Future<void> _emailFieldChange(
-    EmailFieldChange event,
-    Emitter<AuthState> emit,
-  ) async {
-    emit(
-      state.copyWith(
-        email: event.email,
-      ),
-    );
-  }
-
-  Future<void> _passwordFieldChange(
-    PasswordFieldChange event,
-    Emitter<AuthState> emit,
-  ) async {
-    emit(
-      state.copyWith(
-        password: event.password,
-      ),
-    );
-  }
-
   Future<void> _signInSubmitted(
     SignInSubmitted event,
     Emitter<AuthState> emit,
@@ -109,8 +73,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       final UserModel userModel = await _signInUseCase.execute(
         SignInParams(
-          email: state.email,
-          password: state.password,
+          email: event.email,
+          password: event.password,
         ),
       );
 
@@ -141,9 +105,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       final UserModel userModel = await _signUpUseCase.execute(
         SignUpParams(
-          email: state.email,
-          password: state.password,
-          userName: state.userName,
+          email: event.email,
+          password: event.password,
+          userName: event.userName,
         ),
       );
       emit(
@@ -201,7 +165,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
-      await _resetPasswordUseCase.execute(state.email);
+      await _resetPasswordUseCase.execute(event.email);
       emit(
         state.copyWith(
           formStatus: SubmissionSuccess(),

@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'widgets/widgets.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
-
-  ResetPasswordScreen({super.key});
+  const ResetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,19 +14,19 @@ class ResetPasswordScreen extends StatelessWidget {
           'authScreens.resetPassword'.tr(),
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            const AuthDecoration(
+            AuthDecoration(
               imageUrl: 'assets/image/forgot-password.png',
             ),
             Center(
               child: Column(
                 children: <Widget>[
-                  const SizedBox(
+                  SizedBox(
                     height: AppSize.size60,
                   ),
-                  ResetPasswordForm(formKey: _formKey),
+                  ResetPasswordForm(),
                 ],
               ),
             )

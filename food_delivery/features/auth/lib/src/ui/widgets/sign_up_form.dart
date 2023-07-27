@@ -4,13 +4,20 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'widgets.dart';
 
-class SignUpForm extends StatelessWidget {
-  final GlobalKey<FormState> formKey;
-
+class SignUpForm extends StatefulWidget {
   const SignUpForm({
-    required this.formKey,
     super.key,
   });
+
+  @override
+  State<SignUpForm> createState() => _SignUpFormState();
+}
+
+class _SignUpFormState extends State<SignUpForm> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +25,7 @@ class SignUpForm extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Form(
-        key: formKey,
+        key: _formKey,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: AppPadding.padding40,
@@ -32,11 +39,6 @@ class SignUpForm extends StatelessWidget {
                   Icons.person,
                 ),
                 obscureText: false,
-                onChanged: (value) {
-                  bloc.add(
-                    UserNameFieldChange(userName: value),
-                  );
-                },
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'authScreens.userNameIsRequired'.tr();
@@ -45,6 +47,7 @@ class SignUpForm extends StatelessWidget {
                   }
                   return null;
                 },
+                textEditingController: userNameController,
               ),
               const SizedBox(
                 height: AppSize.size30,
@@ -55,11 +58,6 @@ class SignUpForm extends StatelessWidget {
                   Icons.email_outlined,
                 ),
                 obscureText: false,
-                onChanged: (value) {
-                  bloc.add(
-                    EmailFieldChange(email: value),
-                  );
-                },
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'authScreens.emailIsRequired'.tr();
@@ -68,6 +66,7 @@ class SignUpForm extends StatelessWidget {
                   }
                   return null;
                 },
+                textEditingController: emailController,
               ),
               const SizedBox(
                 height: AppSize.size30,
@@ -78,16 +77,12 @@ class SignUpForm extends StatelessWidget {
                   Icons.security,
                 ),
                 obscureText: true,
-                onChanged: (value) {
-                  bloc.add(
-                    PasswordFieldChange(password: value),
-                  );
-                },
                 validator: (value) {
                   return value!.length < 6
                       ? 'authScreens.invalidPassword'.tr()
                       : null;
                 },
+                textEditingController: passwordController,
               ),
               const SizedBox(
                 height: AppSize.size30,
@@ -111,10 +106,16 @@ class SignUpForm extends StatelessWidget {
                   return previous.formStatus != current.formStatus;
                 },
                 child: ButtonSubmit(
-                  formKey: formKey,
+                  formKey: _formKey,
                   onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      bloc.add(SignUpSubmitted());
+                    if (_formKey.currentState!.validate()) {
+                      bloc.add(
+                        SignUpSubmitted(
+                          userName: userNameController.text.trim(),
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim(),
+                        ),
+                      );
                     }
                   },
                   label: 'authScreens.signUp'.tr(),

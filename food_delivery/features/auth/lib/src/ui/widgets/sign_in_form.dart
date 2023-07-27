@@ -6,13 +6,19 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:navigation/navigation.dart';
 import 'widgets.dart';
 
-class SignInForm extends StatelessWidget {
-  final GlobalKey<FormState> formKey;
-
+class SignInForm extends StatefulWidget {
   const SignInForm({
-    required this.formKey,
     super.key,
   });
+
+  @override
+  State<SignInForm> createState() => _SignInFormState();
+}
+
+class _SignInFormState extends State<SignInForm> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,7 @@ class SignInForm extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Form(
-        key: formKey,
+        key: _formKey,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: AppPadding.padding40,
@@ -35,11 +41,6 @@ class SignInForm extends StatelessWidget {
                   Icons.email_outlined,
                 ),
                 obscureText: false,
-                onChanged: (value) {
-                  bloc.add(
-                    EmailFieldChange(email: value),
-                  );
-                },
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'authScreens.emailIsRequired'.tr();
@@ -48,6 +49,7 @@ class SignInForm extends StatelessWidget {
                   }
                   return null;
                 },
+                textEditingController: emailController,
               ),
               const SizedBox(
                 height: AppSize.size30,
@@ -58,16 +60,12 @@ class SignInForm extends StatelessWidget {
                   Icons.security,
                 ),
                 obscureText: true,
-                onChanged: (value) {
-                  bloc.add(
-                    PasswordFieldChange(password: value),
-                  );
-                },
                 validator: (value) {
                   return value!.length < 6
                       ? 'authScreens.invalidPassword'.tr()
                       : null;
                 },
+                textEditingController: passwordController,
               ),
               const SizedBox(
                 height: AppSize.size10,
@@ -108,10 +106,15 @@ class SignInForm extends StatelessWidget {
                   return previous.formStatus != current.formStatus;
                 },
                 child: ButtonSubmit(
-                  formKey: formKey,
+                  formKey: _formKey,
                   onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      bloc.add(SignInSubmitted());
+                    if (_formKey.currentState!.validate()) {
+                      bloc.add(
+                        SignInSubmitted(
+                          email: emailController.text.trim(),
+                          password: passwordController.text.trim(),
+                        ),
+                      );
                     }
                   },
                   label: 'authScreens.signIn'.tr(),

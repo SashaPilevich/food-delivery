@@ -9,7 +9,13 @@ class InitAuth extends AuthEvent {
 }
 
 class SignInSubmitted extends AuthEvent {
-  SignInSubmitted();
+  final String email;
+  final String password;
+
+  SignInSubmitted({
+    required this.email,
+    required this.password,
+  });
 }
 
 class SignInWithGoogleSubmitted extends AuthEvent {
@@ -17,7 +23,15 @@ class SignInWithGoogleSubmitted extends AuthEvent {
 }
 
 class SignUpSubmitted extends AuthEvent {
-  SignUpSubmitted();
+  final String userName;
+  final String email;
+  final String password;
+
+  SignUpSubmitted({
+    required this.userName,
+    required this.email,
+    required this.password,
+  });
 }
 
 class SignOutSubmitted extends AuthEvent {
@@ -25,30 +39,10 @@ class SignOutSubmitted extends AuthEvent {
 }
 
 class ResetPasswordSubmitted extends AuthEvent {
-  ResetPasswordSubmitted();
-}
-
-class UserNameFieldChange extends AuthEvent {
-  final String userName;
-
-  UserNameFieldChange({
-    required this.userName,
-  });
-}
-
-class EmailFieldChange extends AuthEvent {
   final String email;
 
-  EmailFieldChange({
+  ResetPasswordSubmitted({
     required this.email,
-  });
-}
-
-class PasswordFieldChange extends AuthEvent {
-  final String password;
-
-  PasswordFieldChange({
-    required this.password,
   });
 }
 

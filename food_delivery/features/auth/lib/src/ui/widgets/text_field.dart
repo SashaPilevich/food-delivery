@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  final Function(String) onChanged;
   final String? Function(String?)? validator;
+  final TextEditingController textEditingController;
   final String hintText;
   final bool obscureText;
   final Icon icon;
 
   const CustomTextField({
-    required this.onChanged,
     required this.validator,
+    required this.textEditingController,
     required this.hintText,
     required this.obscureText,
     required this.icon,
@@ -32,8 +32,8 @@ class CustomTextField extends StatelessWidget {
           ),
         ),
       ),
-      onChanged: onChanged,
       validator: validator,
+      controller: textEditingController,
     );
   }
 }

@@ -4,13 +4,18 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'widgets.dart';
 
-class ResetPasswordForm extends StatelessWidget {
-  final GlobalKey<FormState> formKey;
-
+class ResetPasswordForm extends StatefulWidget {
   const ResetPasswordForm({
-    required this.formKey,
     super.key,
   });
+
+  @override
+  State<ResetPasswordForm> createState() => _ResetPasswordFormState();
+}
+
+class _ResetPasswordFormState extends State<ResetPasswordForm> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,7 @@ class ResetPasswordForm extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Form(
-        key: formKey,
+        key: _formKey,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: AppPadding.padding40,
@@ -32,11 +37,6 @@ class ResetPasswordForm extends StatelessWidget {
                   Icons.email_outlined,
                 ),
                 obscureText: false,
-                onChanged: (value) {
-                  bloc.add(
-                    EmailFieldChange(email: value),
-                  );
-                },
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'authScreens.emailIsRequired'.tr();
@@ -45,6 +45,7 @@ class ResetPasswordForm extends StatelessWidget {
                   }
                   return null;
                 },
+                textEditingController: emailController,
               ),
               const SizedBox(
                 height: AppSize.size30,
@@ -68,14 +69,18 @@ class ResetPasswordForm extends StatelessWidget {
                     );
                   }
                 },
-                listenWhen: (previous, AuthState current) {
+                listenWhen: (AuthState previous, AuthState current) {
                   return current.formStatus != previous.formStatus;
                 },
                 child: ButtonSubmit(
-                  formKey: formKey,
+                  formKey: _formKey,
                   onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      bloc.add(ResetPasswordSubmitted());
+                    if (_formKey.currentState!.validate()) {
+                      bloc.add(
+                        ResetPasswordSubmitted(
+                          email: emailController.text.trim(),
+                        ),
+                      );
                     }
                   },
                   label: 'authScreens.resetPassword'.tr(),
