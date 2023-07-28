@@ -97,4 +97,10 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
     final snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
 }
