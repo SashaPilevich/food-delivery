@@ -6,10 +6,14 @@ class AuthState {
   final UserModel userModel;
 
   AuthState({
-    this.isLogged = false,
-    this.formStatus = const InitialFormStatus(),
-    this.userModel = UserModel.empty,
+    required this.isLogged,
+    required this.formStatus,
+    required this.userModel,
   });
+  AuthState.empty()
+      : isLogged = false,
+        formStatus = const InitialFormStatus(),
+        userModel = const UserModel.empty();
 
   AuthState copyWith({
     bool? isLogged,

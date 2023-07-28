@@ -17,7 +17,7 @@ class ResetPasswordScreen extends StatelessWidget {
       body: const SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            AuthDecoration(
+            AuthHeader(
               imageUrl: 'assets/image/forgot-password.png',
             ),
             Center(

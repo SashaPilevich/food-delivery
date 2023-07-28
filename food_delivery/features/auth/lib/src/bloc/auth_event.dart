@@ -47,15 +47,9 @@ class ResetPasswordSubmitted extends AuthEvent {
 }
 
 class NavigateToHomePage extends AuthEvent {
-  final BuildContext context;
-  NavigateToHomePage({
-    required this.context,
-  });
+  NavigateToHomePage();
 }
 
 class NavigateToSignInScreen extends AuthEvent {
-  final BuildContext context;
-  NavigateToSignInScreen({
-    required this.context,
-  });
+  NavigateToSignInScreen();
 }

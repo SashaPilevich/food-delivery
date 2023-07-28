@@ -26,13 +26,13 @@ class AuthDataProviderImpl implements AuthDataProvider {
     );
 
     await saveUser(
-      uid: credential.user!.uid,
-      email: credential.user!.email,
+      uid: credential.user?.uid ?? '',
+      email: credential.user?.email ?? '',
       userName: userName,
     );
 
     final UserEntity userEntity = await getUser(
-      uid: credential.user!.uid,
+      uid: credential.user?.uid ?? '',
     );
     return userEntity;
   }
@@ -48,7 +48,7 @@ class AuthDataProviderImpl implements AuthDataProvider {
       password: password,
     );
     final UserEntity userEntity = await getUser(
-      uid: credential.user!.uid,
+      uid: credential.user?.uid ?? '',
     );
     return userEntity;
   }
@@ -75,12 +75,12 @@ class AuthDataProviderImpl implements AuthDataProvider {
         await _firebaseAuth.signInWithCredential(credential);
 
     await saveUser(
-      uid: userCredential.user!.uid,
-      email: userCredential.user!.email,
-      userName: userCredential.user!.displayName,
+      uid: userCredential.user?.uid ?? '',
+      email: userCredential.user?.email ?? '',
+      userName: userCredential.user?.displayName ?? '',
     );
     final UserEntity userEntity = await getUser(
-      uid: userCredential.user!.uid,
+      uid: userCredential.user?.uid ?? '',
     );
     return userEntity;
   }
@@ -105,7 +105,9 @@ class AuthDataProviderImpl implements AuthDataProvider {
       'email': email,
       'name': userName,
     };
-    if (!(await userDataFirebase.get()).exists) {
+    final DocumentSnapshot<Map<String, dynamic>> user =
+        await userDataFirebase.get();
+    if (!user.exists) {
       userDataFirebase.set(userData);
     }
   }

@@ -11,7 +11,7 @@ class SignUpScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            AuthDecoration(
+            AuthHeader(
               imageUrl: 'assets/image/signup.png',
             ),
             Center(

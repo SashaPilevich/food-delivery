@@ -11,7 +11,7 @@ class SignInScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            AuthDecoration(
+            AuthHeader(
               imageUrl: 'assets/image/dinner.png',
             ),
             Center(

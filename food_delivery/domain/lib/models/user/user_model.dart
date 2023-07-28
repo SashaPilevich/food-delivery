@@ -1,12 +1,12 @@
 class UserModel {
   final String uid;
   final String email;
-  final String? userName;
+  final String userName;
 
   const UserModel({
     required this.uid,
     required this.email,
-    this.userName,
+    required this.userName,
   });
 
   List<Object?> get props => [
@@ -27,11 +27,8 @@ class UserModel {
     );
   }
 
-  static const UserModel empty = UserModel(
-    uid: '',
-    email: '',
-    userName: '',
-  );
-
-  bool get isEmpty => this == UserModel.empty;
+  const UserModel.empty()
+      : uid = '',
+        email = '',
+        userName = '';
 }

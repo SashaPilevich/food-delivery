@@ -4,12 +4,10 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class ButtonSubmit extends StatelessWidget {
-  final GlobalKey<FormState> formKey;
   final VoidCallback onPressed;
   final String label;
 
   const ButtonSubmit({
-    required this.formKey,
     required this.onPressed,
     required this.label,
     super.key,

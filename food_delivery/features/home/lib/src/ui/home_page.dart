@@ -13,7 +13,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthBloc bloc = BlocProvider.of(context);
     final ThemeData themeData = Theme.of(context);
-    final String? userName = bloc.state.userModel.userName;
 
     return BlocProvider<DishesBloc>(
       create: (_) => DishesBloc(
@@ -32,23 +31,29 @@ class HomePage extends StatelessWidget {
               'homePage.foodDelivery'.tr(),
             ),
             actions: <Widget>[
-              if (userName != null)
-                Padding(
-                  padding: const EdgeInsets.all(
-                    AppPadding.padding15,
-                  ),
-                  child: Text(
-                    userName,
-                    style: themeData.textTheme.titleMedium!.copyWith(
-                      color: AppColors.white,
+              BlocBuilder<AuthBloc, AuthState>(builder: (_, AuthState state) {
+                if (state.userModel.userName != '') {
+                  final String userName = state.userModel.userName;
+                  return Padding(
+                    padding: const EdgeInsets.all(
+                      AppPadding.padding15,
                     ),
-                  ),
-                ),
+                    child: Text(
+                      userName,
+                      style: themeData.textTheme.titleMedium!.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+                  );
+                } else {
+                  return const SizedBox.shrink();
+                }
+              }),
               IconButton(
                 onPressed: () {
                   bloc.add(SignOutSubmitted());
                   bloc.add(
-                    NavigateToSignInScreen(context: context),
+                    NavigateToSignInScreen(),
                   );
                 },
                 icon: const Icon(Icons.logout),

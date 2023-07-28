@@ -65,7 +65,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                       'authScreens.checkEmail'.tr(),
                     );
                     bloc.add(
-                      NavigateToSignInScreen(context: context),
+                      NavigateToSignInScreen(),
                     );
                   }
                 },
@@ -73,7 +73,6 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                   return current.formStatus != previous.formStatus;
                 },
                 child: ButtonSubmit(
-                  formKey: _formKey,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       bloc.add(
@@ -94,7 +93,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
   }
 
   void _showSnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(content: Text(message));
+    final SnackBar snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 

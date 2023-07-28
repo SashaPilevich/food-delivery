@@ -12,7 +12,7 @@ class DeliveryFoodApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider>[
         BlocProvider<SettingsBloc>(
           create: (_) => SettingsBloc(
             checkThemeModeUseCase: getIt.get<CheckThemeModeUseCase>(),
@@ -38,6 +38,7 @@ class DeliveryFoodApp extends StatelessWidget {
             signInWithGoogleUseCase: getIt.get<SignInWithGoogleUseCase>(),
             resetPasswordUseCase: getIt.get<ResetPasswordUseCase>(),
             getUserFromStorageUseCase: getIt.get<GetUserFromStorageUseCase>(),
+            appRouter: getIt.get<AppRouter>(),
           )..add(InitAuth()),
         ),
       ],

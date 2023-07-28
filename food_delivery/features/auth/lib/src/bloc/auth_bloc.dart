@@ -1,7 +1,6 @@
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
-import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 
 part 'auth_event.dart';
@@ -14,6 +13,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final SignInWithGoogleUseCase _signInWithGoogleUseCase;
   final ResetPasswordUseCase _resetPasswordUseCase;
   final GetUserFromStorageUseCase _getUserFromStorageUseCase;
+  final AppRouter _appRouter;
 
   AuthBloc({
     required SignInUseCase signInUseCase,
@@ -22,13 +22,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required SignInWithGoogleUseCase signInWithGoogleUseCase,
     required ResetPasswordUseCase resetPasswordUseCase,
     required GetUserFromStorageUseCase getUserFromStorageUseCase,
+    required AppRouter appRouter,
   })  : _signInUseCase = signInUseCase,
         _signUpUseCase = signUpUseCase,
         _signOutUseCase = signOutUseCase,
         _signInWithGoogleUseCase = signInWithGoogleUseCase,
         _resetPasswordUseCase = resetPasswordUseCase,
         _getUserFromStorageUseCase = getUserFromStorageUseCase,
-        super(AuthState()) {
+        _appRouter = appRouter,
+        super(
+          AuthState.empty(),
+        ) {
     on<InitAuth>(_initAuth);
     on<SignInSubmitted>(_signInSubmitted);
     on<SignUpSubmitted>(_signUpSubmitted);
@@ -50,7 +54,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ? emit(
             state.copyWith(
               isLogged: false,
-              userModel: UserModel.empty,
+              userModel: const UserModel.empty(),
             ),
           )
         : emit(
@@ -148,9 +152,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           userModel: user,
         ),
       );
-      getIt.get<AppRouter>().replace(
-            const HomePageRoute(),
-          );
+      _appRouter.replace(
+        const HomePageRoute(),
+      );
     } catch (error) {
       emit(
         state.copyWith(
@@ -184,17 +188,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     NavigateToHomePage event,
     Emitter<AuthState> emit,
   ) {
-    event.context.replaceRoute(
-      const HomePageRoute(),
-    );
+    _appRouter.replace(const HomePageRoute());
   }
 
   void _navigateToSignInScreen(
     NavigateToSignInScreen event,
     Emitter<AuthState> emit,
   ) {
-    event.context.replaceRoute(
-      SignInScreenRoute(),
-    );
+    _appRouter.replace(SignInScreenRoute());
   }
 }

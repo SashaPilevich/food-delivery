@@ -15,11 +15,11 @@ class StartScreen extends StatelessWidget {
         listener: (BuildContext context, AuthState state) {
           if (state.isLogged) {
             bloc.add(
-              NavigateToHomePage(context: context),
+              NavigateToHomePage(),
             );
           } else {
             bloc.add(
-              NavigateToSignInScreen(context: context),
+              NavigateToSignInScreen(),
             );
           }
         },

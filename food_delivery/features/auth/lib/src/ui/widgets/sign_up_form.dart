@@ -98,7 +98,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   }
                   if (formStatus is SubmissionSuccess) {
                     bloc.add(
-                      NavigateToHomePage(context: context),
+                      NavigateToHomePage(),
                     );
                   }
                 },
@@ -106,7 +106,6 @@ class _SignUpFormState extends State<SignUpForm> {
                   return previous.formStatus != current.formStatus;
                 },
                 child: ButtonSubmit(
-                  formKey: _formKey,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       bloc.add(
@@ -129,7 +128,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 label: 'authScreens.signIn'.tr(),
                 onPressed: () {
                   bloc.add(
-                    NavigateToSignInScreen(context: context),
+                    NavigateToSignInScreen(),
                   );
                 },
               ),
@@ -141,7 +140,7 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   void _showSnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(content: Text(message));
+    final SnackBar snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 

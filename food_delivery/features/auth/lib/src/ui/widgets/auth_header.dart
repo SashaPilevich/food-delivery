@@ -2,10 +2,10 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class AuthDecoration extends StatelessWidget {
+class AuthHeader extends StatelessWidget {
   final String imageUrl;
 
-  const AuthDecoration({
+  const AuthHeader({
     required this.imageUrl,
     super.key,
   });

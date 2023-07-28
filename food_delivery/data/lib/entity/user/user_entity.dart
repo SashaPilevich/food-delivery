@@ -1,7 +1,7 @@
 class UserEntity {
   final String uid;
   final String email;
-  final String? userName;
+  final String userName;
 
   const UserEntity({
     required this.uid,
@@ -15,11 +15,8 @@ class UserEntity {
         userName,
       ];
 
-  static const UserEntity empty = UserEntity(
-    uid: '',
-    email: '',
-    userName: '',
-  );
-
-  bool get isEmpty => this == UserEntity.empty;
+  const UserEntity.empty()
+      : uid = '',
+        email = '',
+        userName = '';
 }

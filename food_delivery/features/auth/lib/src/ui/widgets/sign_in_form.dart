@@ -98,7 +98,7 @@ class _SignInFormState extends State<SignInForm> {
                   }
                   if (formStatus is SubmissionSuccess) {
                     bloc.add(
-                      NavigateToHomePage(context: context),
+                      NavigateToHomePage(),
                     );
                   }
                 },
@@ -106,7 +106,6 @@ class _SignInFormState extends State<SignInForm> {
                   return previous.formStatus != current.formStatus;
                 },
                 child: ButtonSubmit(
-                  formKey: _formKey,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       bloc.add(
@@ -161,7 +160,7 @@ class _SignInFormState extends State<SignInForm> {
   }
 
   void _showSnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(content: Text(message));
+    final SnackBar snackBar = SnackBar(content: Text(message));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
