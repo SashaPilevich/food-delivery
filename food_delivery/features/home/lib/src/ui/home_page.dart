@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
@@ -10,11 +11,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-        BlocProvider<DishesBloc>(
-          create: (_) => DishesBloc(
-            fetchAllDishesUseCase: getIt.get<FetchAllDishesUseCase>(),
-          ),
+    final AuthBloc bloc = BlocProvider.of(context);
+    final ThemeData themeData = Theme.of(context);
+
+    return BlocProvider<DishesBloc>(
+      create: (_) => DishesBloc(
+        fetchAllDishesUseCase: getIt.get<FetchAllDishesUseCase>(),
+      ),
       child: AutoTabsScaffold(
         routes: const <PageRouteInfo<dynamic>>[
           HomeScreenRoute(),
@@ -27,6 +30,35 @@ class HomePage extends StatelessWidget {
             title: Text(
               'homePage.foodDelivery'.tr(),
             ),
+            actions: <Widget>[
+              BlocBuilder<AuthBloc, AuthState>(builder: (_, AuthState state) {
+                if (state.userModel.userName != '') {
+                  final String userName = state.userModel.userName;
+                  return Padding(
+                    padding: const EdgeInsets.all(
+                      AppPadding.padding15,
+                    ),
+                    child: Text(
+                      userName,
+                      style: themeData.textTheme.titleMedium!.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+                  );
+                } else {
+                  return const SizedBox.shrink();
+                }
+              }),
+              IconButton(
+                onPressed: () {
+                  bloc.add(SignOutSubmitted());
+                  bloc.add(
+                    NavigateToSignInScreen(),
+                  );
+                },
+                icon: const Icon(Icons.logout),
+              ),
+            ],
           );
         },
         bottomNavigationBuilder: (_, TabsRouter tabsRouter) {

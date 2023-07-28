@@ -32,5 +32,24 @@
     "changeFontSize":"Zmień rozmiar czcionki",
     "selectLanguage":"Wybierz język:",
     "contactUs":"Skontaktuj się z nami"
+  },
+  "authScreens": {
+    "email": "Email",
+    "password": "Hasło",
+    "userName": "Nazwa użytkownika",
+    "emailIsRequired": "E-mail jest wymagany",
+    "userNameIsRequired": "Nazwa użytkownika jest wymagana",
+    "invalidEmailFormat":"Nieprawidłowy format wiadomości e-mail",
+    "invalidUserName": "Nazwa użytkownika musi mieć co najmniej 3 znaki",
+    "invalidPassword": "Hasło musi mieć co najmniej 6 znaków",
+    "forgotPassword": "Zapomniałem hasła?",
+    "signIn":"Zaloguj się",
+    "signUp": "Zarejestruj się",
+    "or":"Or",
+    "signInWithGoogle": "Zaloguj się przez Google",
+    "dontHaveAccount": "Nie masz konta?",
+    "haveAccount": "Masz już konto?",
+    "resetPassword": "Resetuj hasło",
+    "checkEmail": "Nowe hasło zostało przekazane. Sprawdź swoją pocztę."
   }
 }

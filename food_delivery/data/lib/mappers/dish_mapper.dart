@@ -1,4 +1,4 @@
-import 'package:data/entity/dish_entity.dart';
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 abstract class DishMapper {

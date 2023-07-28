@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:data/data.dart';
+import 'dish_entity.dart';
 
 class DishEntityAdapter extends TypeAdapter<DishEntity> {
   @override

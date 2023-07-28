@@ -8,7 +8,6 @@ part 'home_state.dart';
 
 class DishesBloc extends Bloc<DishesEvent, DishesState> {
   final FetchAllDishesUseCase _fetchAllDishesUseCase;
-  StreamSubscription<ConnectivityResult>? streamSubscription;
 
   DishesBloc({
     required FetchAllDishesUseCase fetchAllDishesUseCase,
@@ -20,9 +19,9 @@ class DishesBloc extends Bloc<DishesEvent, DishesState> {
 
     add(InitListOfDishes());
 
-    streamSubscription = Connectivity()
-        .onConnectivityChanged
-        .listen((ConnectivityResult result) {
+    Connectivity().onConnectivityChanged.listen((
+      ConnectivityResult result,
+    ) {
       add(CheckInternetConnection());
     });
   }

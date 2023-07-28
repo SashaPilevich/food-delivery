@@ -14,3 +14,5 @@ export 'package:hive/hive.dart';
 export 'package:hive_flutter/hive_flutter.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'internet_connection/internet_connection_info.dart';
+export 'package:firebase_auth/firebase_auth.dart';
+export 'package:google_sign_in/google_sign_in.dart';

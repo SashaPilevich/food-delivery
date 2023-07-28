@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
         child: Scaffold(
           body: BlocConsumer<DishesBloc, DishesState>(
             listener: (BuildContext context, DishesState state) {
-              if (state.hasInternetConnection) {
+              if (state.hasInternetConnection!) {
                 Flushbar(
                   flushbarPosition: FlushbarPosition.TOP,
                   messageText: Text(
@@ -56,6 +56,10 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ).show(context);
               }
+            },
+            listenWhen: (DishesState previous, DishesState current) {
+              return current.hasInternetConnection !=
+                  previous.hasInternetConnection;
             },
             builder: (_, DishesState state) {
               if (state.exception != null) {

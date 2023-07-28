@@ -48,6 +48,25 @@ class CodegenLoader extends AssetLoader{
     "changeFontSize": "Change font size",
     "selectLanguage": "Select language:",
     "contactUs": "Contact us"
+  },
+  "authScreens": {
+    "email": "Email",
+    "password": "Password",
+    "userName": "User name",
+    "emailIsRequired": "Email is required",
+    "userNameIsRequired": "User name is required",
+    "invalidEmailFormat": "Invalid email format",
+    "invalidUserName": "The user name must be at least 3 characters long",
+    "invalidPassword": "The password must be at least 6 characters long",
+    "forgotPassword": "Forgot password?",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "or": "Or",
+    "signInWithGoogle": "Sign In with Google",
+    "dontHaveAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "resetPassword": "Reset password",
+    "checkEmail": "New password has been pass. Check your email."
   }
 };
 static const Map<String,dynamic> pl_PL = {
@@ -84,6 +103,25 @@ static const Map<String,dynamic> pl_PL = {
     "changeFontSize": "Zmień rozmiar czcionki",
     "selectLanguage": "Wybierz język:",
     "contactUs": "Skontaktuj się z nami"
+  },
+  "authScreens": {
+    "email": "Email",
+    "password": "Hasło",
+    "userName": "Nazwa użytkownika",
+    "emailIsRequired": "E-mail jest wymagany",
+    "userNameIsRequired": "Nazwa użytkownika jest wymagana",
+    "invalidEmailFormat": "Nieprawidłowy format wiadomości e-mail",
+    "invalidUserName": "Nazwa użytkownika musi mieć co najmniej 3 znaki",
+    "invalidPassword": "Hasło musi mieć co najmniej 6 znaków",
+    "forgotPassword": "Zapomniałem hasła?",
+    "signIn": "Zaloguj się",
+    "signUp": "Zarejestruj się",
+    "or": "Or",
+    "signInWithGoogle": "Zaloguj się przez Google",
+    "dontHaveAccount": "Nie masz konta?",
+    "haveAccount": "Masz już konto?",
+    "resetPassword": "Resetuj hasło",
+    "checkEmail": "Nowe hasło zostało przekazane. Sprawdź swoją pocztę."
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en_US": en_US, "pl_PL": pl_PL};

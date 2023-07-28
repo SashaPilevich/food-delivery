@@ -32,5 +32,24 @@
     "changeFontSize":"Change font size",
     "selectLanguage":"Select language:",
     "contactUs":"Contact us"
+  },
+  "authScreens":{
+    "email":"Email",
+    "password":"Password",
+    "userName":"User name",
+    "emailIsRequired":"Email is required",
+    "userNameIsRequired":"User name is required",
+    "invalidEmailFormat":"Invalid email format",
+    "invalidUserName":"The user name must be at least 3 characters long",
+    "invalidPassword":"The password must be at least 6 characters long",
+    "forgotPassword":"Forgot password?",
+    "signIn":"Sign In",
+    "signUp":"Sign Up",
+    "or":"Or",
+    "signInWithGoogle":"Sign In with Google",
+    "dontHaveAccount":"Don't have an account?",
+    "haveAccount":"Already have an account?",
+    "resetPassword":"Reset password",
+    "checkEmail":"New password has been pass. Check your email."
   }
 }

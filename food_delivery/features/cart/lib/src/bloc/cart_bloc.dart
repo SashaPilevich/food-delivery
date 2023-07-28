@@ -15,12 +15,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   })  : _addCartDishUseCase = addCartDishUseCase,
         _removeCartDishUseCase = removeCartDishUseCase,
         _getCartDishesUseCase = getCartDishesUseCase,
-        super(CartState.empty(
-          const CartModel(
-            dishes: [],
-            totalPrice: 0,
-          ),
-        )) {
+        super(CartState.empty()) {
     on<InitCart>(_initCart);
     on<AddDishToCart>(_addDishToCart);
     on<RemoveDishFromCart>(_removeDishFromCart);

@@ -10,7 +10,9 @@ class DataDI {
   Future<void> initDependencies() async {
     _initFirebaseOptions();
     _initFirebase();
+    _initGoogleSignIn();
     _initDataProvider();
+    _initAuthDataProvider();
     _initLocalDataProvider();
     _initDishes();
     _initHive();
@@ -18,6 +20,7 @@ class DataDI {
     _initSettings();
     _initSettingsPreferencesProvider();
     _initCart();
+    _initAuth();
   }
 
   void _initFirebaseOptions() {
@@ -30,7 +33,19 @@ class DataDI {
     await Firebase.initializeApp(
       options: getIt<FirebaseOptions>(),
     );
+    getIt.registerLazySingleton<FirebaseFirestore>(
+      () => FirebaseFirestore.instance,
+    );
+    getIt.registerLazySingleton<FirebaseAuth>(
+      () => FirebaseAuth.instance,
+    );
     FirebaseFirestore.instance.clearPersistence();
+  }
+
+  Future<void> _initGoogleSignIn() async {
+    getIt.registerLazySingleton<GoogleSignIn>(
+      () => GoogleSignIn(),
+    );
   }
 
   void _initAdapter() {
@@ -39,6 +54,9 @@ class DataDI {
     );
     getIt.registerLazySingleton<CartDishEntityAdapter>(
       () => CartDishEntityAdapter(),
+    );
+    getIt.registerLazySingleton<UserEntityAdapter>(
+      () => UserEntityAdapter(),
     );
   }
 
@@ -49,6 +67,9 @@ class DataDI {
     );
     Hive.registerAdapter(
       getIt.get<CartDishEntityAdapter>(),
+    );
+    Hive.registerAdapter(
+      getIt.get<UserEntityAdapter>(),
     );
   }
 
@@ -66,6 +87,19 @@ class DataDI {
     );
     getIt.registerLazySingleton<CartLocalDataProvider>(
       () => CartLocalDataProvider(),
+    );
+    getIt.registerLazySingleton<LocalAuthDataProvider>(
+      () => LocalAuthDataProviderImpl(),
+    );
+  }
+
+  void _initAuthDataProvider() {
+    getIt.registerLazySingleton<AuthDataProvider>(
+      () => AuthDataProviderImpl(
+        firebaseAuth: getIt.get<FirebaseAuth>(),
+        googleSignIn: getIt.get<GoogleSignIn>(),
+        firebaseFirestore: getIt.get<FirebaseFirestore>(),
+      ),
     );
   }
 
@@ -150,6 +184,45 @@ class DataDI {
     getIt.registerLazySingleton<SetFontSizeUseCase>(
       () => SetFontSizeUseCase(
         settingsRepository: getIt.get<SettingsRepository>(),
+      ),
+    );
+  }
+
+  void _initAuth() {
+    getIt.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(
+        authDataProvider: getIt.get<AuthDataProvider>(),
+        localAuthDataProvider: getIt.get<LocalAuthDataProvider>(),
+      ),
+    );
+    getIt.registerLazySingleton<SignInUseCase>(
+      () => SignInUseCase(
+        authRepository: getIt.get<AuthRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<SignUpUseCase>(
+      () => SignUpUseCase(
+        authRepository: getIt.get<AuthRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<SignOutUseCase>(
+      () => SignOutUseCase(
+        authRepository: getIt.get<AuthRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<SignInWithGoogleUseCase>(
+      () => SignInWithGoogleUseCase(
+        authRepository: getIt.get<AuthRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<ResetPasswordUseCase>(
+      () => ResetPasswordUseCase(
+        authRepository: getIt.get<AuthRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<GetUserFromStorageUseCase>(
+      () => GetUserFromStorageUseCase(
+        authRepository: getIt.get<AuthRepository>(),
       ),
     );
   }

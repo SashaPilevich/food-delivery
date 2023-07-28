@@ -20,6 +20,8 @@ dependencies:
     path: ../../navigation
   cart:
     path: ../cart
+  auth:
+    path: ../auth
   readmore: ^2.2.0
   flutter_flushbar: ^0.0.2
 

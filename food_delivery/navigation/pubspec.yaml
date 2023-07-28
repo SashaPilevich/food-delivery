@@ -22,6 +22,8 @@ dependencies:
     path: ../features/order_history
   settings:
     path: ../features/settings
+  auth:
+    path: ../features/auth
   auto_route: ^5.0.4
 
 dev_dependencies:
