@@ -17,6 +17,7 @@ class OrdersRepositoryImpl implements OrdersRepository {
   Future<void> addOrder(OrderModel orderModel) async {
     final OrderEntity orderEntity = OrderMapper.toEntity(orderModel);
     await _ordersDataProvider.addOrder(orderEntity);
+    await _localOrdersDataProvider.addOrderToCache(orderModel);
   }
 
   @override

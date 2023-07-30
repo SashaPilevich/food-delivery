@@ -7,5 +7,6 @@ part 'local_orders_data_provider_impl.dart';
 
 abstract class LocalOrdersDataProvider {
   Future<void> saveOrdersToCache(List<OrderModel> orders);
+  Future<void> addOrderToCache(OrderModel order);
   Future<List<OrderEntity>> getCachedOrders();
 }
