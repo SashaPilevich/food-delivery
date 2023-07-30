@@ -4,6 +4,7 @@ export 'entity/dish/dish_entity.dart';
 export 'entity/dish/dish_entity_adapter.dart';
 export 'entity/cart/cart_dish_entity.dart';
 export 'entity/cart/cart_dish_entity_adapter.dart';
+export 'entity/cart/cart_entity_adapter.dart';
 export 'entity/cart/cart_entity.dart';
 export 'entity/user/user_entity_adapter.dart';
 export 'entity/user/user_entity.dart';

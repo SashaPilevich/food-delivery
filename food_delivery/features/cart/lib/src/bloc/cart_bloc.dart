@@ -8,18 +8,22 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final AddCartDishUseCase _addCartDishUseCase;
   final RemoveCartDishUseCase _removeCartDishUseCase;
   final GetCartDishesUseCase _getCartDishesUseCase;
+  final ClearCartUseCase _clearCartUseCase;
   CartBloc({
     required AddCartDishUseCase addCartDishUseCase,
     required RemoveCartDishUseCase removeCartDishUseCase,
     required GetCartDishesUseCase getCartDishesUseCase,
+    required ClearCartUseCase clearCartUseCase,
   })  : _addCartDishUseCase = addCartDishUseCase,
         _removeCartDishUseCase = removeCartDishUseCase,
         _getCartDishesUseCase = getCartDishesUseCase,
+        _clearCartUseCase = clearCartUseCase,
         super(CartState.empty()) {
     on<InitCart>(_initCart);
     on<AddDishToCart>(_addDishToCart);
     on<RemoveDishFromCart>(_removeDishFromCart);
-
+    on<ClearCart>(_clearCart);
+    
     add(InitCart());
   }
 
@@ -80,5 +84,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         ),
       ),
     );
+  }
+
+  Future<void> _clearCart(
+    ClearCart event,
+    Emitter<CartState> emit,
+  ) async {
+    await _clearCartUseCase.execute(const NoParams(),);
+    emit(state.copyWith(cart: const CartModel(dishes: [], totalPrice: 0),),);
   }
 }

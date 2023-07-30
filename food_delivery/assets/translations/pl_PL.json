@@ -24,7 +24,8 @@
     "yourShoppingCartIsEmpty":"Twój koszyk jest pusty",
     "chooseDishes":"Wybierz dania",
     "totalPrice":"Cena Całkowita",
-    "makeAnOrder":"Złóż zamówienie"
+    "makeAnOrder":"Złóż zamówienie",
+    "acceptedOrder":"Twoje zamówienie jest akceptowane"
   },
   "settingsScreen":{
     "useSystemTheme":"Użyj motywu systemowego",
@@ -51,5 +52,8 @@
     "haveAccount": "Masz już konto?",
     "resetPassword": "Resetuj hasło",
     "checkEmail": "Nowe hasło zostało przekazane. Sprawdź swoją pocztę."
+  },
+  "orderHistoryScreen":{
+    "orderHistoryEmpty":"Twoja historia zamówień jest pusta"
   }
 }

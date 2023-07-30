@@ -21,3 +21,7 @@ class RemoveDishFromCart extends CartEvent {
     required this.cartDish,
   });
 }
+
+class ClearCart extends CartEvent {
+  ClearCart();
+}

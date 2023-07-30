@@ -7,9 +7,9 @@ class OrderEntityAdapter extends TypeAdapter<OrderEntity> {
 
   @override
   OrderEntity read(BinaryReader reader) {
-    final id = reader.read() as String;
-    final cart = reader.read() as CartEntity;
-    final dateTime = reader.read() as DateTime;
+    final String id = reader.read() as String;
+    final CartEntity cart = reader.read() as CartEntity;
+    final DateTime dateTime = reader.read() as DateTime;
 
     return OrderEntity(
       id: id,

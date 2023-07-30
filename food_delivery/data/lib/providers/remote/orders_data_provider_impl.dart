@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 import 'package:data/data.dart';
-import 'orders_data_provider.dart';
 
 class OrdersDataProviderImpl implements OrdersDataProvider {
   final FirebaseFirestore _firebaseFirestore;

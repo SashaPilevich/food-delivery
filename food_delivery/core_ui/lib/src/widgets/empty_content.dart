@@ -2,11 +2,13 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class EmptyCart extends StatelessWidget {
+class EmptyContent extends StatelessWidget {
   final VoidCallback onPressed;
+  final String title;
 
-  const EmptyCart({
+  const EmptyContent({
     required this.onPressed,
+    required this.title,
     super.key,
   });
 
@@ -19,7 +21,7 @@ class EmptyCart extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'cartScreen.yourShoppingCartIsEmpty'.tr(),
+            title,
             style: themeData.textTheme.titleLarge,
           ),
           const SizedBox(

@@ -40,7 +40,8 @@ class CodegenLoader extends AssetLoader{
     "yourShoppingCartIsEmpty": "Your shopping cart is empty",
     "chooseDishes": "Choose dishes",
     "totalPrice": "Total Price",
-    "makeAnOrder": "Make An Order"
+    "makeAnOrder": "Make An Order",
+    "acceptedOrder": "Your order is accepted"
   },
   "settingsScreen": {
     "useSystemTheme": "Use system theme",
@@ -67,6 +68,9 @@ class CodegenLoader extends AssetLoader{
     "haveAccount": "Already have an account?",
     "resetPassword": "Reset password",
     "checkEmail": "New password has been pass. Check your email."
+  },
+  "orderHistoryScreen": {
+    "orderHistoryEmpty": "Your order history is empty"
   }
 };
 static const Map<String,dynamic> pl_PL = {
@@ -95,7 +99,8 @@ static const Map<String,dynamic> pl_PL = {
     "yourShoppingCartIsEmpty": "Twój koszyk jest pusty",
     "chooseDishes": "Wybierz dania",
     "totalPrice": "Cena Całkowita",
-    "makeAnOrder": "Złóż zamówienie"
+    "makeAnOrder": "Złóż zamówienie",
+    "acceptedOrder": "Twoje zamówienie jest akceptowane"
   },
   "settingsScreen": {
     "useSystemTheme": "Użyj motywu systemowego",
@@ -122,6 +127,9 @@ static const Map<String,dynamic> pl_PL = {
     "haveAccount": "Masz już konto?",
     "resetPassword": "Resetuj hasło",
     "checkEmail": "Nowe hasło zostało przekazane. Sprawdź swoją pocztę."
+  },
+  "orderHistoryScreen": {
+    "orderHistoryEmpty": "Twoja historia zamówień jest pusta"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en_US": en_US, "pl_PL": pl_PL};

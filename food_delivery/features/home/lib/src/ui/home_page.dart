@@ -5,6 +5,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:home/home.dart';
 import 'package:navigation/navigation.dart';
+import 'package:order_history/order_history.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,10 +15,21 @@ class HomePage extends StatelessWidget {
     final AuthBloc bloc = BlocProvider.of(context);
     final ThemeData themeData = Theme.of(context);
 
-    return BlocProvider<DishesBloc>(
-      create: (_) => DishesBloc(
-        fetchAllDishesUseCase: getIt.get<FetchAllDishesUseCase>(),
-      ),
+    return MultiBlocProvider(
+      providers: <BlocProvider>[
+        BlocProvider<DishesBloc>(
+          create: (_) => DishesBloc(
+            fetchAllDishesUseCase: getIt.get<FetchAllDishesUseCase>(),
+          ),
+        ),
+        BlocProvider<OrderBloc>(
+          create: (_) => OrderBloc(
+            addOrderUseCase: getIt.get<AddOrderUseCase>(),
+            fetchOrdersUseCase: getIt.get<FetchOrdersUseCase>(),
+            getUserFromStorageUseCase: getIt.get<GetUserFromStorageUseCase>(),
+          )..add(InitListOfOrders()),
+        ),
+      ],
       child: AutoTabsScaffold(
         routes: const <PageRouteInfo<dynamic>>[
           HomeScreenRoute(),

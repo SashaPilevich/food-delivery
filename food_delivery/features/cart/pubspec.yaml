@@ -18,6 +18,10 @@ dependencies:
     path: ../../core_ui
   navigation:
     path: ../../navigation
+  order_history:
+    path: ../order_history
+  auth:
+    path: ../auth
 
 dev_dependencies:
   flutter_test:

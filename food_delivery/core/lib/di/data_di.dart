@@ -56,6 +56,9 @@ class DataDI {
     getIt.registerLazySingleton<CartDishEntityAdapter>(
       () => CartDishEntityAdapter(),
     );
+    getIt.registerLazySingleton<CartEntityAdapter>(
+      () => CartEntityAdapter(),
+    );
     getIt.registerLazySingleton<UserEntityAdapter>(
       () => UserEntityAdapter(),
     );
@@ -66,11 +69,15 @@ class DataDI {
 
   Future<void> _initHive() async {
     await Hive.initFlutter();
+
     Hive.registerAdapter(
       getIt.get<DishEntityAdapter>(),
     );
     Hive.registerAdapter(
       getIt.get<CartDishEntityAdapter>(),
+    );
+    Hive.registerAdapter(
+      getIt.get<CartEntityAdapter>(),
     );
     Hive.registerAdapter(
       getIt.get<UserEntityAdapter>(),
@@ -154,6 +161,12 @@ class DataDI {
 
     getIt.registerLazySingleton<GetCartDishesUseCase>(
       () => GetCartDishesUseCase(
+        cartRepository: getIt.get<CartRepository>(),
+      ),
+    );
+
+    getIt.registerLazySingleton<ClearCartUseCase>(
+      () => ClearCartUseCase(
         cartRepository: getIt.get<CartRepository>(),
       ),
     );

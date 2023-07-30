@@ -6,7 +6,6 @@ class LocalOrdersDataProviderImpl implements LocalOrdersDataProvider {
   @override
   Future<void> saveOrdersToCache(List<OrderModel> orders) async {
     final Box<OrderEntity> ordersBox = await Hive.openBox('orders');
-    //do i need it??
     await ordersBox.clear();
     final List<OrderEntity> ordersEntity = orders
         .map(
