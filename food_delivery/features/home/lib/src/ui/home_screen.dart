@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flushbar/flutter_flushbar.dart';
 import 'package:home/home.dart';
 import 'package:navigation/navigation.dart';
+import 'widgets/custom_tabs.dart';
 import 'widgets/dish_element.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -70,28 +71,42 @@ class HomeScreen extends StatelessWidget {
                 );
               }
               if (state.listOfDishes.isNotEmpty) {
-                return GridView(
-                  padding: const EdgeInsets.all(
-                    AppPadding.padding15,
-                  ),
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: mediaQueryData.size.height * 0.4,
-                    childAspectRatio: 2 / 2.5,
-                    crossAxisSpacing: AppSpacing.spacing20,
-                    mainAxisSpacing: AppSpacing.spacing20,
-                  ),
+                return Column(
                   children: <Widget>[
-                    ...List.generate(
-                      state.listOfDishes.length,
-                      (index) => DishElement(
-                        dish: state.listOfDishes[index],
-                        onTap: () {
-                          context.navigateTo(
-                            SelectDishScreenRoute(
-                              dish: state.listOfDishes[index],
+                    const CustomTabs(),
+                    Expanded(
+                      child: GridView(
+                        scrollDirection: Axis.vertical,
+                        padding: const EdgeInsets.all(
+                          AppPadding.padding15,
+                        ),
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: mediaQueryData.size.height * 0.4,
+                          childAspectRatio: 2 / 2.5,
+                          crossAxisSpacing: AppSpacing.spacing20,
+                          mainAxisSpacing: AppSpacing.spacing20,
+                        ),
+                        children: <Widget>[
+                          ...List.generate(
+                            state.dishesOfSelectedCategory.isEmpty
+                                ? state.listOfDishes.length
+                                : state.dishesOfSelectedCategory.length,
+                            (index) => DishElement(
+                              dish: state.dishesOfSelectedCategory.isEmpty
+                                  ? state.listOfDishes[index]
+                                  : state.dishesOfSelectedCategory[index],
+                              onTap: () {
+                                context.navigateTo(
+                                  SelectDishScreenRoute(
+                                    dish: state.dishesOfSelectedCategory.isEmpty
+                                        ? state.listOfDishes[index]
+                                        : state.dishesOfSelectedCategory[index],
+                                  ),
+                                );
+                              },
                             ),
-                          );
-                        },
+                          ),
+                        ],
                       ),
                     ),
                   ],

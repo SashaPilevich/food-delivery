@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
@@ -15,6 +13,7 @@ class DishesBloc extends Bloc<DishesEvent, DishesState> {
         super(DishesState()) {
     on<InitListOfDishes>(_initDishes);
     on<LoadListOfDishes>(_loadDishes);
+    on<FilterDishesByCategory>(_filterDishes);
     on<CheckInternetConnection>(_checkInternetConnection);
 
     add(InitListOfDishes());
@@ -30,7 +29,6 @@ class DishesBloc extends Bloc<DishesEvent, DishesState> {
     InitListOfDishes event,
     Emitter<DishesState> emit,
   ) async {
-    add(CheckInternetConnection());
     if (state.listOfDishes.isEmpty) {
       emit(
         state.copyWith(isLoading: true),
@@ -51,14 +49,45 @@ class DishesBloc extends Bloc<DishesEvent, DishesState> {
       final List<DishModel> dishes = await _fetchAllDishesUseCase.execute(
         const NoParams(),
       );
+      final List<String> categories = dishes
+          .map((dish) {
+            return dish.category!;
+          })
+          .toSet()
+          .toList();
+      categories.insert(0, 'All');
       emit(
-        state.copyWith(listOfDishes: dishes),
+        state.copyWith(
+          listOfDishes: dishes,
+          categories: categories,
+        ),
       );
-    } catch (e) {
+    } catch (error) {
       emit(
-        state.copyWith(exception: e),
+        state.copyWith(exception: error),
       );
     }
+  }
+
+  Future<void> _filterDishes(
+    FilterDishesByCategory event,
+    Emitter<DishesState> emit,
+  ) async {
+    final List<DishModel> dishes = List.of(state.listOfDishes);
+    final List<DishModel> dishesOfSelectedCategory =
+        dishes.where((dish) => dish.category == event.category).toList();
+    event.category == 'All'
+        ? emit(
+            state.copyWith(
+              listOfDishes: dishes,
+              dishesOfSelectedCategory: [],
+            ),
+          )
+        : emit(
+            state.copyWith(
+              dishesOfSelectedCategory: dishesOfSelectedCategory,
+            ),
+          );
   }
 
   Future<void> _checkInternetConnection(
