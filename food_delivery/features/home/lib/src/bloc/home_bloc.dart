@@ -51,7 +51,7 @@ class DishesBloc extends Bloc<DishesEvent, DishesState> {
       );
       final List<String> categories = dishes
           .map((dish) {
-            return dish.category!;
+            return dish.category ?? '';
           })
           .toSet()
           .toList();

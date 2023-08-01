@@ -23,7 +23,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<AddDishToCart>(_addDishToCart);
     on<RemoveDishFromCart>(_removeDishFromCart);
     on<ClearCart>(_clearCart);
-    
+
     add(InitCart());
   }
 
@@ -90,7 +90,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     ClearCart event,
     Emitter<CartState> emit,
   ) async {
-    await _clearCartUseCase.execute(const NoParams(),);
-    emit(state.copyWith(cart: const CartModel(dishes: [], totalPrice: 0),),);
+    await _clearCartUseCase.execute(
+      const NoParams(),
+    );
+    emit(
+      state.copyWith(
+        cart: const CartModel(dishes: [], totalPrice: 0),
+      ),
+    );
   }
 }

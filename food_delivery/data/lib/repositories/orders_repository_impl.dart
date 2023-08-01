@@ -23,8 +23,10 @@ class OrdersRepositoryImpl implements OrdersRepository {
   @override
   Future<List<OrderModel>> fetchOrders(String uid) async {
     final List<OrderModel> orders;
+    final bool hasInternetConnection =
+        await InternetConnectionInfo.checkInternetConnection();
 
-    if (await InternetConnectionInfo.checkInternetConnection()) {
+    if (hasInternetConnection) {
       final List<OrderEntity> result =
           await _ordersDataProvider.fetchOrders(uid);
       orders = result
