@@ -24,5 +24,5 @@ export 'repositories/dishes_repository_impl.dart';
 export 'repositories/cart_repository_impl.dart';
 export 'repositories/settings_repository_impl.dart';
 export 'repositories/auth_repository_impl.dart';
-export 'repositories/orders_repository_impl.dart';
+export 'repositories/order_repository_impl.dart';
 export 'preferences/settings_preferences_provider.dart';

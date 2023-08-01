@@ -9,15 +9,18 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final RemoveCartDishUseCase _removeCartDishUseCase;
   final GetCartDishesUseCase _getCartDishesUseCase;
   final ClearCartUseCase _clearCartUseCase;
+  final GetUserFromStorageUseCase _getUserFromStorageUseCase;
   CartBloc({
     required AddCartDishUseCase addCartDishUseCase,
     required RemoveCartDishUseCase removeCartDishUseCase,
     required GetCartDishesUseCase getCartDishesUseCase,
     required ClearCartUseCase clearCartUseCase,
+    required GetUserFromStorageUseCase getUserFromStorageUseCase,
   })  : _addCartDishUseCase = addCartDishUseCase,
         _removeCartDishUseCase = removeCartDishUseCase,
         _getCartDishesUseCase = getCartDishesUseCase,
         _clearCartUseCase = clearCartUseCase,
+        _getUserFromStorageUseCase = getUserFromStorageUseCase,
         super(CartState.empty()) {
     on<InitCart>(_initCart);
     on<AddDishToCart>(_addDishToCart);
@@ -34,6 +37,14 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     final List<CartDish> dishesInCart = await _getCartDishesUseCase.execute(
       const NoParams(),
     );
+    final UserModel userFromStorage = await _getUserFromStorageUseCase.execute(
+      const NoParams(),
+    );
+    emit(
+      state.copyWith(
+        userUid: userFromStorage.uid,
+      ),
+    );
     if (dishesInCart.isEmpty) {
       emit(state.copyWith(cart: state.cart));
     } else {
@@ -43,8 +54,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       }
       emit(
         state.copyWith(
-          cart:
-              state.cart.copyWith(dishes: dishesInCart, totalPrice: totalPrice),
+          cart: state.cart.copyWith(
+            dishes: dishesInCart,
+            totalPrice: totalPrice,
+          ),
         ),
       );
     }
@@ -95,7 +108,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     );
     emit(
       state.copyWith(
-        cart: const CartModel(dishes: [], totalPrice: 0),
+        cart: const CartModel(
+          dishes: [],
+          totalPrice: 0,
+        ),
       ),
     );
   }

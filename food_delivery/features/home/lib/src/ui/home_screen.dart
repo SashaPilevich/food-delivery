@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                             state.dishesOfSelectedCategory.isEmpty
                                 ? state.listOfDishes.length
                                 : state.dishesOfSelectedCategory.length,
-                            (index) => DishElement(
+                            (int index) => DishElement(
                               dish: state.dishesOfSelectedCategory.isEmpty
                                   ? state.listOfDishes[index]
                                   : state.dishesOfSelectedCategory[index],

@@ -12,35 +12,37 @@ class OrderHistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<OrderBloc, OrderState>(builder: (_, OrderState state) {
-        if (state.isLoading) {
-          return const LoadingIndicator();
-        }
-        if (state.orderItems.isNotEmpty) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Expanded(
-                child: ListView.builder(
-                  itemCount: state.orderItems.length,
-                  itemBuilder: (_, index) {
-                    return OrderElement(
-                      orderItem: state.orderItems[index],
-                    );
-                  },
+      body: BlocBuilder<OrderBloc, OrderState>(
+        builder: (_, OrderState state) {
+          if (state.isLoading) {
+            return const LoadingIndicator();
+          }
+          if (state.orderItems.isNotEmpty) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: state.orderItems.length,
+                    itemBuilder: (_, index) {
+                      return OrderElement(
+                        orderItem: state.orderItems[index],
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
-          );
-        } else {
-          return EmptyContent(
-            onPressed: () {
-              context.navigateTo(const HomeScreenRoute());
-            },
-            title: 'orderHistoryScreen.orderHistoryEmpty'.tr(),
-          );
-        }
-      }),
+              ],
+            );
+          } else {
+            return EmptyContent(
+              onPressed: () {
+                context.navigateTo(const HomeScreenRoute());
+              },
+              title: 'orderHistoryScreen.orderHistoryEmpty'.tr(),
+            );
+          }
+        },
+      ),
     );
   }
 }

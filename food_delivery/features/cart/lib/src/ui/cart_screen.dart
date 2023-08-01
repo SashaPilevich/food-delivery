@@ -1,4 +1,3 @@
-import 'package:auth/auth.dart';
 import 'package:cart/src/bloc/bloc.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
@@ -38,12 +37,10 @@ class CartScreen extends StatelessWidget {
                 TotalPrice(
                   totalPrice: state.cart.totalPrice,
                   onPressed: () {
-                    final String uid =
-                        context.read<AuthBloc>().state.userModel.uid;
                     orderBloc.add(
                       AddOrder(
                         order: OrderModel(
-                          id: uid,
+                          id: state.userUid,
                           cart: state.cart,
                           dateTime: DateTime.now(),
                         ),

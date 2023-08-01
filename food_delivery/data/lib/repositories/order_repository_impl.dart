@@ -3,11 +3,11 @@ import 'package:data/data.dart';
 import 'package:data/mappers/order_mapper.dart';
 import 'package:domain/domain.dart';
 
-class OrdersRepositoryImpl implements OrdersRepository {
+class OrderRepositoryImpl implements OrderRepository {
   final OrdersDataProvider _ordersDataProvider;
   final LocalOrdersDataProvider _localOrdersDataProvider;
 
-  const OrdersRepositoryImpl({
+  const OrderRepositoryImpl({
     required OrdersDataProvider ordersDataProvider,
     required LocalOrdersDataProvider localOrdersDataProvider,
   })  : _ordersDataProvider = ordersDataProvider,

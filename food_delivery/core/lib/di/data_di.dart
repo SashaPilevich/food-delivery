@@ -173,20 +173,20 @@ class DataDI {
   }
 
   void _initOrders() {
-    getIt.registerLazySingleton<OrdersRepository>(
-      () => OrdersRepositoryImpl(
+    getIt.registerLazySingleton<OrderRepository>(
+      () => OrderRepositoryImpl(
         ordersDataProvider: getIt.get<OrdersDataProvider>(),
         localOrdersDataProvider: getIt.get<LocalOrdersDataProvider>(),
       ),
     );
     getIt.registerLazySingleton<AddOrderUseCase>(
       () => AddOrderUseCase(
-        ordersRepository: getIt.get<OrdersRepository>(),
+        orderRepository: getIt.get<OrderRepository>(),
       ),
     );
     getIt.registerLazySingleton<FetchOrdersUseCase>(
       () => FetchOrdersUseCase(
-        ordersRepository: getIt.get<OrdersRepository>(),
+        orderRepository: getIt.get<OrderRepository>(),
       ),
     );
   }

@@ -55,14 +55,17 @@ class DishesBloc extends Bloc<DishesEvent, DishesState> {
           })
           .toSet()
           .toList();
-      categories.insert(0, 'All');
+      categories.insert(
+        0,
+        Category.All.getStringValue(),
+      );
       emit(
         state.copyWith(
           listOfDishes: dishes,
           categories: categories,
         ),
       );
-    } catch (error) {
+    } on FirebaseException catch (error) {
       emit(
         state.copyWith(exception: error),
       );
@@ -76,7 +79,7 @@ class DishesBloc extends Bloc<DishesEvent, DishesState> {
     final List<DishModel> dishes = List.of(state.listOfDishes);
     final List<DishModel> dishesOfSelectedCategory =
         dishes.where((dish) => dish.category == event.category).toList();
-    event.category == 'All'
+    event.category == Category.All.getStringValue()
         ? emit(
             state.copyWith(
               listOfDishes: dishes,
