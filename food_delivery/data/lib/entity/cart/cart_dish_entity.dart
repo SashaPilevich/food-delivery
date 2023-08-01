@@ -13,4 +13,20 @@ class CartDishEntity {
         dish,
         quantity,
       ];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'dish': dish.toJson(),
+      'quantity': quantity,
+    };
+  }
+
+  factory CartDishEntity.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    return CartDishEntity(
+      dish: DishEntity.fromJson(json['dish']),
+      quantity: json['quantity'],
+    );
+  }
 }

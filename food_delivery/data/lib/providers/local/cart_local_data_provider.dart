@@ -1,8 +1,6 @@
 import 'package:core/core.dart';
 import 'package:data/data.dart';
 
-
-
 class CartLocalDataProvider {
   CartLocalDataProvider();
 
@@ -48,5 +46,10 @@ class CartLocalDataProvider {
     final Box<CartDishEntity> cartDishBox = await Hive.openBox('cart');
     final List<CartDishEntity> cartDishEntity = cartDishBox.values.toList();
     return cartDishEntity;
+  }
+
+  Future<void> clearCart() async {
+    final Box<CartDishEntity> cartDishBox = await Hive.openBox('cart');
+    cartDishBox.clear();
   }
 }

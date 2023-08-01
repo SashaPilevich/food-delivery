@@ -20,99 +20,97 @@ class SelectDishScreen extends StatelessWidget {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final CartBloc cartBloc = BlocProvider.of<CartBloc>(context);
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(dish.title),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(dish.title),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(
+          top: AppPadding.padding30,
+          left: AppPadding.padding20,
+          right: AppPadding.padding20,
+          bottom: AppPadding.padding30,
         ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.only(
-            top: AppPadding.padding30,
-            left: AppPadding.padding20,
-            right: AppPadding.padding20,
-            bottom: AppPadding.padding30,
-          ),
-          child: Column(
-            children: <Widget>[
-              Center(
-                child: Hero(
-                  tag: dish.imageUrl,
-                  child: AppCacheImage(
-                    imageUrl: dish.imageUrl,
-                    height: mediaQueryData.size.height * 0.35,
-                  ),
+        child: Column(
+          children: <Widget>[
+            Center(
+              child: Hero(
+                tag: dish.imageUrl,
+                child: AppCacheImage(
+                  imageUrl: dish.imageUrl,
+                  height: mediaQueryData.size.height * 0.35,
                 ),
               ),
-              const SizedBox(
-                height: AppSize.size30,
-              ),
-              Row(
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        dish.title,
-                        style: themeData.textTheme.headlineLarge,
+            ),
+            const SizedBox(
+              height: AppSize.size30,
+            ),
+            Row(
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      dish.title,
+                      style: themeData.textTheme.headlineLarge,
+                    ),
+                    const SizedBox(
+                      height: AppSize.size30,
+                    ),
+                    SizedBox(
+                      width: mediaQueryData.size.width * 0.9,
+                      child: CustomReadMoreText(
+                        text: dish.description,
                       ),
-                      const SizedBox(
-                        height: AppSize.size30,
+                    ),
+                    const SizedBox(
+                      height: AppSize.size30,
+                    ),
+                    Text(
+                      'selectDishScreen.ingredients'.tr(),
+                      style: themeData.textTheme.titleMedium?.copyWith(
+                        color: themeData.primaryColor,
                       ),
-                      SizedBox(
-                        width: mediaQueryData.size.width * 0.9,
-                        child: CustomReadMoreText(
-                          text: dish.description,
+                    ),
+                    const SizedBox(
+                      height: AppSize.size20,
+                    ),
+                    SizedBox(
+                      width: mediaQueryData.size.width * 0.9,
+                      child: CustomTextRich(
+                        listOfIngredients: dish.ingredients,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: AppSize.size30,
+                    ),
+                    Text(
+                      '${'selectDishScreen.cost'.tr()}: \$${dish.cost}',
+                      style: themeData.textTheme.titleMedium?.copyWith(
+                        color: themeData.primaryColor,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: AppSize.size20,
+                    ),
+                    SizedBox(
+                      width: mediaQueryData.size.width * 0.9,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          cartBloc.add(
+                            AddDishToCart(dish: dish),
+                          );
+                        },
+                        child: Text(
+                          'selectDishScreen.addToCart'.tr(),
                         ),
                       ),
-                      const SizedBox(
-                        height: AppSize.size30,
-                      ),
-                      Text(
-                        'selectDishScreen.ingredients'.tr(),
-                        style: themeData.textTheme.titleMedium?.copyWith(
-                          color: themeData.primaryColor,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: AppSize.size20,
-                      ),
-                      SizedBox(
-                        width: mediaQueryData.size.width * 0.9,
-                        child: CustomTextRich(
-                          listOfIngredients: dish.ingredients,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: AppSize.size30,
-                      ),
-                      Text(
-                        '${'selectDishScreen.cost'.tr()}: \$${dish.cost}',
-                        style: themeData.textTheme.titleMedium?.copyWith(
-                          color: themeData.primaryColor,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: AppSize.size20,
-                      ),
-                      SizedBox(
-                        width: mediaQueryData.size.width * 0.9,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            cartBloc.add(
-                              AddDishToCart(dish: dish),
-                            );
-                          },
-                          child: Text(
-                            'selectDishScreen.addToCart'.tr(),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

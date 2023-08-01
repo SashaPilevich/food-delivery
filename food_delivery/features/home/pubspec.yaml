@@ -22,6 +22,8 @@ dependencies:
     path: ../cart
   auth:
     path: ../auth
+  order_history:
+    path: ../order_history
   readmore: ^2.2.0
   flutter_flushbar: ^0.0.2
 

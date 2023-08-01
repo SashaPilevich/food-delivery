@@ -14,4 +14,7 @@ export 'auth_usecases/sign_in_with_google_usecase.dart';
 export 'auth_usecases/sign_out_usecase.dart';
 export 'auth_usecases/sign_up_usecase.dart';
 export 'auth_usecases/get_user_from_storage_usecase.dart';
+export 'add_order_usecase.dart';
+export 'fetch_orders_usecase.dart';
+export 'clear_cart_usecase.dart';
 export 'usecase.dart';

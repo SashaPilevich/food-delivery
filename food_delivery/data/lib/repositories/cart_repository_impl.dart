@@ -14,22 +14,24 @@ class CartRepositoryImpl implements CartRepository {
     final List<CartDishEntity> cartDishEntity =
         await _cartLocalDataProvider.getDishesFromCart();
     return cartDishEntity
-        .map((CartDishEntity dishEntity) =>
-            CartDishMapper.toModel(dishEntity))
+        .map((CartDishEntity dishEntity) => CartDishMapper.toModel(dishEntity))
         .toList();
   }
 
   @override
   Future<void> addDishToCart(DishModel dish) async {
-    final DishEntity dishEntity =
-        DishMapper.toEntity(dish);
+    final DishEntity dishEntity = DishMapper.toEntity(dish);
     await _cartLocalDataProvider.addDishToCart(dishEntity);
   }
 
   @override
   Future<void> removeDishFromCart(CartDish cartDish) async {
-    final CartDishEntity cartDishEntity =
-        CartDishMapper.toEntity(cartDish);
+    final CartDishEntity cartDishEntity = CartDishMapper.toEntity(cartDish);
     await _cartLocalDataProvider.removeDishFromCart(cartDishEntity);
+  }
+
+  @override
+  Future<void> clearCart() async {
+    await _cartLocalDataProvider.clearCart();
   }
 }

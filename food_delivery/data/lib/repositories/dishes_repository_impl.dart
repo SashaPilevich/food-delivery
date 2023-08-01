@@ -15,8 +15,10 @@ class DishesRepositoryImpl implements DishesRepository {
   @override
   Future<List<DishModel>> fetchAllDishes() async {
     final List<DishModel> dishes;
+    final bool hasInternetConnection =
+        await InternetConnectionInfo.checkInternetConnection();
 
-    if (await InternetConnectionInfo.checkInternetConnection()) {
+    if (hasInternetConnection) {
       final List<DishEntity> result = await _dataProvider.getAllDishes();
       dishes = result.map((DishEntity e) => DishMapper.toModel(e)).toList();
       await _localDataProvider.saveDishesToCache(dishes);

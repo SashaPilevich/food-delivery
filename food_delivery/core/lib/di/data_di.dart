@@ -21,6 +21,7 @@ class DataDI {
     _initSettingsPreferencesProvider();
     _initCart();
     _initAuth();
+    _initOrders();
   }
 
   void _initFirebaseOptions() {
@@ -55,13 +56,20 @@ class DataDI {
     getIt.registerLazySingleton<CartDishEntityAdapter>(
       () => CartDishEntityAdapter(),
     );
+    getIt.registerLazySingleton<CartEntityAdapter>(
+      () => CartEntityAdapter(),
+    );
     getIt.registerLazySingleton<UserEntityAdapter>(
       () => UserEntityAdapter(),
+    );
+    getIt.registerLazySingleton<OrderEntityAdapter>(
+      () => OrderEntityAdapter(),
     );
   }
 
   Future<void> _initHive() async {
     await Hive.initFlutter();
+
     Hive.registerAdapter(
       getIt.get<DishEntityAdapter>(),
     );
@@ -69,7 +77,13 @@ class DataDI {
       getIt.get<CartDishEntityAdapter>(),
     );
     Hive.registerAdapter(
+      getIt.get<CartEntityAdapter>(),
+    );
+    Hive.registerAdapter(
       getIt.get<UserEntityAdapter>(),
+    );
+    Hive.registerAdapter(
+      getIt.get<OrderEntityAdapter>(),
     );
   }
 
@@ -77,6 +91,11 @@ class DataDI {
     getIt.registerLazySingleton<DataProvider>(
       () => DataProviderImpl(
         FirebaseFirestore.instance,
+      ),
+    );
+    getIt.registerLazySingleton<OrdersDataProvider>(
+      () => OrdersDataProviderImpl(
+        getIt.get<FirebaseFirestore>(),
       ),
     );
   }
@@ -90,6 +109,9 @@ class DataDI {
     );
     getIt.registerLazySingleton<LocalAuthDataProvider>(
       () => LocalAuthDataProviderImpl(),
+    );
+    getIt.registerLazySingleton<LocalOrdersDataProvider>(
+      () => const LocalOrdersDataProviderImpl(),
     );
   }
 
@@ -140,6 +162,31 @@ class DataDI {
     getIt.registerLazySingleton<GetCartDishesUseCase>(
       () => GetCartDishesUseCase(
         cartRepository: getIt.get<CartRepository>(),
+      ),
+    );
+
+    getIt.registerLazySingleton<ClearCartUseCase>(
+      () => ClearCartUseCase(
+        cartRepository: getIt.get<CartRepository>(),
+      ),
+    );
+  }
+
+  void _initOrders() {
+    getIt.registerLazySingleton<OrderRepository>(
+      () => OrderRepositoryImpl(
+        ordersDataProvider: getIt.get<OrdersDataProvider>(),
+        localOrdersDataProvider: getIt.get<LocalOrdersDataProvider>(),
+      ),
+    );
+    getIt.registerLazySingleton<AddOrderUseCase>(
+      () => AddOrderUseCase(
+        orderRepository: getIt.get<OrderRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<FetchOrdersUseCase>(
+      () => FetchOrdersUseCase(
+        orderRepository: getIt.get<OrderRepository>(),
       ),
     );
   }
