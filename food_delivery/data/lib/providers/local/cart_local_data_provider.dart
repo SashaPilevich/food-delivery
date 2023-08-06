@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:data/data.dart';
 
 class CartLocalDataProvider {
-  CartLocalDataProvider();
+  const CartLocalDataProvider();
 
   Future<void> addDishToCart(DishEntity dish) async {
     final Box<CartDishEntity> cartDishBox = await Hive.openBox('cart');

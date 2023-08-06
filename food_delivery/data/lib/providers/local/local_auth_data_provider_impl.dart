@@ -1,7 +1,7 @@
 part of 'local_auth_data_provider.dart';
 
 class LocalAuthDataProviderImpl implements LocalAuthDataProvider {
-  LocalAuthDataProviderImpl();
+  const LocalAuthDataProviderImpl();
 
   @override
   Future<void> saveUserToLocal(UserModel userModel) async {

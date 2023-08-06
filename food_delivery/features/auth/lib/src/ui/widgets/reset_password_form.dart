@@ -85,6 +85,21 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                   label: 'authScreens.resetPassword'.tr(),
                 ),
               ),
+              const SizedBox(
+                height: AppSize.size10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  TextButton(
+                      onPressed: () {
+                        bloc.add(ChangeResetPasswordPage());
+                      },
+                      child: Text(
+                        'authScreens.signIn'.tr(),
+                      )),
+                ],
+              ),
             ],
           ),
         ),

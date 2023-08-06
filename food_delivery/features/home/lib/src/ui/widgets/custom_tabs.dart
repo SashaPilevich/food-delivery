@@ -18,13 +18,13 @@ class CustomTabs extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.only(
             left: AppPadding.padding10,
-            top: AppPadding.padding20,
+            top: AppPadding.padding10,
           ),
           child: DefaultTabController(
             length: state.categories.length,
             child: TabBar(
               indicator: const BoxDecoration(),
-              onTap: (value) {
+              onTap: (int value) {
                 selectedTab = value;
                 bloc.add(
                   FilterDishesByCategory(
@@ -36,7 +36,7 @@ class CustomTabs extends StatelessWidget {
               tabs: <Widget>[
                 ...List.generate(
                   state.categories.length,
-                  (index) => Tab(
+                  (int index) => Tab(
                     child: AnimatedContainer(
                       width: mediaQueryData.size.width * 0.2,
                       duration: const Duration(

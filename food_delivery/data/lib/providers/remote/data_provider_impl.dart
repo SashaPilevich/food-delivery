@@ -3,7 +3,9 @@ part of 'data_provider.dart';
 class DataProviderImpl implements DataProvider {
   final FirebaseFirestore _firebaseFirestore;
 
-  DataProviderImpl(this._firebaseFirestore);
+  const DataProviderImpl({
+    required FirebaseFirestore firebaseFirestore,
+  }) : _firebaseFirestore = firebaseFirestore;
 
   @override
   Future<List<DishEntity>> getAllDishes() async {

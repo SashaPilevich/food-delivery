@@ -4,7 +4,7 @@ const String theme = 'theme';
 const String fontSize = 'fontSize';
 
 class SettingsPreferencesProvider {
-  SettingsPreferencesProvider();
+  const SettingsPreferencesProvider();
 
   Future<bool> getThemeMode() async {
     final Box themeBox = await Hive.openBox(theme);

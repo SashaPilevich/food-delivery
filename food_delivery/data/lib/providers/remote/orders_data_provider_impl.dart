@@ -4,9 +4,9 @@ import 'package:data/data.dart';
 class OrdersDataProviderImpl implements OrdersDataProvider {
   final FirebaseFirestore _firebaseFirestore;
 
-  OrdersDataProviderImpl(
-    this._firebaseFirestore,
-  );
+  const OrdersDataProviderImpl({
+    required FirebaseFirestore firebaseFirestore,
+  }) : _firebaseFirestore = firebaseFirestore;
 
   @override
   Future<void> addOrder(OrderEntity orderEntity) async {

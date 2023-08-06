@@ -1,7 +1,7 @@
 part of 'local_data_provider.dart';
 
 class LocalDataProviderImpl implements LocalDataProvider {
-  LocalDataProviderImpl();
+  const LocalDataProviderImpl();
 
   @override
   Future<void> saveDishesToCache(List<DishModel> dishes) async {
