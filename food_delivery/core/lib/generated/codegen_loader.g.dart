@@ -26,7 +26,9 @@ class CodegenLoader extends AssetLoader{
     "add": "Add",
     "dishAddedToTheCart": "The dish has been added to the cart!",
     "noInternet": "No internet connection. All data will be taken from the cache.",
-    "hasInternet": "Internet connection is available."
+    "hasInternet": "Internet connection is available.",
+    "hello": "Hello",
+    "chooseDishes": "Choose dishes and enjoy"
   },
   "selectDishScreen": {
     "ingredients": "Ingredients",
@@ -85,7 +87,9 @@ static const Map<String,dynamic> pl_PL = {
     "add": "Dodaj",
     "dishAddedToTheCart": "Danie zostało dodane do koszyka!",
     "noInternet": "Brak połączenia z Internetem. Wszystkie dane zostaną pobrane z pamięci podręcznej.",
-    "hasInternet": "Dostępne jest połączenie z Internetem."
+    "hasInternet": "Dostępne jest połączenie z Internetem.",
+    "hello": "Witam",
+    "chooseDishes": "Wybierz dania i ciesz się"
   },
   "selectDishScreen": {
     "ingredients": "Składniki",

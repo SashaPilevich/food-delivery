@@ -90,25 +90,25 @@ class DataDI {
   void _initDataProvider() {
     getIt.registerLazySingleton<DataProvider>(
       () => DataProviderImpl(
-        FirebaseFirestore.instance,
+        firebaseFirestore: getIt.get<FirebaseFirestore>(),
       ),
     );
     getIt.registerLazySingleton<OrdersDataProvider>(
       () => OrdersDataProviderImpl(
-        getIt.get<FirebaseFirestore>(),
+        firebaseFirestore: getIt.get<FirebaseFirestore>(),
       ),
     );
   }
 
   void _initLocalDataProvider() {
     getIt.registerLazySingleton<LocalDataProvider>(
-      () => LocalDataProviderImpl(),
+      () => const LocalDataProviderImpl(),
     );
     getIt.registerLazySingleton<CartLocalDataProvider>(
-      () => CartLocalDataProvider(),
+      () => const CartLocalDataProvider(),
     );
     getIt.registerLazySingleton<LocalAuthDataProvider>(
-      () => LocalAuthDataProviderImpl(),
+      () => const LocalAuthDataProviderImpl(),
     );
     getIt.registerLazySingleton<LocalOrdersDataProvider>(
       () => const LocalOrdersDataProviderImpl(),
@@ -193,7 +193,7 @@ class DataDI {
 
   void _initSettingsPreferencesProvider() {
     getIt.registerLazySingleton<SettingsPreferencesProvider>(
-      () => SettingsPreferencesProvider(),
+      () => const SettingsPreferencesProvider(),
     );
   }
 

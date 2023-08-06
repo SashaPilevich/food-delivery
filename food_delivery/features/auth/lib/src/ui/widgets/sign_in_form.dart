@@ -3,7 +3,6 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:navigation/navigation.dart';
 import 'widgets.dart';
 
 class SignInForm extends StatefulWidget {
@@ -75,8 +74,8 @@ class _SignInFormState extends State<SignInForm> {
                 children: <Widget>[
                   TextButton(
                       onPressed: () {
-                        context.pushRoute(
-                          ResetPasswordScreenRoute(),
+                        bloc.add(
+                          ChangeResetPasswordPage(),
                         );
                       },
                       child: Text(
@@ -124,7 +123,7 @@ class _SignInFormState extends State<SignInForm> {
               ),
               Text('authScreens.or'.tr()),
               const SizedBox(
-                height: AppSize.size20,
+                height: AppSize.size15,
               ),
               SizedBox(
                 width: mediaQueryData.size.width * 0.9,
@@ -147,9 +146,7 @@ class _SignInFormState extends State<SignInForm> {
                 title: 'authScreens.dontHaveAccount'.tr(),
                 label: 'authScreens.signUp'.tr(),
                 onPressed: () {
-                  context.replaceRoute(
-                    SignUpScreenRoute(),
-                  );
+                  bloc.add(ChangeSignPage());
                 },
               ),
             ],

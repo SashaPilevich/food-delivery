@@ -10,7 +10,9 @@
     "add":"Dodaj",
     "dishAddedToTheCart":"Danie zostało dodane do koszyka!",
     "noInternet":"Brak połączenia z Internetem. Wszystkie dane zostaną pobrane z pamięci podręcznej.",
-    "hasInternet":"Dostępne jest połączenie z Internetem."
+    "hasInternet":"Dostępne jest połączenie z Internetem.",
+    "hello":"Witam",
+    "chooseDishes":"Wybierz dania i ciesz się"
   },
   "selectDishScreen":{
     "ingredients":"Składniki",

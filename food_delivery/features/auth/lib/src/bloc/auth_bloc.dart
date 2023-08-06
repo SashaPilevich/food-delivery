@@ -41,6 +41,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<ResetPasswordSubmitted>(_resetPassword);
     on<NavigateToHomePage>(_navigateToHomePage);
     on<NavigateToSignInScreen>(_navigateToSignInScreen);
+    on<ChangeSignPage>(_changeSignPage);
+    on<ChangeResetPasswordPage>(_changeResetPasswordPage);
   }
 
   Future<void> _initAuth(
@@ -196,5 +198,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) {
     _appRouter.replace(SignInScreenRoute());
+  }
+
+  void _changeSignPage(
+    ChangeSignPage event,
+    Emitter<AuthState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        isSignInPage: !state.isSignInPage,
+      ),
+    );
+  }
+
+  void _changeResetPasswordPage(
+    ChangeResetPasswordPage event,
+    Emitter<AuthState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        isResetPasswordPage: !state.isResetPasswordPage,
+      ),
+    );
   }
 }

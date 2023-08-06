@@ -20,6 +20,8 @@ dependencies:
     path: ../features/cart
   navigation:
     path: ../navigation
+  auth:
+    path: ../features/auth
   cached_network_image: ^3.2.2
   
 dev_dependencies:

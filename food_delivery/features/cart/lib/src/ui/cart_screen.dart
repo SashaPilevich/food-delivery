@@ -17,6 +17,9 @@ class CartScreen extends StatelessWidget {
     final CartBloc cartBloc = BlocProvider.of(context);
 
     return Scaffold(
+      appBar: CustomAppBar(
+        title: 'homePage.cart'.tr(),
+      ),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (_, CartState state) {
           if (state.cart.dishes.isNotEmpty) {

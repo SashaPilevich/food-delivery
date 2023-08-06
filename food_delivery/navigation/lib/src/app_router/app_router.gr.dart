@@ -31,22 +31,6 @@ class _$AppRouter extends RootStackRouter {
         child: SignInScreen(key: args.key),
       );
     },
-    SignUpScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<SignUpScreenRouteArgs>(
-          orElse: () => const SignUpScreenRouteArgs());
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: SignUpScreen(key: args.key),
-      );
-    },
-    ResetPasswordScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<ResetPasswordScreenRouteArgs>(
-          orElse: () => const ResetPasswordScreenRouteArgs());
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: ResetPasswordScreen(key: args.key),
-      );
-    },
     HomePageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -98,14 +82,6 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           SignInScreenRoute.name,
           path: '/sign-in-screen',
-        ),
-        RouteConfig(
-          SignUpScreenRoute.name,
-          path: '/sign-up-screen',
-        ),
-        RouteConfig(
-          ResetPasswordScreenRoute.name,
-          path: '/reset-password-screen',
         ),
         RouteConfig(
           HomePageRoute.name,
@@ -176,54 +152,7 @@ class SignInScreenRouteArgs {
   }
 }
 
-/// generated route for
-/// [SignUpScreen]
-class SignUpScreenRoute extends PageRouteInfo<SignUpScreenRouteArgs> {
-  SignUpScreenRoute({Key? key})
-      : super(
-          SignUpScreenRoute.name,
-          path: '/sign-up-screen',
-          args: SignUpScreenRouteArgs(key: key),
-        );
 
-  static const String name = 'SignUpScreenRoute';
-}
-
-class SignUpScreenRouteArgs {
-  const SignUpScreenRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'SignUpScreenRouteArgs{key: $key}';
-  }
-}
-
-/// generated route for
-/// [ResetPasswordScreen]
-class ResetPasswordScreenRoute
-    extends PageRouteInfo<ResetPasswordScreenRouteArgs> {
-  ResetPasswordScreenRoute({Key? key})
-      : super(
-          ResetPasswordScreenRoute.name,
-          path: '/reset-password-screen',
-          args: ResetPasswordScreenRouteArgs(key: key),
-        );
-
-  static const String name = 'ResetPasswordScreenRoute';
-}
-
-class ResetPasswordScreenRouteArgs {
-  const ResetPasswordScreenRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'ResetPasswordScreenRouteArgs{key: $key}';
-  }
-}
 
 /// generated route for
 /// [HomePage]

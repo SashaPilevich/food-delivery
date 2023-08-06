@@ -53,3 +53,11 @@ class NavigateToHomePage extends AuthEvent {
 class NavigateToSignInScreen extends AuthEvent {
   NavigateToSignInScreen();
 }
+
+class ChangeSignPage extends AuthEvent {
+  ChangeSignPage();
+}
+
+class ChangeResetPasswordPage extends AuthEvent {
+  ChangeResetPasswordPage();
+}

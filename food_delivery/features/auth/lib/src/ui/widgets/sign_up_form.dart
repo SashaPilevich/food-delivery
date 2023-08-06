@@ -22,6 +22,7 @@ class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     final AuthBloc bloc = BlocProvider.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return SingleChildScrollView(
       child: Form(
@@ -84,8 +85,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 },
                 textEditingController: passwordController,
               ),
-              const SizedBox(
-                height: AppSize.size30,
+              SizedBox(
+                height: mediaQueryData.size.height * 0.103,
               ),
               BlocListener<AuthBloc, AuthState>(
                 listener: (BuildContext context, AuthState state) {
@@ -127,9 +128,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 title: 'authScreens.haveAccount'.tr(),
                 label: 'authScreens.signIn'.tr(),
                 onPressed: () {
-                  bloc.add(
-                    NavigateToSignInScreen(),
-                  );
+                  bloc.add(ChangeSignPage());
                 },
               ),
             ],

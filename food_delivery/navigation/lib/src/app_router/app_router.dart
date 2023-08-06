@@ -13,8 +13,6 @@ part 'app_router.gr.dart';
   routes: <AutoRoute>[
     AutoRoute(page: StartScreen, initial: true),
     AutoRoute(page: SignInScreen),
-    AutoRoute(page: SignUpScreen),
-    AutoRoute(page: ResetPasswordScreen),
     AutoRoute(
       page: HomePage,
       children: [
