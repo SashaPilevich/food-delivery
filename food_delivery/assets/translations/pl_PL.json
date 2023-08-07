@@ -20,7 +20,8 @@
     "showMore":"Pokaż Więcej",
     "showLess":"Pokaż Mniej",
     "descriptionNotAvailable":"Opis Niedostępny",
-    "addToCart":"Dodaj do koszyka"
+    "addToCart":"Dodaj do koszyka",
+    "addedToCart":"Dodano do koszyka"
   },
   "cartScreen":{
     "yourShoppingCartIsEmpty":"Twój koszyk jest pusty",

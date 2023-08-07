@@ -1,9 +1,9 @@
 import 'package:cart/cart.dart';
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'button_dish_card.dart';
-import 'button_dish_quantity.dart';
 
 class AnimatedAddToCartButton extends StatefulWidget {
   final DishModel dish;

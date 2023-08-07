@@ -33,9 +33,8 @@ class _HomeScreenHeaderState extends State<HomeScreenHeader>
     final ThemeData themeData = Theme.of(context);
 
     return Container(
-      margin: const EdgeInsets.symmetric(
-        vertical: AppMargin.margin15,
-        horizontal: AppMargin.margin20,
+      margin: const EdgeInsets.all(
+        AppMargin.margin20,
       ),
       width: mediaQueryData.size.width * 0.9,
       height: mediaQueryData.size.height * 0.15,

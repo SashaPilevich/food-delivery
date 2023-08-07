@@ -63,35 +63,22 @@ class CartElement extends StatelessWidget {
                   ],
                 ),
               ),
-              Row(
-                children: <Widget>[
-                  IconButton(
-                    onPressed: () {
-                      cartBloc.add(
-                        RemoveDishFromCart(cartDish: cartElement),
-                      );
-                    },
-                    icon: Icon(
-                      Icons.remove_circle_outline,
-                      color: themeData.primaryColor,
+              ButtonDishQuantity(
+                increaseQuantity: () {
+                  cartBloc.add(
+                    AddDishToCart(
+                      dish: cartElement.dish,
                     ),
-                  ),
-                  Text(
-                    '${cartElement.quantity}',
-                    style: themeData.textTheme.headlineMedium,
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      cartBloc.add(
-                        AddDishToCart(dish: cartElement.dish),
-                      );
-                    },
-                    icon: Icon(
-                      Icons.add_circle_outline,
-                      color: themeData.primaryColor,
+                  );
+                },
+                decreaseQuantity: () {
+                  cartBloc.add(
+                    RemoveDishFromCart(
+                      cartDish: cartElement,
                     ),
-                  ),
-                ],
+                  );
+                },
+                quantity: '${cartElement.quantity}',
               ),
             ],
           ),

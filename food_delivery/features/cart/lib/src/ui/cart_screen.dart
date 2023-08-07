@@ -71,6 +71,7 @@ class CartScreen extends StatelessWidget{
               onPressed: () {
                 context.navigateTo(const HomeScreenRoute());
               },
+              imageUrl: 'assets/image/empty_cart.png',
             );
           }
         },
