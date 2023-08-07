@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ChangeDishQuantity extends StatelessWidget {
+class ButtonDishQuantity extends StatelessWidget {
   final VoidCallback increaseQuantity;
   final VoidCallback decreaseQuantity;
   final String quantity;
-  const ChangeDishQuantity({
+
+  const ButtonDishQuantity({
     required this.increaseQuantity,
     required this.decreaseQuantity,
     required this.quantity,

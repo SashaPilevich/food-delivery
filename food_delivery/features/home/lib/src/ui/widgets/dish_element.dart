@@ -26,6 +26,9 @@ class DishElement extends StatelessWidget {
           left: AppPadding.padding15,
           right: AppPadding.padding15,
         ),
+        decoration: BoxDecoration(
+          color: themeData.cardTheme.color,
+        ),
         child: Column(
           children: <Widget>[
             AppCacheImage(

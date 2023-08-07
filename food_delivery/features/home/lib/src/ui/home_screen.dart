@@ -49,10 +49,23 @@ class HomeScreen extends StatelessWidget {
                 ],
                 backgroundColor: AppColors.transparent,
                 title: Padding(
-                  padding: const EdgeInsets.only(left: AppPadding.padding10,),
-                  child: Text(
-                    '${'homeScreen.hello'.tr()}, ${authBloc.state.userModel.userName}!',
-                    style: themeData.textTheme.titleLarge,
+                  padding: const EdgeInsets.only(
+                    left: AppPadding.padding10,
+                  ),
+                  child: BlocBuilder<AuthBloc, AuthState>(
+                    builder: (_, AuthState state) {
+                      if (state.userModel.userName != '') {
+                        final String userName = state.userModel.userName;
+                        return Text(
+                          '${'homeScreen.hello'.tr()}, $userName!',
+                          style: themeData.textTheme.titleLarge,
+                        );
+                      } else {
+                        return Text(
+                          'homePage.foodDelivery'.tr(),
+                        );
+                      }
+                    },
                   ),
                 ),
               ),

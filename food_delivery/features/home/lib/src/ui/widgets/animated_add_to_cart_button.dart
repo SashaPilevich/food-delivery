@@ -2,17 +2,16 @@ import 'package:cart/cart.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-
 import 'button_dish_card.dart';
-import 'change_dish_quantity.dart';
+import 'button_dish_quantity.dart';
 
 class AnimatedAddToCartButton extends StatefulWidget {
   final DishModel dish;
 
   const AnimatedAddToCartButton({
-    Key? key,
     required this.dish,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<AnimatedAddToCartButton> createState() =>
@@ -21,20 +20,20 @@ class AnimatedAddToCartButton extends StatefulWidget {
 
 class _AnimatedAddToCartButtonState extends State<AnimatedAddToCartButton>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<Offset> _animationMove;
+  late final AnimationController _animationController;
+  late final Animation<Offset> _animationMove;
 
   Iterable<CartDish> _findCartItem(CartState state) {
-    return state.cart.dishes.where(
-      (CartDish element) => element.dish.title == widget.dish.title,
-    );
+    return state.cart.dishes.where((CartDish element) {
+      return element.dish.title == widget.dish.title;
+    });
   }
 
   @override
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
+    _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 500),
     );
@@ -44,7 +43,7 @@ class _AnimatedAddToCartButtonState extends State<AnimatedAddToCartButton>
       end: const Offset(1, 1),
     ).animate(
       CurvedAnimation(
-        parent: _controller,
+        parent: _animationController,
         curve: Curves.easeIn,
       ),
     );
@@ -52,14 +51,14 @@ class _AnimatedAddToCartButtonState extends State<AnimatedAddToCartButton>
 
   @override
   Widget build(BuildContext context) {
-    final CartBloc cartBloc = BlocProvider.of<CartBloc>(context);
+    final CartBloc cartBloc = BlocProvider.of(context);
 
     return BlocBuilder<CartBloc, CartState>(
-      builder: (BuildContext context, CartState state) {
+      builder: (_, CartState state) {
         if (_findCartItem(state).isNotEmpty) {
           return SlideTransition(
             position: _animationMove,
-            child: ChangeDishQuantity(
+            child: ButtonDishQuantity(
               increaseQuantity: () {
                 cartBloc.add(
                   AddDishToCart(
@@ -69,7 +68,7 @@ class _AnimatedAddToCartButtonState extends State<AnimatedAddToCartButton>
               },
               decreaseQuantity: () {
                 if (_findCartItem(state).first.quantity == 1) {
-                  _controller.reverse(from: 1);
+                  _animationController.reverse(from: 1);
                 }
                 cartBloc.add(
                   RemoveDishFromCart(
@@ -86,7 +85,7 @@ class _AnimatedAddToCartButtonState extends State<AnimatedAddToCartButton>
           child: ButtonDishCard(
             label: '+${'homeScreen.add'.tr()}',
             onPressed: () {
-              _controller.reverse(from: 1);
+              _animationController.reverse(from: 1);
               cartBloc.add(
                 AddDishToCart(dish: widget.dish),
               );
@@ -99,7 +98,7 @@ class _AnimatedAddToCartButtonState extends State<AnimatedAddToCartButton>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 }

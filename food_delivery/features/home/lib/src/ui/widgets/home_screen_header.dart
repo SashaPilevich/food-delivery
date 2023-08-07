@@ -2,8 +2,30 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreenHeader extends StatelessWidget {
+class HomeScreenHeader extends StatefulWidget {
   const HomeScreenHeader({super.key});
+
+  @override
+  State<HomeScreenHeader> createState() => _HomeScreenHeaderState();
+}
+
+class _HomeScreenHeaderState extends State<HomeScreenHeader>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _animationController;
+  late final Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..forward();
+    _animation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.linear,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,15 +70,24 @@ class HomeScreenHeader extends StatelessWidget {
               ),
             ],
           ),
-          ClipOval(
-            child: Image.asset(
-              'assets/image/onboarding_image.png',
-              fit: BoxFit.cover,
-              height: mediaQueryData.size.height * 0.13,
+          RotationTransition(
+            turns: _animation,
+            child: ClipOval(
+              child: Image.asset(
+                'assets/image/onboarding_image.png',
+                fit: BoxFit.cover,
+                height: mediaQueryData.size.height * 0.13,
+              ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }

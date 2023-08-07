@@ -41,7 +41,9 @@ class HomePage extends StatelessWidget {
                 begin: 0.3,
                 end: 1,
               ).chain(
-                CurveTween(curve: Curves.linear),
+                CurveTween(
+                  curve: Curves.linear,
+                ),
               ),
             ),
             child: child,

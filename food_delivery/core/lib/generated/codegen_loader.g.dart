@@ -43,7 +43,9 @@ class CodegenLoader extends AssetLoader{
     "chooseDishes": "Choose dishes",
     "totalPrice": "Total Price",
     "makeAnOrder": "Make An Order",
-    "acceptedOrder": "Your order is accepted"
+    "acceptedOrder": "Your order is accepted",
+    "thankYou": "Thank you!",
+    "takeMoreFood": "Take more food"
   },
   "settingsScreen": {
     "useSystemTheme": "Use system theme",
@@ -104,7 +106,9 @@ static const Map<String,dynamic> pl_PL = {
     "chooseDishes": "Wybierz dania",
     "totalPrice": "Cena Całkowita",
     "makeAnOrder": "Złóż zamówienie",
-    "acceptedOrder": "Twoje zamówienie jest akceptowane"
+    "acceptedOrder": "Twoje zamówienie jest akceptowane",
+    "thankYou": "Dziękuję!",
+    "takeMoreFood": "Weź więcej jedzenia"
   },
   "settingsScreen": {
     "useSystemTheme": "Użyj motywu systemowego",

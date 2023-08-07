@@ -27,7 +27,9 @@
     "chooseDishes":"Choose dishes",
     "totalPrice":"Total Price",
     "makeAnOrder":"Make An Order",
-    "acceptedOrder":"Your order is accepted"
+    "acceptedOrder":"Your order is accepted",
+    "thankYou":"Thank you!",
+    "takeMoreFood":"Take more food"
   },
   "settingsScreen":{
     "useSystemTheme":"Use system theme",
