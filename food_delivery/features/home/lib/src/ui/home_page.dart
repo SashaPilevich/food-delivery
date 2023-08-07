@@ -11,7 +11,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MultiBlocProvider(
       providers: <BlocProvider>[
         BlocProvider<DishesBloc>(
@@ -28,12 +27,26 @@ class HomePage extends StatelessWidget {
         ),
       ],
       child: AutoTabsScaffold(
+        animationDuration: const Duration(seconds: 1),
         routes: const <PageRouteInfo<dynamic>>[
           HomeScreenRoute(),
           CartScreenRoute(),
           OrderHistoryScreenRoute(),
           SettingsScreenRoute(),
         ],
+        builder: (_, Widget child, Animation<double> animation) {
+          return FadeTransition(
+            opacity: animation.drive(
+              Tween<double>(
+                begin: 0.3,
+                end: 1,
+              ).chain(
+                CurveTween(curve: Curves.linear),
+              ),
+            ),
+            child: child,
+          );
+        },
         bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
           return CustomBottomNavigationBar(
             currentIndex: tabsRouter.activeIndex,

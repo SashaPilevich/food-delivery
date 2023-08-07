@@ -1,4 +1,6 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -14,24 +16,22 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    final List<BottomNavigationBarItem> items = CustomBottomNavigationBarItem
-        .values
+    final List<Widget> iconItems = CustomBottomNavigationBarItem.values
         .map((CustomBottomNavigationBarItem item) {
-      return BottomNavigationBarItem(
-        icon: item.icon,
-        label: item.label,
-      );
-    }).toList();
+          return BottomNavigationBarItem(
+            icon: item.icon,
+          );
+        })
+        .toList()
+        .map((BottomNavigationBarItem item) => item.icon)
+        .toList();
 
-    return BottomNavigationBar(
-      items: items,
-      currentIndex: currentIndex,
+    return CurvedNavigationBar(
+      height: AppSize.size60,
+      items: iconItems,
+      index: currentIndex,
       onTap: onTap,
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: themeData.bottomNavigationBarTheme.backgroundColor,
-      selectedItemColor: themeData.bottomNavigationBarTheme.selectedItemColor,
-      unselectedItemColor:
-          themeData.bottomNavigationBarTheme.unselectedItemColor,
+      backgroundColor: themeData.canvasColor,
     );
   }
 }

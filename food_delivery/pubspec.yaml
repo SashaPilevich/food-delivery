@@ -39,7 +39,6 @@ flutter:
     - assets/translations/
     - assets/image/poland.png
     - assets/image/united-states.png
-    - assets/image/dinner.png
     - assets/image/onboarding_image.png
     - assets/rive/wave.riv
   fonts:
