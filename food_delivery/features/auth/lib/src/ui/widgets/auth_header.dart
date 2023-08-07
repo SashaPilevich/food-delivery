@@ -1,12 +1,10 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:rive/rive.dart';
 
 class AuthHeader extends StatelessWidget {
-  final String imageUrl;
-
   const AuthHeader({
-    required this.imageUrl,
     super.key,
   });
 
@@ -15,27 +13,32 @@ class AuthHeader extends StatelessWidget {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData themeData = Theme.of(context);
 
-    return Container(
-      width: mediaQueryData.size.width,
-      height: mediaQueryData.size.height * 0.4,
-      decoration: BoxDecoration(
-        color: themeData.primaryColor,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(imageUrl),
-          const SizedBox(
-            height: AppSize.size10,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        SizedBox(
+          height: mediaQueryData.size.height * 0.3,
+          width: mediaQueryData.size.width,
+          child: const RiveAnimation.asset(
+            'assets/rive/wave.riv',
           ),
-          Text(
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+            bottom: AppPadding.padding20,
+            left: AppPadding.padding40,
+          ),
+          child: Text(
             'homePage.foodDelivery'.tr(),
             style: themeData.textTheme.headlineLarge!.copyWith(
-              color: AppColors.white,
+              fontSize: 36,
             ),
           ),
-        ],
-      ),
+        ),
+        const SizedBox(
+          height: AppSize.size30,
+        ),
+      ],
     );
   }
 }
