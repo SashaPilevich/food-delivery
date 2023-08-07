@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
@@ -5,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flushbar/flutter_flushbar.dart';
 import 'package:home/home.dart';
 import 'package:home/src/ui/widgets/home_screen_header.dart';
-import 'package:navigation/navigation.dart';
 import 'widgets/custom_tabs.dart';
 import 'widgets/dish_element.dart';
 
@@ -25,44 +25,45 @@ class HomeScreen extends StatelessWidget {
       },
       child: Scaffold(
         body: NestedScrollView(
-          headerSliverBuilder: (_, bool innerBoxIsScrolled) => <Widget>[
-            SliverAppBar(
-              actions: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    right: AppPadding.padding10,
-                  ),
-                  child: IconButton(
-                    onPressed: () {
-                      authBloc.add(SignOutSubmitted());
-                      authBloc.add(
-                        NavigateToSignInScreen(),
-                      );
-                    },
-                    icon: Icon(
-                      Icons.logout,
-                      color: themeData.primaryColor,
+          headerSliverBuilder: (_, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverAppBar(
+                actions: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      right: AppPadding.padding10,
+                    ),
+                    child: IconButton(
+                      onPressed: () {
+                        authBloc.add(SignOutSubmitted());
+                        authBloc.add(
+                          NavigateToSignInScreen(),
+                        );
+                      },
+                      icon: Icon(
+                        Icons.logout,
+                        color: themeData.primaryColor,
+                      ),
                     ),
                   ),
-                ),
-              ],
-              backgroundColor: AppColors.transparent,
-              expandedHeight: mediaQueryData.size.height * 0.05,
-              title: Padding(
-                padding: const EdgeInsets.only(left: AppPadding.padding10),
-                child: Text(
-                  '${'homeScreen.hello'.tr()}, ${authBloc.state.userModel.userName}!',
-                  style: themeData.textTheme.titleLarge,
+                ],
+                backgroundColor: AppColors.transparent,
+                title: Padding(
+                  padding: const EdgeInsets.only(left: AppPadding.padding10,),
+                  child: Text(
+                    '${'homeScreen.hello'.tr()}, ${authBloc.state.userModel.userName}!',
+                    style: themeData.textTheme.titleLarge,
+                  ),
                 ),
               ),
-            ),
-            const SliverToBoxAdapter(
-              child: HomeScreenHeader(),
-            ),
-            const SliverToBoxAdapter(
-              child: CustomTabs(),
-            )
-          ],
+              const SliverToBoxAdapter(
+                child: HomeScreenHeader(),
+              ),
+              const SliverToBoxAdapter(
+                child: CustomTabs(),
+              )
+            ];
+          },
           body: BlocConsumer<DishesBloc, DishesState>(
             listener: (BuildContext context, DishesState state) {
               if (state.hasInternetConnection!) {
@@ -122,27 +123,36 @@ class HomeScreen extends StatelessWidget {
                         ),
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: mediaQueryData.size.height * 0.4,
-                          childAspectRatio: 2 / 2.5,
+                          childAspectRatio: 2 / 2.4,
                           crossAxisSpacing: AppSpacing.spacing20,
                           mainAxisSpacing: AppSpacing.spacing20,
                         ),
                         itemCount: state.dishesOfSelectedCategory.isEmpty
                             ? state.listOfDishes.length
                             : state.dishesOfSelectedCategory.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return DishElement(
-                            dish: state.dishesOfSelectedCategory.isEmpty
-                                ? state.listOfDishes[index]
-                                : state.dishesOfSelectedCategory[index],
-                            onTap: () {
-                              context.navigateTo(
-                                SelectDishScreenRoute(
-                                  dish: state.dishesOfSelectedCategory.isEmpty
-                                      ? state.listOfDishes[index]
-                                      : state.dishesOfSelectedCategory[index],
-                                ),
-                              );
-                            },
+                        itemBuilder: (_, int index) {
+                          return OpenContainer(
+                            closedShape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                AppSize.size20,
+                              ),
+                            ),
+                            transitionDuration:
+                                const Duration(milliseconds: 500),
+                            transitionType: ContainerTransitionType.fadeThrough,
+                            openBuilder: (_, VoidCallback action) =>
+                                SelectDishScreen(
+                              dish: state.dishesOfSelectedCategory.isEmpty
+                                  ? state.listOfDishes[index]
+                                  : state.dishesOfSelectedCategory[index],
+                            ),
+                            closedBuilder: (_, VoidCallback action) =>
+                                DishElement(
+                              dish: state.dishesOfSelectedCategory.isEmpty
+                                  ? state.listOfDishes[index]
+                                  : state.dishesOfSelectedCategory[index],
+                              onTap: action,
+                            ),
                           );
                         },
                       ),

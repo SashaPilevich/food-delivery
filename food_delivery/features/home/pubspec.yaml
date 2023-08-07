@@ -26,6 +26,7 @@ dependencies:
     path: ../order_history
   readmore: ^2.2.0
   flutter_flushbar: ^0.0.2
+  animations: ^2.0.7
 
 dev_dependencies:
   flutter_test:
