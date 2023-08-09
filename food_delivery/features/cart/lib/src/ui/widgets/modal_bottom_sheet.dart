@@ -1,3 +1,4 @@
+import 'package:cart/cart.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class ModalBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+    final CartBloc cartBloc = BlocProvider.of(context);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +39,9 @@ class ModalBottomSheet extends StatelessWidget {
         ),
         FilledButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            cartBloc.add(
+              NavigateToCurrentScreen(),
+            );
           },
           style: FilledButton.styleFrom(
             textStyle: themeData.textTheme.labelMedium,

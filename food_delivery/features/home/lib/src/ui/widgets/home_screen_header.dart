@@ -17,10 +17,12 @@ class _HomeScreenHeaderState extends State<HomeScreenHeader>
   @override
   void initState() {
     super.initState();
+
     _animationController = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
     )..forward();
+
     _animation = CurvedAnimation(
       parent: _animationController,
       curve: Curves.linear,

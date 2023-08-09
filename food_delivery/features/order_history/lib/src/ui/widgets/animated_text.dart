@@ -16,8 +16,9 @@ class AnimatedText extends StatefulWidget {
 
 class _AnimatedTextState extends State<AnimatedText>
     with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _animation;
+  late final AnimationController _animationController;
+  late final Animation<double> _animation;
+
   @override
   void initState() {
     super.initState();
@@ -28,15 +29,17 @@ class _AnimatedTextState extends State<AnimatedText>
         seconds: 1,
       ),
     );
+
     _animation = Tween<double>(
       begin: 0.0,
       end: 1.0,
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Curves.easeInOut,
+        curve: Curves.easeIn,
       ),
     );
+
     _animationController.forward();
   }
 

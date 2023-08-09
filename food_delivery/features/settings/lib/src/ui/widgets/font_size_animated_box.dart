@@ -13,7 +13,6 @@ class FontSizeAnimatedBox extends StatelessWidget {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return SizedBox(
-      // key: UniqueKey(),
       height: mediaQueryData.size.height * 0.08,
       width: mediaQueryData.size.width * 0.2,
       child: child,

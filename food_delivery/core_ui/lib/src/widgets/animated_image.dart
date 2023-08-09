@@ -24,6 +24,7 @@ class _AnimatedImageState extends State<AnimatedImage>
       duration: const Duration(seconds: 2),
       vsync: this,
     )..repeat(reverse: true);
+
     _animation = Tween<double>(
       begin: 0,
       end: 20,

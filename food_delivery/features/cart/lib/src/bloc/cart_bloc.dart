@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
+import 'package:navigation/navigation.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -10,22 +11,27 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final GetCartDishesUseCase _getCartDishesUseCase;
   final ClearCartUseCase _clearCartUseCase;
   final GetUserFromStorageUseCase _getUserFromStorageUseCase;
+  final AppRouter _appRouter;
   CartBloc({
     required AddCartDishUseCase addCartDishUseCase,
     required RemoveCartDishUseCase removeCartDishUseCase,
     required GetCartDishesUseCase getCartDishesUseCase,
     required ClearCartUseCase clearCartUseCase,
     required GetUserFromStorageUseCase getUserFromStorageUseCase,
+    required AppRouter appRouter,
   })  : _addCartDishUseCase = addCartDishUseCase,
         _removeCartDishUseCase = removeCartDishUseCase,
         _getCartDishesUseCase = getCartDishesUseCase,
         _clearCartUseCase = clearCartUseCase,
         _getUserFromStorageUseCase = getUserFromStorageUseCase,
+        _appRouter = appRouter,
         super(CartState.empty()) {
     on<InitCart>(_initCart);
     on<AddDishToCart>(_addDishToCart);
     on<RemoveDishFromCart>(_removeDishFromCart);
     on<ClearCart>(_clearCart);
+    on<NavigateToSelectedDishScreen>(_navigateToSelectedDishScreen);
+    on<NavigateToCurrentScreen>(_navigateToCurrentScreen);
 
     add(InitCart());
   }
@@ -114,5 +120,23 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         ),
       ),
     );
+  }
+
+  void _navigateToSelectedDishScreen(
+    NavigateToSelectedDishScreen event,
+    Emitter<CartState> emit,
+  ) {
+    _appRouter.navigate(
+      SelectDishScreenRoute(
+        dish: event.dishModel,
+      ),
+    );
+  }
+
+  void _navigateToCurrentScreen(
+    NavigateToCurrentScreen event,
+    Emitter<CartState> emit,
+  ) {
+    _appRouter.pop();
   }
 }

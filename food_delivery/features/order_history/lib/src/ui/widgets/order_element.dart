@@ -24,12 +24,14 @@ class _OrderElementState extends State<OrderElement>
   @override
   void initState() {
     super.initState();
+
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(
-        milliseconds: 600,
+        milliseconds: 500,
       ),
     );
+
     _animation = CurvedAnimation(
       parent: _animationController,
       curve: Curves.linear,
@@ -47,7 +49,6 @@ class _OrderElementState extends State<OrderElement>
       ),
       child: ExpansionTile(
         onExpansionChanged: (bool value) {
-          setState(() {});
           if (value) {
             _animationController.forward();
           } else {
@@ -82,14 +83,14 @@ class _OrderElementState extends State<OrderElement>
               children: <Widget>[
                 ...List.generate(
                   widget.orderItem.cart.dishes.length,
-                  ((int index) {
+                  (int index) {
                     final CartDish cartDish =
                         widget.orderItem.cart.dishes[index];
                     return AnimatedText(
                       dishTitle: cartDish.dish.title,
                       dishCost: '${cartDish.quantity}x \$${cartDish.dish.cost}',
                     );
-                  }),
+                  },
                 ),
               ],
             ),

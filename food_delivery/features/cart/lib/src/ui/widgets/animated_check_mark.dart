@@ -16,10 +16,12 @@ class _CheckMarkAnimationState extends State<CheckMarkAnimation>
   @override
   void initState() {
     super.initState();
+
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 1),
     );
+
     _animationScale = Tween<double>(
       begin: 0,
       end: 1,
@@ -29,6 +31,7 @@ class _CheckMarkAnimationState extends State<CheckMarkAnimation>
         curve: Curves.easeIn,
       ),
     );
+
     _animationController.forward();
   }
 

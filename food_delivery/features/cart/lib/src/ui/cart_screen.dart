@@ -16,7 +16,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final OrderBloc orderBloc = BlocProvider.of(context);
     final CartBloc cartBloc = BlocProvider.of(context);
-    
+
     return Scaffold(
       appBar: CustomAppBar(
         title: 'homePage.cart'.tr(),
@@ -29,7 +29,9 @@ class CartScreen extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: ListView.builder(
-                    padding: const EdgeInsets.all(AppPadding.padding10),
+                    padding: const EdgeInsets.all(
+                      AppPadding.padding10,
+                    ),
                     itemCount: state.cart.dishes.length,
                     itemBuilder: (_, int index) {
                       return CartElement(
@@ -51,15 +53,16 @@ class CartScreen extends StatelessWidget {
                       ),
                     );
                     showModalBottomSheet(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(20),
-                          ),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20),
                         ),
-                        context: context,
-                        builder: (_) {
-                          return const ModalBottomSheet();
-                        });
+                      ),
+                      context: context,
+                      builder: (_) {
+                        return const ModalBottomSheet();
+                      },
+                    );
                     cartBloc.add(ClearCart());
                   },
                 ),
@@ -69,7 +72,9 @@ class CartScreen extends StatelessWidget {
             return EmptyContent(
               title: 'cartScreen.yourShoppingCartIsEmpty'.tr(),
               onPressed: () {
-                context.navigateTo(const HomeScreenRoute());
+                context.navigateTo(
+                  const HomeScreenRoute(),
+                );
               },
               imageUrl: ImagePath.emptyCart,
             );

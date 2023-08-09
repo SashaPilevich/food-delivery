@@ -23,29 +23,31 @@ class EmptyContent extends StatefulWidget {
 
 class _EmptyContentState extends State<EmptyContent>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<Offset> _animation;
+  late final AnimationController _animationController;
+  late final Animation<Offset> _animation;
 
   @override
   void initState() {
     super.initState();
 
-    _controller = AnimationController(
+    _animationController = AnimationController(
       vsync: this,
       duration: const Duration(
         milliseconds: 800,
       ),
     );
+
     _animation = Tween<Offset>(
       begin: const Offset(0, -1),
       end: Offset.zero,
     ).animate(
       CurvedAnimation(
-        parent: _controller,
+        parent: _animationController,
         curve: Curves.easeInOut,
       ),
     );
-    _controller.forward();
+
+    _animationController.forward();
   }
 
   @override
@@ -94,7 +96,7 @@ class _EmptyContentState extends State<EmptyContent>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 }

@@ -30,7 +30,8 @@ class DeliveryFoodApp extends StatelessWidget {
             removeCartDishUseCase: getIt.get<RemoveCartDishUseCase>(),
             clearCartUseCase: getIt.get<ClearCartUseCase>(),
             getUserFromStorageUseCase: getIt.get<GetUserFromStorageUseCase>(),
-          )
+            appRouter: getIt.get<AppRouter>(),
+          ),
         ),
         BlocProvider<AuthBloc>(
           create: (_) => AuthBloc(
