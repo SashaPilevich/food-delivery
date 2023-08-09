@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class CheckMarkAnimation extends StatefulWidget {
@@ -35,7 +36,9 @@ class _CheckMarkAnimationState extends State<CheckMarkAnimation>
   Widget build(BuildContext context) {
     return ScaleTransition(
       scale: _animationScale,
-      child: Image.asset('assets/image/checked.png'),
+      child: Image.asset(
+        ImagePath.successOrderMarked,
+      ),
     );
   }
 

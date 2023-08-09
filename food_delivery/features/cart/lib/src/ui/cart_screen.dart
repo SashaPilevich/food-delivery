@@ -9,14 +9,14 @@ import 'widgets/cart_element.dart';
 import 'widgets/modal_bottom_sheet.dart';
 import 'widgets/total_price.dart';
 
-class CartScreen extends StatelessWidget{
+class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final OrderBloc orderBloc = BlocProvider.of(context);
     final CartBloc cartBloc = BlocProvider.of(context);
-
+    
     return Scaffold(
       appBar: CustomAppBar(
         title: 'homePage.cart'.tr(),
@@ -71,7 +71,7 @@ class CartScreen extends StatelessWidget{
               onPressed: () {
                 context.navigateTo(const HomeScreenRoute());
               },
-              imageUrl: 'assets/image/empty_cart.png',
+              imageUrl: ImagePath.emptyCart,
             );
           }
         },

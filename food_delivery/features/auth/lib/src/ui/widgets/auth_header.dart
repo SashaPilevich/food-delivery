@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:rive/rive.dart';
 
 class AuthHeader extends StatelessWidget {
   const AuthHeader({
@@ -20,7 +19,7 @@ class AuthHeader extends StatelessWidget {
           height: mediaQueryData.size.height * 0.3,
           width: mediaQueryData.size.width,
           child: const RiveAnimation.asset(
-            'assets/rive/wave.riv',
+            RiveAnimationPath.waveOnSingInScreen,
           ),
         ),
         Padding(

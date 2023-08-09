@@ -73,7 +73,7 @@ class _HomeScreenHeaderState extends State<HomeScreenHeader>
             turns: _animation,
             child: ClipOval(
               child: Image.asset(
-                'assets/image/onboarding_image.png',
+                ImagePath.onboardingImage,
                 fit: BoxFit.cover,
                 height: mediaQueryData.size.height * 0.13,
               ),

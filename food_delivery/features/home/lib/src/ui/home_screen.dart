@@ -19,65 +19,65 @@ class HomeScreen extends StatelessWidget {
     final DishesBloc bloc = BlocProvider.of<DishesBloc>(context);
     final AuthBloc authBloc = BlocProvider.of(context);
 
-    return RefreshIndicator(
-      onRefresh: () async {
-        bloc.add(LoadListOfDishes());
-      },
-      child: Scaffold(
-        body: NestedScrollView(
-          headerSliverBuilder: (_, bool innerBoxIsScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                actions: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      right: AppPadding.padding10,
-                    ),
-                    child: IconButton(
-                      onPressed: () {
-                        authBloc.add(SignOutSubmitted());
-                        authBloc.add(
-                          NavigateToSignInScreen(),
-                        );
-                      },
-                      icon: Icon(
-                        Icons.logout,
-                        color: themeData.primaryColor,
-                      ),
-                    ),
-                  ),
-                ],
-                backgroundColor: AppColors.transparent,
-                title: Padding(
+    return Scaffold(
+      body: NestedScrollView(
+        headerSliverBuilder: (_, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              actions: <Widget>[
+                Padding(
                   padding: const EdgeInsets.only(
-                    left: AppPadding.padding10,
+                    right: AppPadding.padding10,
                   ),
-                  child: BlocBuilder<AuthBloc, AuthState>(
-                    builder: (_, AuthState state) {
-                      if (state.userModel.userName != '') {
-                        final String userName = state.userModel.userName;
-                        return Text(
-                          '${'homeScreen.hello'.tr()}, $userName!',
-                          style: themeData.textTheme.titleLarge,
-                        );
-                      } else {
-                        return Text(
-                          'homePage.foodDelivery'.tr(),
-                        );
-                      }
+                  child: IconButton(
+                    onPressed: () {
+                      authBloc.add(SignOutSubmitted());
+                      authBloc.add(
+                        NavigateToSignInScreen(),
+                      );
                     },
+                    icon: Icon(
+                      Icons.logout,
+                      color: themeData.primaryColor,
+                    ),
                   ),
                 ),
+              ],
+              backgroundColor: AppColors.transparent,
+              title: Padding(
+                padding: const EdgeInsets.only(
+                  left: AppPadding.padding10,
+                ),
+                child: BlocBuilder<AuthBloc, AuthState>(
+                  builder: (_, AuthState state) {
+                    if (state.userModel.userName != '') {
+                      final String userName = state.userModel.userName;
+                      return Text(
+                        '${'homeScreen.hello'.tr()}, $userName!',
+                        style: themeData.textTheme.titleLarge,
+                      );
+                    } else {
+                      return Text(
+                        'homePage.foodDelivery'.tr(),
+                      );
+                    }
+                  },
+                ),
               ),
-              const SliverToBoxAdapter(
-                child: HomeScreenHeader(),
-              ),
-              const SliverToBoxAdapter(
-                child: CustomTabs(),
-              )
-            ];
+            ),
+            const SliverToBoxAdapter(
+              child: HomeScreenHeader(),
+            ),
+            const SliverToBoxAdapter(
+              child: CustomTabs(),
+            )
+          ];
+        },
+        body: RefreshIndicator(
+          onRefresh: () async {
+            bloc.add(LoadListOfDishes());
           },
-          body: BlocConsumer<DishesBloc, DishesState>(
+          child: BlocConsumer<DishesBloc, DishesState>(
             listener: (BuildContext context, DishesState state) {
               if (state.hasInternetConnection!) {
                 Flushbar(
@@ -136,7 +136,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: mediaQueryData.size.height * 0.4,
-                          childAspectRatio: 2 / 2.4,
+                          childAspectRatio: 2 / 2.45,
                           crossAxisSpacing: AppSpacing.spacing20,
                           mainAxisSpacing: AppSpacing.spacing20,
                         ),

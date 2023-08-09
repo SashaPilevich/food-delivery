@@ -2,6 +2,8 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:settings/settings.dart';
+import 'font_size_animated_box.dart';
+import 'font_size_animation.dart';
 
 class FontSizeSlider extends StatelessWidget {
   const FontSizeSlider({super.key});
@@ -28,14 +30,54 @@ class FontSizeSlider extends StatelessWidget {
                   ),
                 ),
               ),
+              Row(
+                children: <Widget>[
+                  FontSizeAnimatedBox(
+                    child: state.textScale == 0.7 || state.textScale < 0.85
+                        ? const FontSizeAnimation(
+                            riveAnimationPath: RiveAnimationPath.fontSize12,
+                          )
+                        : const SizedBox.shrink(),
+                  ),
+                  FontSizeAnimatedBox(
+                    child: state.textScale >= 0.85 && state.textScale < 1
+                        ? const FontSizeAnimation(
+                            riveAnimationPath: RiveAnimationPath.fontSize14,
+                          )
+                        : const SizedBox.shrink(),
+                  ),
+                  FontSizeAnimatedBox(
+                    child: state.textScale >= 1.0 && state.textScale < 1.15
+                        ? const FontSizeAnimation(
+                            riveAnimationPath: RiveAnimationPath.fontSize16,
+                          )
+                        : const SizedBox.shrink(),
+                  ),
+                  FontSizeAnimatedBox(
+                    child: state.textScale >= 1.15 && state.textScale < 1.30
+                        ? const FontSizeAnimation(
+                            riveAnimationPath: RiveAnimationPath.fontSize18,
+                          )
+                        : const SizedBox.shrink(),
+                  ),
+                  FontSizeAnimatedBox(
+                    child: state.textScale == 1.3
+                        ? const FontSizeAnimation(
+                            riveAnimationPath: RiveAnimationPath.fontSize18,
+                          )
+                        : const SizedBox.shrink(),
+                  ),
+                ],
+              ),
               Slider(
                 value: state.textScale,
                 min: 0.7,
                 max: 1.3,
-                divisions: 2,
                 onChanged: (double textScaleValue) {
                   bloc.add(
-                    ChangeFontSize(textScale: textScaleValue),
+                    ChangeFontSize(
+                      textScale: textScaleValue,
+                    ),
                   );
                 },
               ),
