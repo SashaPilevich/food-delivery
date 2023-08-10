@@ -39,8 +39,16 @@ flutter:
     - assets/translations/
     - assets/image/poland.png
     - assets/image/united-states.png
-    - assets/image/dinner.png
     - assets/image/onboarding_image.png
+    - assets/image/checked.png
+    - assets/image/empty_cart.png
+    - assets/image/empty_order_history.png
+    - assets/rive/wave.riv
+    - assets/rive/font_size_12.riv
+    - assets/rive/font_size_14.riv
+    - assets/rive/font_size_16.riv
+    - assets/rive/font_size_18.riv
+    - assets/rive/font_size_20.riv
   fonts:
     - family: Raleway
       fonts:

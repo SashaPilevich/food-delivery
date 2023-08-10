@@ -69,7 +69,6 @@ class DataDI {
 
   Future<void> _initHive() async {
     await Hive.initFlutter();
-
     Hive.registerAdapter(
       getIt.get<DishEntityAdapter>(),
     );

@@ -39,9 +39,9 @@ class SelectLanguage extends StatelessWidget {
                       }
                     },
                     child: Image.asset(
-                      'assets/image/united-states.png',
-                      width: 30,
-                      height: 30,
+                      ImagePath.flagOfUSA,
+                      width: AppSize.size30,
+                      height: AppSize.size30,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -69,9 +69,9 @@ class SelectLanguage extends StatelessWidget {
                         ],
                       ),
                       child: Image.asset(
-                        'assets/image/poland.png',
-                        width: 30,
-                        height: 30,
+                        ImagePath.flagOfPoland,
+                        width: AppSize.size30,
+                        height: AppSize.size30,
                         fit: BoxFit.cover,
                       ),
                     ),

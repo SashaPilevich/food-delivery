@@ -20,14 +20,17 @@
     "showMore":"Show More",
     "showLess":"Show Less",
     "descriptionNotAvailable":"Description Not Available",
-    "addToCart":"Add to cart"
+    "addToCart":"Add to cart",
+    "addedToCart":"Added to cart"
   },
   "cartScreen":{
     "yourShoppingCartIsEmpty":"Your shopping cart is empty",
     "chooseDishes":"Choose dishes",
     "totalPrice":"Total Price",
     "makeAnOrder":"Make An Order",
-    "acceptedOrder":"Your order is accepted"
+    "acceptedOrder":"Your order is accepted",
+    "thankYou":"Thank you!",
+    "takeMoreFood":"Take more food"
   },
   "settingsScreen":{
     "useSystemTheme":"Use system theme",

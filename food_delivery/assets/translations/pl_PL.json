@@ -20,14 +20,17 @@
     "showMore":"Pokaż Więcej",
     "showLess":"Pokaż Mniej",
     "descriptionNotAvailable":"Opis Niedostępny",
-    "addToCart":"Dodaj do koszyka"
+    "addToCart":"Dodaj do koszyka",
+    "addedToCart":"Dodano do koszyka"
   },
   "cartScreen":{
     "yourShoppingCartIsEmpty":"Twój koszyk jest pusty",
     "chooseDishes":"Wybierz dania",
     "totalPrice":"Cena Całkowita",
     "makeAnOrder":"Złóż zamówienie",
-    "acceptedOrder":"Twoje zamówienie jest akceptowane"
+    "acceptedOrder":"Twoje zamówienie jest akceptowane",
+    "thankYou":"Dziękuję!",
+    "takeMoreFood":"Weź więcej jedzenia"
   },
   "settingsScreen":{
     "useSystemTheme":"Użyj motywu systemowego",

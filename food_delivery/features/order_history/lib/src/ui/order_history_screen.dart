@@ -42,6 +42,7 @@ class OrderHistoryScreen extends StatelessWidget {
                 context.navigateTo(const HomeScreenRoute());
               },
               title: 'orderHistoryScreen.orderHistoryEmpty'.tr(),
+              imageUrl: ImagePath.emptyOrderHistory,
             );
           }
         },

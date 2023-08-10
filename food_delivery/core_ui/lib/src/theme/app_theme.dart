@@ -39,6 +39,9 @@ class AppTheme {
         unselectedItemColor: AppColors.darkGrey,
         selectedItemColor: AppColors.pink,
       ),
+      iconTheme: const IconThemeData(
+        color: AppColors.pink,
+      ),
     );
   }
 
@@ -94,6 +97,9 @@ class AppTheme {
         backgroundColor: AppColors.darkGrey,
         unselectedItemColor: AppColors.white,
         selectedItemColor: AppColors.orange,
+      ),
+      iconTheme: const IconThemeData(
+        color: AppColors.orange,
       ),
     );
   }

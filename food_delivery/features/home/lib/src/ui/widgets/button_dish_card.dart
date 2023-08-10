@@ -18,7 +18,10 @@ class ButtonDishCard extends StatelessWidget {
     return FilledButton(
       onPressed: onPressed,
       style: FilledButton.styleFrom(
-        minimumSize: const Size(AppSize.size60, AppSize.size30),
+        minimumSize: const Size(
+          AppSize.size60,
+          AppSize.size30,
+        ),
         textStyle: themeData.textTheme.labelMedium,
       ),
       child: Text(label),

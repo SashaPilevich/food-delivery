@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
@@ -5,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flushbar/flutter_flushbar.dart';
 import 'package:home/home.dart';
 import 'package:home/src/ui/widgets/home_screen_header.dart';
-import 'package:navigation/navigation.dart';
 import 'widgets/custom_tabs.dart';
 import 'widgets/dish_element.dart';
 
@@ -19,13 +19,10 @@ class HomeScreen extends StatelessWidget {
     final DishesBloc bloc = BlocProvider.of<DishesBloc>(context);
     final AuthBloc authBloc = BlocProvider.of(context);
 
-    return RefreshIndicator(
-      onRefresh: () async {
-        bloc.add(LoadListOfDishes());
-      },
-      child: Scaffold(
-        body: NestedScrollView(
-          headerSliverBuilder: (_, bool innerBoxIsScrolled) => <Widget>[
+    return Scaffold(
+      body: NestedScrollView(
+        headerSliverBuilder: (_, bool innerBoxIsScrolled) {
+          return <Widget>[
             SliverAppBar(
               actions: <Widget>[
                 Padding(
@@ -47,12 +44,24 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
               backgroundColor: AppColors.transparent,
-              expandedHeight: mediaQueryData.size.height * 0.05,
               title: Padding(
-                padding: const EdgeInsets.only(left: AppPadding.padding10),
-                child: Text(
-                  '${'homeScreen.hello'.tr()}, ${authBloc.state.userModel.userName}!',
-                  style: themeData.textTheme.titleLarge,
+                padding: const EdgeInsets.only(
+                  left: AppPadding.padding10,
+                ),
+                child: BlocBuilder<AuthBloc, AuthState>(
+                  builder: (_, AuthState state) {
+                    if (state.userModel.userName != '') {
+                      final String userName = state.userModel.userName;
+                      return Text(
+                        '${'homeScreen.hello'.tr()}, $userName!',
+                        style: themeData.textTheme.titleLarge,
+                      );
+                    } else {
+                      return Text(
+                        'homePage.foodDelivery'.tr(),
+                      );
+                    }
+                  },
                 ),
               ),
             ),
@@ -62,8 +71,13 @@ class HomeScreen extends StatelessWidget {
             const SliverToBoxAdapter(
               child: CustomTabs(),
             )
-          ],
-          body: BlocConsumer<DishesBloc, DishesState>(
+          ];
+        },
+        body: RefreshIndicator(
+          onRefresh: () async {
+            bloc.add(LoadListOfDishes());
+          },
+          child: BlocConsumer<DishesBloc, DishesState>(
             listener: (BuildContext context, DishesState state) {
               if (state.hasInternetConnection!) {
                 Flushbar(
@@ -122,25 +136,37 @@ class HomeScreen extends StatelessWidget {
                         ),
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: mediaQueryData.size.height * 0.4,
-                          childAspectRatio: 2 / 2.5,
+                          childAspectRatio: 2 / 2.45,
                           crossAxisSpacing: AppSpacing.spacing20,
                           mainAxisSpacing: AppSpacing.spacing20,
                         ),
                         itemCount: state.dishesOfSelectedCategory.isEmpty
                             ? state.listOfDishes.length
                             : state.dishesOfSelectedCategory.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return DishElement(
-                            dish: state.dishesOfSelectedCategory.isEmpty
-                                ? state.listOfDishes[index]
-                                : state.dishesOfSelectedCategory[index],
-                            onTap: () {
-                              context.navigateTo(
-                                SelectDishScreenRoute(
-                                  dish: state.dishesOfSelectedCategory.isEmpty
-                                      ? state.listOfDishes[index]
-                                      : state.dishesOfSelectedCategory[index],
-                                ),
+                        itemBuilder: (_, int index) {
+                          return OpenContainer(
+                            closedShape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                AppSize.size20,
+                              ),
+                            ),
+                            transitionDuration: const Duration(
+                              milliseconds: 500,
+                            ),
+                            transitionType: ContainerTransitionType.fadeThrough,
+                            openBuilder: (_, VoidCallback action) {
+                              return SelectDishScreen(
+                                dish: state.dishesOfSelectedCategory.isEmpty
+                                    ? state.listOfDishes[index]
+                                    : state.dishesOfSelectedCategory[index],
+                              );
+                            },
+                            closedBuilder: (_, VoidCallback action) {
+                              return DishElement(
+                                dish: state.dishesOfSelectedCategory.isEmpty
+                                    ? state.listOfDishes[index]
+                                    : state.dishesOfSelectedCategory[index],
+                                onTap: action,
                               );
                             },
                           );

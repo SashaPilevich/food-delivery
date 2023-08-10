@@ -25,3 +25,15 @@ class RemoveDishFromCart extends CartEvent {
 class ClearCart extends CartEvent {
   ClearCart();
 }
+
+class NavigateToSelectedDishScreen extends CartEvent {
+  final DishModel dishModel;
+
+  NavigateToSelectedDishScreen({
+    required this.dishModel,
+  });
+}
+
+class NavigateToCurrentScreen extends CartEvent {
+  NavigateToCurrentScreen();
+}

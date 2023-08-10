@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:home/src/ui/widgets/button_with_animated_color.dart';
 import 'widgets/read_more_text.dart';
 import 'widgets/text_rich.dart';
 
@@ -93,18 +94,12 @@ class SelectDishScreen extends StatelessWidget {
                     const SizedBox(
                       height: AppSize.size20,
                     ),
-                    SizedBox(
-                      width: mediaQueryData.size.width * 0.9,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          cartBloc.add(
-                            AddDishToCart(dish: dish),
-                          );
-                        },
-                        child: Text(
-                          'selectDishScreen.addToCart'.tr(),
-                        ),
-                      ),
+                    ButtonWithAnimatedColor(
+                      onPressed: () {
+                        cartBloc.add(
+                          AddDishToCart(dish: dish),
+                        );
+                      },
                     ),
                   ],
                 ),

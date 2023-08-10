@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class HomeScreenHeader extends StatelessWidget {
   const HomeScreenHeader({super.key});
@@ -12,7 +13,7 @@ class HomeScreenHeader extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.all(
-        AppPadding.padding20,
+        AppMargin.margin20,
       ),
       width: mediaQueryData.size.width * 0.9,
       height: mediaQueryData.size.height * 0.15,
@@ -47,11 +48,27 @@ class HomeScreenHeader extends StatelessWidget {
               ),
             ],
           ),
-          ClipOval(
-            child: Image.asset(
-              'assets/image/onboarding_image.png',
-              fit: BoxFit.cover,
-              height: mediaQueryData.size.height * 0.13,
+          TweenAnimationBuilder(
+            tween: Tween<double>(
+              begin: 0.0,
+              end: math.pi * 4,
+            ),
+            duration: const Duration(
+              seconds: 2,
+            ),
+            curve: Curves.linear,
+            builder: (_, double value, Widget? child) {
+              return Transform.rotate(
+                angle: value,
+                child: child,
+              );
+            },
+            child: ClipOval(
+              child: Image.asset(
+                ImagePath.onboardingImage,
+                fit: BoxFit.cover,
+                height: mediaQueryData.size.height * 0.13,
+              ),
             ),
           ),
         ],

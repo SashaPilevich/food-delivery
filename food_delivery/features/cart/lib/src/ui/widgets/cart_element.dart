@@ -18,72 +18,69 @@ class CartElement extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
-    return Card(
-      child: Container(
-        padding: const EdgeInsets.only(
-          top: AppPadding.padding20,
-          left: AppPadding.padding15,
-          right: AppPadding.padding15,
-          bottom: AppPadding.padding20,
-        ),
-        child: Row(
-          children: <Widget>[
-            AppCacheImage(
-              imageUrl: cartElement.dish.imageUrl,
-              height: mediaQueryData.size.height * 0.13,
-            ),
-            const SizedBox(
-              width: AppSize.size30,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    cartElement.dish.title,
-                    style: themeData.textTheme.headlineMedium,
-                  ),
-                  const SizedBox(
-                    height: AppSize.size10,
-                  ),
-                  Text(
-                    '\$${cartElement.dish.cost}',
-                    style: themeData.textTheme.titleMedium,
-                  ),
-                ],
+    return InkWell(
+      onTap: () {
+        cartBloc.add(
+          NavigateToSelectedDishScreen(
+            dishModel: cartElement.dish,
+          ),
+        );
+      },
+      child: Card(
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppPadding.padding15,
+            vertical: AppPadding.padding20,
+          ),
+          child: Row(
+            children: <Widget>[
+              Hero(
+                tag: cartElement.dish.imageUrl,
+                child: AppCacheImage(
+                  imageUrl: cartElement.dish.imageUrl,
+                  height: mediaQueryData.size.height * 0.13,
+                ),
               ),
-            ),
-            Row(
-              children: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    cartBloc.add(
-                          RemoveDishFromCart(cartDish: cartElement),
-                        );
-                  },
-                  icon: Icon(
-                    Icons.remove_circle_outline,
-                    color: themeData.primaryColor,
-                  ),
+              const SizedBox(
+                width: AppSize.size30,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      cartElement.dish.title,
+                      style: themeData.textTheme.headlineMedium,
+                    ),
+                    const SizedBox(
+                      height: AppSize.size10,
+                    ),
+                    Text(
+                      '\$${cartElement.dish.cost}',
+                      style: themeData.textTheme.titleMedium,
+                    ),
+                  ],
                 ),
-                Text(
-                  '${cartElement.quantity}',
-                  style: themeData.textTheme.headlineMedium,
-                ),
-                IconButton(
-                  onPressed: () {
-                    cartBloc.add(
-                          AddDishToCart(dish: cartElement.dish),
-                        );
-                  },
-                  icon: Icon(
-                    Icons.add_circle_outline,
-                    color: themeData.primaryColor,
-                  ),
-                ),
-              ],
-            ),
-          ],
+              ),
+              ButtonDishQuantity(
+                increaseQuantity: () {
+                  cartBloc.add(
+                    AddDishToCart(
+                      dish: cartElement.dish,
+                    ),
+                  );
+                },
+                decreaseQuantity: () {
+                  cartBloc.add(
+                    RemoveDishFromCart(
+                      cartDish: cartElement,
+                    ),
+                  );
+                },
+                quantity: '${cartElement.quantity}',
+              ),
+            ],
+          ),
         ),
       ),
     );
