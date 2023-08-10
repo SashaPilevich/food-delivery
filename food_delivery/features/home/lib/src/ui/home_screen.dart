@@ -150,22 +150,25 @@ class HomeScreen extends StatelessWidget {
                                 AppSize.size20,
                               ),
                             ),
-                            transitionDuration:
-                                const Duration(milliseconds: 500),
+                            transitionDuration: const Duration(
+                              milliseconds: 500,
+                            ),
                             transitionType: ContainerTransitionType.fadeThrough,
-                            openBuilder: (_, VoidCallback action) =>
-                                SelectDishScreen(
-                              dish: state.dishesOfSelectedCategory.isEmpty
-                                  ? state.listOfDishes[index]
-                                  : state.dishesOfSelectedCategory[index],
-                            ),
-                            closedBuilder: (_, VoidCallback action) =>
-                                DishElement(
-                              dish: state.dishesOfSelectedCategory.isEmpty
-                                  ? state.listOfDishes[index]
-                                  : state.dishesOfSelectedCategory[index],
-                              onTap: action,
-                            ),
+                            openBuilder: (_, VoidCallback action) {
+                              return SelectDishScreen(
+                                dish: state.dishesOfSelectedCategory.isEmpty
+                                    ? state.listOfDishes[index]
+                                    : state.dishesOfSelectedCategory[index],
+                              );
+                            },
+                            closedBuilder: (_, VoidCallback action) {
+                              return DishElement(
+                                dish: state.dishesOfSelectedCategory.isEmpty
+                                    ? state.listOfDishes[index]
+                                    : state.dishesOfSelectedCategory[index],
+                                onTap: action,
+                              );
+                            },
                           );
                         },
                       ),

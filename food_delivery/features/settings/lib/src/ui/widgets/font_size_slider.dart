@@ -33,35 +33,52 @@ class FontSizeSlider extends StatelessWidget {
               Row(
                 children: <Widget>[
                   FontSizeAnimatedBox(
-                    child: state.textScale == 0.7 || state.textScale < 0.85
+                    child: state.textScale.isExactly(
+                              FontSize.fontSize12,
+                            ) ||
+                            state.textScale.isBetween(
+                              FontSize.fontSize12,
+                              FontSize.fontSize14,
+                            )
                         ? const FontSizeAnimation(
                             riveAnimationPath: RiveAnimationPath.fontSize12,
                           )
                         : const SizedBox.shrink(),
                   ),
                   FontSizeAnimatedBox(
-                    child: state.textScale >= 0.85 && state.textScale < 1
+                    child: state.textScale.isBetween(
+                      FontSize.fontSize14,
+                      FontSize.fontSize16,
+                    )
                         ? const FontSizeAnimation(
                             riveAnimationPath: RiveAnimationPath.fontSize14,
                           )
                         : const SizedBox.shrink(),
                   ),
                   FontSizeAnimatedBox(
-                    child: state.textScale >= 1.0 && state.textScale < 1.15
+                    child: state.textScale.isBetween(
+                      FontSize.fontSize16,
+                      FontSize.fontSize18,
+                    )
                         ? const FontSizeAnimation(
                             riveAnimationPath: RiveAnimationPath.fontSize16,
                           )
                         : const SizedBox.shrink(),
                   ),
                   FontSizeAnimatedBox(
-                    child: state.textScale >= 1.15 && state.textScale < 1.25
+                    child: state.textScale.isBetween(
+                      FontSize.fontSize18,
+                      FontSize.fontSize20,
+                    )
                         ? const FontSizeAnimation(
                             riveAnimationPath: RiveAnimationPath.fontSize18,
                           )
                         : const SizedBox.shrink(),
                   ),
                   FontSizeAnimatedBox(
-                    child: state.textScale == 1.3
+                    child: state.textScale.isExactly(
+                      FontSize.fontSize20,
+                    )
                         ? const FontSizeAnimation(
                             riveAnimationPath: RiveAnimationPath.fontSize20,
                           )
