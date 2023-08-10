@@ -7,7 +7,13 @@ class CheckMarkAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(
+        seconds: 1,
+      ),
+      tween: Tween<double>(
+        begin: 0,
+        end: 1,
+      ),
       curve: Curves.easeIn,
       builder: (
         _,
@@ -19,10 +25,6 @@ class CheckMarkAnimation extends StatelessWidget {
           child: child,
         );
       },
-      tween: Tween<double>(
-        begin: 0,
-        end: 1,
-      ),
       child: Image.asset(
         ImagePath.successOrderMarked,
       ),

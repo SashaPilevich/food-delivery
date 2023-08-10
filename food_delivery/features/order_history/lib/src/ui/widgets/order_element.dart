@@ -9,8 +9,8 @@ class OrderElement extends StatefulWidget {
 
   const OrderElement({
     required this.orderItem,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<OrderElement> createState() => _OrderElementState();
@@ -49,11 +49,9 @@ class _OrderElementState extends State<OrderElement>
       ),
       child: ExpansionTile(
         onExpansionChanged: (bool value) {
-          if (value) {
-            _animationController.forward();
-          } else {
-            _animationController.reverse();
-          }
+          value
+              ? _animationController.forward()
+              : _animationController.reverse();
         },
         collapsedIconColor: themeData.primaryColor,
         tilePadding: const EdgeInsets.all(

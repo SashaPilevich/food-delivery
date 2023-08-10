@@ -12,6 +12,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final ClearCartUseCase _clearCartUseCase;
   final GetUserFromStorageUseCase _getUserFromStorageUseCase;
   final AppRouter _appRouter;
+
   CartBloc({
     required AddCartDishUseCase addCartDishUseCase,
     required RemoveCartDishUseCase removeCartDishUseCase,

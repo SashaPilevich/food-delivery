@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-
 import 'animated_image.dart';
 import 'image_for_empty_state.dart';
 

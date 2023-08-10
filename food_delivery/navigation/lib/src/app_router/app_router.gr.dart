@@ -24,11 +24,9 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     SignInScreenRoute.name: (routeData) {
-      final args = routeData.argsAs<SignInScreenRouteArgs>(
-          orElse: () => const SignInScreenRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: SignInScreen(key: args.key),
+        child: const SignInScreen(),
       );
     },
     HomePageRoute.name: (routeData) {
@@ -130,29 +128,15 @@ class StartScreenRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SignInScreen]
-class SignInScreenRoute extends PageRouteInfo<SignInScreenRouteArgs> {
-  SignInScreenRoute({Key? key})
+class SignInScreenRoute extends PageRouteInfo<void> {
+  const SignInScreenRoute()
       : super(
           SignInScreenRoute.name,
           path: '/sign-in-screen',
-          args: SignInScreenRouteArgs(key: key),
         );
 
   static const String name = 'SignInScreenRoute';
 }
-
-class SignInScreenRouteArgs {
-  const SignInScreenRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'SignInScreenRouteArgs{key: $key}';
-  }
-}
-
-
 
 /// generated route for
 /// [HomePage]

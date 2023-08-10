@@ -40,8 +40,8 @@ class SelectLanguage extends StatelessWidget {
                     },
                     child: Image.asset(
                       ImagePath.flagOfUSA,
-                      width: 30,
-                      height: 30,
+                      width: AppSize.size30,
+                      height: AppSize.size30,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -70,8 +70,8 @@ class SelectLanguage extends StatelessWidget {
                       ),
                       child: Image.asset(
                         ImagePath.flagOfPoland,
-                        width: 30,
-                        height: 30,
+                        width: AppSize.size30,
+                        height: AppSize.size30,
                         fit: BoxFit.cover,
                       ),
                     ),

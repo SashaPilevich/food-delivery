@@ -15,9 +15,14 @@ class AnimatedText extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
 
     return TweenAnimationBuilder(
-      tween: Tween<double>(begin: 0, end: 1),
+      tween: Tween<double>(
+        begin: 0,
+        end: 1,
+      ),
       curve: Curves.easeIn,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(
+        seconds: 1,
+      ),
       builder: (_, double value, Widget? child) {
         return Opacity(
           opacity: value,

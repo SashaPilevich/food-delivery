@@ -27,23 +27,26 @@ class HomePage extends StatelessWidget {
         ),
       ],
       child: AutoTabsScaffold(
-        animationDuration: const Duration(seconds: 1),
+        animationDuration: const Duration(
+          milliseconds: 700,
+        ),
+        animationCurve: Curves.linear,
         routes: const <PageRouteInfo<dynamic>>[
           HomeScreenRoute(),
           CartScreenRoute(),
           OrderHistoryScreenRoute(),
           SettingsScreenRoute(),
         ],
-        builder: (_, Widget child, Animation<double> animation) {
+        builder: (
+          _,
+          Widget? child,
+          Animation<double> animation,
+        ) {
           return FadeTransition(
             opacity: animation.drive(
               Tween<double>(
-                begin: 0.3,
+                begin: 0,
                 end: 1,
-              ).chain(
-                CurveTween(
-                  curve: Curves.linear,
-                ),
               ),
             ),
             child: child,

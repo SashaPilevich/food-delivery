@@ -44,7 +44,9 @@ class DishElement extends StatelessWidget {
                 style: themeData.textTheme.titleMedium,
               ),
             ),
-            const SizedBox(height: AppSize.size10),
+            const SizedBox(
+              height: AppSize.size10,
+            ),
             Row(
               children: <Widget>[
                 Expanded(

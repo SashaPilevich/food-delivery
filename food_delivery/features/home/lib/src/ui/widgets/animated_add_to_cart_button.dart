@@ -24,8 +24,8 @@ class _AnimatedAddToCartButtonState extends State<AnimatedAddToCartButton>
   late final Animation<Offset> _animationMove;
 
   Iterable<CartDish> _findCartItem(CartState state) {
-    return state.cart.dishes.where((CartDish element) {
-      return element.dish.title == widget.dish.title;
+    return state.cart.dishes.where((CartDish cartDish) {
+      return cartDish.dish.title == widget.dish.title;
     });
   }
 
@@ -51,32 +51,34 @@ class _AnimatedAddToCartButtonState extends State<AnimatedAddToCartButton>
 
   @override
   Widget build(BuildContext context) {
-    final CartBloc cartBloc = BlocProvider.of(context);
+    final CartBloc cartBloc = BlocProvider.of<CartBloc>(context);
 
     return BlocBuilder<CartBloc, CartState>(
       builder: (_, CartState state) {
         if (_findCartItem(state).isNotEmpty) {
+          final CartDish cartDish = _findCartItem(state).first;
+
           return SlideTransition(
             position: _animationMove,
             child: ButtonDishQuantity(
               increaseQuantity: () {
                 cartBloc.add(
                   AddDishToCart(
-                    dish: _findCartItem(state).first.dish,
+                    dish: cartDish.dish,
                   ),
                 );
               },
               decreaseQuantity: () {
-                if (_findCartItem(state).first.quantity == 1) {
+                if (cartDish.quantity == 1) {
                   _animationController.reverse(from: 1);
                 }
                 cartBloc.add(
                   RemoveDishFromCart(
-                    cartDish: _findCartItem(state).first,
+                    cartDish: cartDish,
                   ),
                 );
               },
-              quantity: '${_findCartItem(state).first.quantity}',
+              quantity: '${cartDish.quantity}',
             ),
           );
         }

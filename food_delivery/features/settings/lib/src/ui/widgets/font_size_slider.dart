@@ -54,7 +54,7 @@ class FontSizeSlider extends StatelessWidget {
                         : const SizedBox.shrink(),
                   ),
                   FontSizeAnimatedBox(
-                    child: state.textScale >= 1.15 && state.textScale < 1.30
+                    child: state.textScale >= 1.15 && state.textScale < 1.25
                         ? const FontSizeAnimation(
                             riveAnimationPath: RiveAnimationPath.fontSize18,
                           )
@@ -63,7 +63,7 @@ class FontSizeSlider extends StatelessWidget {
                   FontSizeAnimatedBox(
                     child: state.textScale == 1.3
                         ? const FontSizeAnimation(
-                            riveAnimationPath: RiveAnimationPath.fontSize18,
+                            riveAnimationPath: RiveAnimationPath.fontSize20,
                           )
                         : const SizedBox.shrink(),
                   ),

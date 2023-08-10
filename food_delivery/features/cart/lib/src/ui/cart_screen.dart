@@ -55,7 +55,9 @@ class CartScreen extends StatelessWidget {
                     showModalBottomSheet(
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(20),
+                          top: Radius.circular(
+                            AppSize.size20,
+                          ),
                         ),
                       ),
                       context: context,

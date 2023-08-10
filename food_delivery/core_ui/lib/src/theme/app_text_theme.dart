@@ -56,10 +56,4 @@ class AppTextTheme {
     fontWeight: FontWeight.w700,
     fontFamily: _mulishFamily,
   );
-
-  static const TextStyle mulish36Bold = TextStyle(
-    fontSize: 36,
-    fontWeight: FontWeight.w700,
-    fontFamily: _mulishFamily,
-  );
 }

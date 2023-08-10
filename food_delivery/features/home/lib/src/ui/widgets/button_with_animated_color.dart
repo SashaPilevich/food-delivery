@@ -26,8 +26,10 @@ class _ButtonWithAnimatedColorState extends State<ButtonWithAnimatedColor> {
     final ThemeData themeData = Theme.of(context);
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeIn,
+      duration: const Duration(
+        milliseconds: 500,
+      ),
+      curve: Curves.linear,
       child: SizedBox(
         width: mediaQueryData.size.width * 0.9,
         child: ElevatedButton(

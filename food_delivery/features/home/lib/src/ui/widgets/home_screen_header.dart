@@ -1,33 +1,10 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
-class HomeScreenHeader extends StatefulWidget {
+class HomeScreenHeader extends StatelessWidget {
   const HomeScreenHeader({super.key});
-
-  @override
-  State<HomeScreenHeader> createState() => _HomeScreenHeaderState();
-}
-
-class _HomeScreenHeaderState extends State<HomeScreenHeader>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _animationController;
-  late final Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _animationController = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    )..forward();
-
-    _animation = CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.linear,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +48,21 @@ class _HomeScreenHeaderState extends State<HomeScreenHeader>
               ),
             ],
           ),
-          RotationTransition(
-            turns: _animation,
+          TweenAnimationBuilder(
+            tween: Tween<double>(
+              begin: 0.0,
+              end: math.pi * 4,
+            ),
+            duration: const Duration(
+              seconds: 2,
+            ),
+            curve: Curves.linear,
+            builder: (_, double value, Widget? child) {
+              return Transform.rotate(
+                angle: value,
+                child: child,
+              );
+            },
             child: ClipOval(
               child: Image.asset(
                 ImagePath.onboardingImage,
@@ -84,11 +74,5 @@ class _HomeScreenHeaderState extends State<HomeScreenHeader>
         ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 }
