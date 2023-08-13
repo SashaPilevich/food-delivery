@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 
-class ClearCartUseCase implements FutureUseCase<NoParams, void> {
+class ClearCartUseCase implements FutureUseCase<String, void> {
   final CartRepository _cartRepository;
 
   ClearCartUseCase({
@@ -8,7 +8,9 @@ class ClearCartUseCase implements FutureUseCase<NoParams, void> {
   }) : _cartRepository = cartRepository;
 
   @override
-  Future<void> execute(NoParams input) async {
-    await _cartRepository.clearCart();
+  Future<void> execute(String userId) async {
+    await _cartRepository.clearCart(
+      userId: userId,
+    );
   }
 }

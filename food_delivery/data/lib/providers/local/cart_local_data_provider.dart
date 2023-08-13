@@ -4,8 +4,11 @@ import 'package:data/data.dart';
 class CartLocalDataProvider {
   const CartLocalDataProvider();
 
-  Future<void> addDishToCart(DishEntity dish) async {
-    final Box<CartDishEntity> cartDishBox = await Hive.openBox('cart');
+  Future<void> addDishToCart({
+    required DishEntity dish,
+    required String userId,
+  }) async {
+    final Box<CartDishEntity> cartDishBox = await Hive.openBox('cart$userId');
     final List<CartDishEntity> cartDishesEntity = cartDishBox.values.toList();
     bool isDishExist = false;
 
@@ -31,8 +34,11 @@ class CartLocalDataProvider {
     }
   }
 
-  Future<void> removeDishFromCart(CartDishEntity cartDishEntity) async {
-    final Box<CartDishEntity> cartDishBox = await Hive.openBox('cart');
+  Future<void> removeDishFromCart({
+    required CartDishEntity cartDishEntity,
+    required String userId,
+  }) async {
+    final Box<CartDishEntity> cartDishBox = await Hive.openBox('cart$userId');
 
     if (cartDishEntity.quantity > 1) {
       cartDishEntity.quantity--;
@@ -42,14 +48,14 @@ class CartLocalDataProvider {
     }
   }
 
-  Future<List<CartDishEntity>> getDishesFromCart() async {
-    final Box<CartDishEntity> cartDishBox = await Hive.openBox('cart');
+  Future<List<CartDishEntity>> getDishesFromCart(String userId) async {
+    final Box<CartDishEntity> cartDishBox = await Hive.openBox('cart$userId');
     final List<CartDishEntity> cartDishEntity = cartDishBox.values.toList();
     return cartDishEntity;
   }
 
-  Future<void> clearCart() async {
-    final Box<CartDishEntity> cartDishBox = await Hive.openBox('cart');
+  Future<void> clearCart(String userId) async {
+    final Box<CartDishEntity> cartDishBox = await Hive.openBox('cart$userId');
     cartDishBox.clear();
   }
 }

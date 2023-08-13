@@ -23,6 +23,8 @@ dependencies:
     path: ./features/cart
   auth:
     path: ./features/auth
+  order_history:
+    path: ./features/order_history
   domain:
     path: ./domain
   cupertino_icons: ^1.0.2

@@ -12,6 +12,13 @@ class FontSizeSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final SettingsBloc bloc = BlocProvider.of<SettingsBloc>(context);
     final ThemeData themeData = Theme.of(context);
+    final List<double> fontSizeList = [
+      FontSize.fontSize12,
+      FontSize.fontSize14,
+      FontSize.fontSize16,
+      FontSize.fontSize18,
+      FontSize.fontSize20,
+    ];
 
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (_, SettingsState state) {
@@ -25,64 +32,32 @@ class FontSizeSlider extends StatelessWidget {
                 ),
                 child: Text(
                   'settingsScreen.changeFontSize'.tr(),
-                  style: themeData.textTheme.titleMedium!.copyWith(
-                    color: Theme.of(context).primaryColor,
-                  ),
+                  style: themeData.textTheme.titleMedium,
                 ),
               ),
               Row(
                 children: <Widget>[
-                  FontSizeAnimatedBox(
-                    child: state.textScale.isExactly(
-                              FontSize.fontSize12,
-                            ) ||
-                            state.textScale.isBetween(
-                              FontSize.fontSize12,
-                              FontSize.fontSize14,
-                            )
-                        ? const FontSizeAnimation(
-                            riveAnimationPath: RiveAnimationPath.fontSize12,
-                          )
-                        : const SizedBox.shrink(),
-                  ),
-                  FontSizeAnimatedBox(
-                    child: state.textScale.isBetween(
-                      FontSize.fontSize14,
-                      FontSize.fontSize16,
-                    )
-                        ? const FontSizeAnimation(
-                            riveAnimationPath: RiveAnimationPath.fontSize14,
-                          )
-                        : const SizedBox.shrink(),
-                  ),
-                  FontSizeAnimatedBox(
-                    child: state.textScale.isBetween(
-                      FontSize.fontSize16,
-                      FontSize.fontSize18,
-                    )
-                        ? const FontSizeAnimation(
-                            riveAnimationPath: RiveAnimationPath.fontSize16,
-                          )
-                        : const SizedBox.shrink(),
-                  ),
-                  FontSizeAnimatedBox(
-                    child: state.textScale.isBetween(
-                      FontSize.fontSize18,
-                      FontSize.fontSize20,
-                    )
-                        ? const FontSizeAnimation(
-                            riveAnimationPath: RiveAnimationPath.fontSize18,
-                          )
-                        : const SizedBox.shrink(),
-                  ),
-                  FontSizeAnimatedBox(
-                    child: state.textScale.isExactly(
-                      FontSize.fontSize20,
-                    )
-                        ? const FontSizeAnimation(
-                            riveAnimationPath: RiveAnimationPath.fontSize20,
-                          )
-                        : const SizedBox.shrink(),
+                  ...List.generate(
+                    fontSizeList.length,
+                    (int index) {
+                      final double currentFontSize = fontSizeList[index];
+                      final double nextFontSize =
+                          index + 1 < fontSizeList.length
+                              ? fontSizeList[index + 1]
+                              : 1;
+
+                      return FontSizeAnimatedBox(
+                        child: state.textScale
+                                    .isBetween(currentFontSize, nextFontSize) ||
+                                state.textScale.isExactly(currentFontSize)
+                            ? FontSizeAnimation(
+                                riveAnimationPath:
+                                    RiveAnimationPath.fromFontSize(
+                                        currentFontSize),
+                              )
+                            : const SizedBox.shrink(),
+                      );
+                    },
                   ),
                 ],
               ),

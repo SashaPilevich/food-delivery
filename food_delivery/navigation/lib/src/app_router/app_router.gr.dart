@@ -87,7 +87,7 @@ class _$AppRouter extends RootStackRouter {
           children: [
             RouteConfig(
               HomeScreenRoute.name,
-              path: '',
+              path: 'home-screen',
               parent: HomePageRoute.name,
             ),
             RouteConfig(
@@ -191,7 +191,7 @@ class HomeScreenRoute extends PageRouteInfo<void> {
   const HomeScreenRoute()
       : super(
           HomeScreenRoute.name,
-          path: '',
+          path: 'home-screen',
         );
 
   static const String name = 'HomeScreenRoute';

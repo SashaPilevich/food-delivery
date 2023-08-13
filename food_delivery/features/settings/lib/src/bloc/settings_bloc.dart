@@ -28,7 +28,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         _checkFontSizeUseCase = checkFontSizeUseCase,
         _setFontSizeUseCase = setFontSizeUseCase,
         super(
-          SettingsState.empty(AppTheme.lightTheme, false, false, 1.0),
+          SettingsState.empty(),
         ) {
     on<InitSettings>(_initSettings);
     on<ChangeThemeMode>(_changeThemeMode);
@@ -74,10 +74,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   ) async {
     await _setThemeModeUseCase.execute(event.isDark);
     emit(
-      state.copyWith(isDark: event.isDark),
-    );
-    emit(
       state.copyWith(
+        isDark: event.isDark,
         themeData: event.isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
       ),
     );

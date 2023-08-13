@@ -23,7 +23,9 @@ class HomePage extends StatelessWidget {
             addOrderUseCase: getIt.get<AddOrderUseCase>(),
             fetchOrdersUseCase: getIt.get<FetchOrdersUseCase>(),
             getUserFromStorageUseCase: getIt.get<GetUserFromStorageUseCase>(),
-          )..add(InitListOfOrders()),
+          )..add(
+              InitListOfOrders(),
+            ),
         ),
       ],
       child: AutoTabsScaffold(

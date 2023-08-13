@@ -24,6 +24,8 @@ dependencies:
     path: ../auth
   order_history:
     path: ../order_history
+  settings:
+    path: ../settings
   readmore: ^2.2.0
   flutter_flushbar: ^0.0.2
   animations: ^2.0.7

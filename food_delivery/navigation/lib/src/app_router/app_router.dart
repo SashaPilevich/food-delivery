@@ -16,7 +16,7 @@ part 'app_router.gr.dart';
     AutoRoute(
       page: HomePage,
       children: [
-        AutoRoute(page: HomeScreen, path: ''),
+        AutoRoute(page: HomeScreen),
         AutoRoute(page: CartScreen),
         AutoRoute(page: OrderHistoryScreen),
         AutoRoute(page: SettingsScreen),

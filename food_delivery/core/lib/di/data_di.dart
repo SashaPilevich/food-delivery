@@ -8,7 +8,6 @@ final DataDI dataDI = DataDI();
 
 class DataDI {
   Future<void> initDependencies() async {
-    _initFirebaseOptions();
     _initFirebase();
     _initGoogleSignIn();
     _initDataProvider();
@@ -24,16 +23,7 @@ class DataDI {
     _initOrders();
   }
 
-  void _initFirebaseOptions() {
-    getIt.registerLazySingleton<FirebaseOptions>(
-      () => DefaultFirebaseOptions.currentPlatform,
-    );
-  }
-
   Future<void> _initFirebase() async {
-    await Firebase.initializeApp(
-      options: getIt<FirebaseOptions>(),
-    );
     getIt.registerLazySingleton<FirebaseFirestore>(
       () => FirebaseFirestore.instance,
     );

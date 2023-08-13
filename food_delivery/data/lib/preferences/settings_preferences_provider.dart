@@ -28,7 +28,7 @@ class SettingsPreferencesProvider {
 
   Future<double> getFontSize() async {
     final Box fontSizeBox = await Hive.openBox(fontSize);
-    return fontSizeBox.get('textScale');
+    return fontSizeBox.get('textScale') ?? 1.0;
   }
 
   Future<void> setFontSize(double textScale) async {

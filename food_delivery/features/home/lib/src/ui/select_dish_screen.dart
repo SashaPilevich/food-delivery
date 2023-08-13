@@ -4,6 +4,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:home/src/ui/widgets/button_with_animated_color.dart';
+import 'package:settings/settings.dart';
 import 'widgets/read_more_text.dart';
 import 'widgets/text_rich.dart';
 
@@ -46,64 +47,72 @@ class SelectDishScreen extends StatelessWidget {
             const SizedBox(
               height: AppSize.size30,
             ),
-            Row(
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            BlocBuilder<SettingsBloc, SettingsState>(
+              builder: (_, SettingsState state) {
+                return Row(
                   children: <Widget>[
-                    Text(
-                      dish.title,
-                      style: themeData.textTheme.headlineLarge,
-                    ),
-                    const SizedBox(
-                      height: AppSize.size30,
-                    ),
-                    SizedBox(
-                      width: mediaQueryData.size.width * 0.9,
-                      child: CustomReadMoreText(
-                        text: dish.description,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: AppSize.size30,
-                    ),
-                    Text(
-                      'selectDishScreen.ingredients'.tr(),
-                      style: themeData.textTheme.titleMedium?.copyWith(
-                        color: themeData.primaryColor,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: AppSize.size20,
-                    ),
-                    SizedBox(
-                      width: mediaQueryData.size.width * 0.9,
-                      child: CustomTextRich(
-                        listOfIngredients: dish.ingredients,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: AppSize.size30,
-                    ),
-                    Text(
-                      '${'selectDishScreen.cost'.tr()}: \$${dish.cost}',
-                      style: themeData.textTheme.titleMedium?.copyWith(
-                        color: themeData.primaryColor,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: AppSize.size20,
-                    ),
-                    ButtonWithAnimatedColor(
-                      onPressed: () {
-                        cartBloc.add(
-                          AddDishToCart(dish: dish),
-                        );
-                      },
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          dish.title,
+                          style: themeData.textTheme.headlineLarge,
+                        ),
+                        const SizedBox(
+                          height: AppSize.size30,
+                        ),
+                        SizedBox(
+                          width: mediaQueryData.size.width * 0.9,
+                          child: CustomReadMoreText(
+                            text: dish.description,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: AppSize.size30,
+                        ),
+                        Text(
+                          'selectDishScreen.ingredients'.tr(),
+                          style: themeData.textTheme.titleMedium?.copyWith(
+                            color: state.isSystemTheme
+                                ? AppColors.darkGrey
+                                : themeData.primaryColor,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: AppSize.size20,
+                        ),
+                        SizedBox(
+                          width: mediaQueryData.size.width * 0.9,
+                          child: CustomTextRich(
+                            listOfIngredients: dish.ingredients,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: AppSize.size30,
+                        ),
+                        Text(
+                          '${'selectDishScreen.cost'.tr()}: \$${dish.cost}',
+                          style: themeData.textTheme.titleMedium?.copyWith(
+                            color: state.isSystemTheme
+                                ? AppColors.darkGrey
+                                : themeData.primaryColor,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: AppSize.size20,
+                        ),
+                        ButtonWithAnimatedColor(
+                          onPressed: () {
+                            cartBloc.add(
+                              AddDishToCart(dish: dish),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ],
-                ),
-              ],
+                );
+              },
             ),
           ],
         ),

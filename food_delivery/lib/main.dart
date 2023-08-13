@@ -1,9 +1,13 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/app/delivery_food_app.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  dataDI.initDependencies();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await dataDI.initDependencies();
   appDI.initDependencies();
   await EasyLocalization.ensureInitialized();
   runApp(

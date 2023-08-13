@@ -32,7 +32,6 @@ class CustomThemeSelector extends StatelessWidget {
                   child: Text(
                     'settingsScreen.useCustomTheme'.tr(),
                     style: themeData.textTheme.titleMedium!.copyWith(
-                      color: themeData.primaryColor,
                       overflow: TextOverflow.ellipsis,
                     ),
                     maxLines: 2,

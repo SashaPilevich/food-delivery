@@ -20,6 +20,8 @@ dependencies:
     path: ../../navigation
   cart:
     path: ../cart
+  order_history:
+    path: ../order_history
   font_awesome_flutter: ^10.5.0
 
 dev_dependencies:

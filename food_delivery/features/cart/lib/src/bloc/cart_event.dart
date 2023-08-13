@@ -9,7 +9,7 @@ class InitCart extends CartEvent {}
 class AddDishToCart extends CartEvent {
   final DishModel dish;
 
-  AddDishToCart({
+  const AddDishToCart({
     required this.dish,
   });
 }
@@ -17,23 +17,23 @@ class AddDishToCart extends CartEvent {
 class RemoveDishFromCart extends CartEvent {
   final CartDish cartDish;
 
-  RemoveDishFromCart({
+  const RemoveDishFromCart({
     required this.cartDish,
   });
 }
 
 class ClearCart extends CartEvent {
-  ClearCart();
+  const ClearCart();
 }
 
 class NavigateToSelectedDishScreen extends CartEvent {
   final DishModel dishModel;
 
-  NavigateToSelectedDishScreen({
+  const NavigateToSelectedDishScreen({
     required this.dishModel,
   });
 }
 
 class NavigateToCurrentScreen extends CartEvent {
-  NavigateToCurrentScreen();
+  const NavigateToCurrentScreen();
 }

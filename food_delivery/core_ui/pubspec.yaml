@@ -18,6 +18,8 @@ dependencies:
     path: ../features/home
   cart:
     path: ../features/cart
+  settings:
+    path: ../features/settings
   navigation:
     path: ../navigation
   auth:

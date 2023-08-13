@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -16,6 +17,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
+    final SettingsBloc settingsBloc = BlocProvider.of(context);
+
     final List<Widget> iconItems = CustomBottomNavigationBarItem.values
         .map((CustomBottomNavigationBarItem item) {
           return BottomNavigationBarItem(
@@ -31,7 +34,10 @@ class CustomBottomNavigationBar extends StatelessWidget {
       items: iconItems,
       index: currentIndex,
       onTap: onTap,
-      backgroundColor: themeData.canvasColor,
+      backgroundColor: AppColors.transparent,
+      color: settingsBloc.state.isSystemTheme
+          ? themeData.primaryColor
+          : AppColors.white,
     );
   }
 }

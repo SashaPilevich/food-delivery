@@ -8,17 +8,17 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthBloc bloc = BlocProvider.of(context);
+    final AuthBloc authBloc = BlocProvider.of(context);
 
     return Scaffold(
       body: BlocListener<AuthBloc, AuthState>(
         listener: (BuildContext context, AuthState state) {
           if (state.isLogged) {
-            bloc.add(
+            authBloc.add(
               NavigateToHomePage(),
             );
           } else {
-            bloc.add(
+            authBloc.add(
               NavigateToSignInScreen(),
             );
           }

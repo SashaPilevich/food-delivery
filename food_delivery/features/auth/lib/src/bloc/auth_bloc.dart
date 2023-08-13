@@ -197,7 +197,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     NavigateToSignInScreen event,
     Emitter<AuthState> emit,
   ) {
-    _appRouter.replace(SignInScreenRoute());
+    _appRouter.replace(const SignInScreenRoute());
   }
 
   void _changeSignPage(

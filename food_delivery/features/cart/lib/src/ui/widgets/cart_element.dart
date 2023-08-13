@@ -3,6 +3,7 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 
 class CartElement extends StatelessWidget {
   final CartDish cartElement;
@@ -15,6 +16,7 @@ class CartElement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CartBloc cartBloc = BlocProvider.of<CartBloc>(context);
+    final SettingsBloc settingsBloc = BlocProvider.of(context);
     final ThemeData themeData = Theme.of(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
@@ -50,13 +52,17 @@ class CartElement extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       cartElement.dish.title,
-                      style: themeData.textTheme.headlineMedium,
+                      style: settingsBloc.state.isSystemTheme
+                          ? themeData.textTheme.headlineMedium!.copyWith(
+                              fontSize: 20,
+                            )
+                          : themeData.textTheme.headlineMedium,
                     ),
                     const SizedBox(
                       height: AppSize.size10,
                     ),
                     Text(
-                      '\$${cartElement.dish.cost}',
+                      '\$${cartElement.dish.cost * cartElement.quantity}',
                       style: themeData.textTheme.titleMedium,
                     ),
                   ],

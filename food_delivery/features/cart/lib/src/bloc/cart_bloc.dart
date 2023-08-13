@@ -41,12 +41,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     InitCart event,
     Emitter<CartState> emit,
   ) async {
-    final List<CartDish> dishesInCart = await _getCartDishesUseCase.execute(
-      const NoParams(),
-    );
     final UserModel userFromStorage = await _getUserFromStorageUseCase.execute(
       const NoParams(),
     );
+    final List<CartDish> dishesInCart = await _getCartDishesUseCase.execute(
+      userFromStorage.uid,
+    );
+
     emit(
       state.copyWith(
         userUid: userFromStorage.uid,
@@ -74,9 +75,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     AddDishToCart event,
     Emitter<CartState> emit,
   ) async {
-    await _addCartDishUseCase.execute(event.dish);
+    await _addCartDishUseCase.execute(AddToCartParams(
+      dish: event.dish,
+      userId: state.userUid,
+    ));
     final List<CartDish> updatedCartItems = await _getCartDishesUseCase.execute(
-      const NoParams(),
+      state.userUid,
     );
     emit(
       state.copyWith(
@@ -92,10 +96,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     RemoveDishFromCart event,
     Emitter<CartState> emit,
   ) async {
-    await _removeCartDishUseCase.execute(event.cartDish);
-    final List<CartDish> updatedCartItems = await _getCartDishesUseCase.execute(
-      const NoParams(),
-    );
+    await _removeCartDishUseCase.execute(RemoveCartDishParams(
+      cartDish: event.cartDish,
+      userId: state.userUid,
+    ));
+    final List<CartDish> updatedCartItems =
+        await _getCartDishesUseCase.execute(state.userUid);
     emit(
       state.copyWith(
         cart: CartModel(
@@ -110,9 +116,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     ClearCart event,
     Emitter<CartState> emit,
   ) async {
-    await _clearCartUseCase.execute(
-      const NoParams(),
-    );
+    await _clearCartUseCase.execute(state.userUid);
     emit(
       state.copyWith(
         cart: const CartModel(

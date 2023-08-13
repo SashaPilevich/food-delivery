@@ -16,7 +16,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final OrderBloc orderBloc = BlocProvider.of(context);
     final CartBloc cartBloc = BlocProvider.of(context);
-
+    
     return Scaffold(
       appBar: CustomAppBar(
         title: 'homePage.cart'.tr(),
@@ -65,7 +65,7 @@ class CartScreen extends StatelessWidget {
                         return const ModalBottomSheet();
                       },
                     );
-                    cartBloc.add(ClearCart());
+                    cartBloc.add(const ClearCart());
                   },
                 ),
               ],

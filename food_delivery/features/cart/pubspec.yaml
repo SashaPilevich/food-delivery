@@ -22,6 +22,8 @@ dependencies:
     path: ../order_history
   auth:
     path: ../auth
+  settings:
+    path: ../settings
 
 dev_dependencies:
   flutter_test:

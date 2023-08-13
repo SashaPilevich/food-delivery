@@ -27,7 +27,7 @@ class ButtonDishQuantity extends StatelessWidget {
         ),
         Text(
           quantity,
-          style: themeData.textTheme.headlineMedium,
+          style: themeData.textTheme.titleMedium,
         ),
         IconButton(
           onPressed: increaseQuantity,

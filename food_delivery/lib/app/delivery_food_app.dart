@@ -24,15 +24,15 @@ class DeliveryFoodApp extends StatelessWidget {
           ),
         ),
         BlocProvider<CartBloc>(
-          create: (_) => CartBloc(
-            getCartDishesUseCase: getIt.get<GetCartDishesUseCase>(),
-            addCartDishUseCase: getIt.get<AddCartDishUseCase>(),
-            removeCartDishUseCase: getIt.get<RemoveCartDishUseCase>(),
-            clearCartUseCase: getIt.get<ClearCartUseCase>(),
-            getUserFromStorageUseCase: getIt.get<GetUserFromStorageUseCase>(),
-            appRouter: getIt.get<AppRouter>(),
-          ),
-        ),
+            create: (_) => CartBloc(
+                  getCartDishesUseCase: getIt.get<GetCartDishesUseCase>(),
+                  addCartDishUseCase: getIt.get<AddCartDishUseCase>(),
+                  removeCartDishUseCase: getIt.get<RemoveCartDishUseCase>(),
+                  clearCartUseCase: getIt.get<ClearCartUseCase>(),
+                  getUserFromStorageUseCase:
+                      getIt.get<GetUserFromStorageUseCase>(),
+                  appRouter: getIt.get<AppRouter>(),
+                )),
         BlocProvider<AuthBloc>(
           create: (_) => AuthBloc(
             signInUseCase: getIt.get<SignInUseCase>(),
@@ -42,7 +42,9 @@ class DeliveryFoodApp extends StatelessWidget {
             resetPasswordUseCase: getIt.get<ResetPasswordUseCase>(),
             getUserFromStorageUseCase: getIt.get<GetUserFromStorageUseCase>(),
             appRouter: getIt.get<AppRouter>(),
-          )..add(InitAuth()),
+          )..add(
+              InitAuth(),
+            ),
         ),
       ],
       child: BlocBuilder<SettingsBloc, SettingsState>(

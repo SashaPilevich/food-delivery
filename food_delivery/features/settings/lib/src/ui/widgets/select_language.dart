@@ -23,9 +23,7 @@ class SelectLanguage extends StatelessWidget {
             children: <Widget>[
               Text(
                 'settingsScreen.selectLanguage'.tr(),
-                style: themeData.textTheme.titleMedium!.copyWith(
-                  color: themeData.primaryColor,
-                ),
+                style: themeData.textTheme.titleMedium,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -40,7 +40,7 @@ class ModalBottomSheet extends StatelessWidget {
         FilledButton(
           onPressed: () {
             cartBloc.add(
-              NavigateToCurrentScreen(),
+              const NavigateToCurrentScreen(),
             );
           },
           style: FilledButton.styleFrom(

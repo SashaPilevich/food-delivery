@@ -20,6 +20,8 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     on<InitListOfOrders>(_initOrders);
     on<LoadOrders>(_loadOrders);
     on<AddOrder>(_addOrder);
+
+    add(InitListOfOrders());
   }
 
   Future<void> _initOrders(
@@ -27,10 +29,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     Emitter<OrderState> emit,
   ) async {
     if (state.orderItems.isEmpty) {
+      add(LoadOrders());
       emit(
         state.copyWith(isLoading: true),
       );
-      add(LoadOrders());
+      
     } else {
       emit(
         state.copyWith(isLoading: false),

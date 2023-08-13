@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:auth/auth.dart';
+import 'package:cart/cart.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,9 @@ class HomeScreen extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
     final DishesBloc bloc = BlocProvider.of<DishesBloc>(context);
     final AuthBloc authBloc = BlocProvider.of(context);
+    final CartBloc cartBloc = BlocProvider.of(context);
+    cartBloc.add(InitCart());
+    
 
     return Scaffold(
       body: NestedScrollView(

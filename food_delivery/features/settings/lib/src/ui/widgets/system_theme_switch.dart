@@ -26,13 +26,13 @@ class SystemThemeSwitch extends StatelessWidget {
                 child: Text(
                   'settingsScreen.useSystemTheme'.tr(),
                   style: themeData.textTheme.titleMedium!.copyWith(
-                    color: themeData.primaryColor,
                     overflow: TextOverflow.ellipsis,
                   ),
                   maxLines: 2,
                 ),
               ),
               Switch(
+                activeColor: themeData.primaryColorLight,
                 value: state.isSystemTheme,
                 onChanged: (bool value) {
                   bloc.add(
