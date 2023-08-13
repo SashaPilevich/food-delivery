@@ -4,20 +4,20 @@ import 'package:data/mappers/order_mapper.dart';
 import 'package:domain/domain.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
-  final OrdersDataProvider _ordersDataProvider;
-  final LocalOrdersDataProvider _localOrdersDataProvider;
+  final FirebaseFirestoreDataProvider _firebaseFirestoreDataProvider;
+  final HiveProvider _hiveProvider;
 
   const OrderRepositoryImpl({
-    required OrdersDataProvider ordersDataProvider,
-    required LocalOrdersDataProvider localOrdersDataProvider,
-  })  : _ordersDataProvider = ordersDataProvider,
-        _localOrdersDataProvider = localOrdersDataProvider;
+    required FirebaseFirestoreDataProvider firebaseFirestoreDataProvider,
+    required HiveProvider hiveProvider,
+  })  : _firebaseFirestoreDataProvider = firebaseFirestoreDataProvider,
+        _hiveProvider = hiveProvider;
 
   @override
   Future<void> addOrder(OrderModel orderModel) async {
     final OrderEntity orderEntity = OrderMapper.toEntity(orderModel);
-    await _ordersDataProvider.addOrder(orderEntity);
-    await _localOrdersDataProvider.addOrderToCache(orderModel);
+    await _firebaseFirestoreDataProvider.addOrder(orderEntity);
+    await _hiveProvider.addOrderToCache(orderModel);
   }
 
   @override
@@ -28,14 +28,13 @@ class OrderRepositoryImpl implements OrderRepository {
 
     if (hasInternetConnection) {
       final List<OrderEntity> result =
-          await _ordersDataProvider.fetchOrders(uid);
+          await _firebaseFirestoreDataProvider.fetchOrders(uid);
       orders = result
           .map((OrderEntity order) => OrderMapper.toModel(order))
           .toList();
-      await _localOrdersDataProvider.saveOrdersToCache(orders);
+      await _hiveProvider.saveOrdersToCache(orders);
     } else {
-      final List<OrderEntity> result =
-          await _localOrdersDataProvider.getCachedOrders();
+      final List<OrderEntity> result = await _hiveProvider.getCachedOrders();
       orders = result
           .map((OrderEntity order) => OrderMapper.toModel(order))
           .toList();

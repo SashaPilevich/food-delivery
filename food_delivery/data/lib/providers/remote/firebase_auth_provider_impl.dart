@@ -1,17 +1,21 @@
-part of 'auth_data_provider.dart';
+import 'package:core/core.dart';
+import 'package:data/data.dart';
 
-class AuthDataProviderImpl implements AuthDataProvider {
+class FirebaseAuthProviderImpl implements FirebaseAuthProvider {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  final FirebaseFirestore _firebaseFirestore;
+  final FirebaseFirestoreDataProvider _firebaseFirestoreDataProvider;
+  final HiveProvider _hiveProvider;
 
-  const AuthDataProviderImpl({
+  const FirebaseAuthProviderImpl({
     required FirebaseAuth firebaseAuth,
     required GoogleSignIn googleSignIn,
-    required FirebaseFirestore firebaseFirestore,
+    required FirebaseFirestoreDataProvider firebaseFirestoreDataProvider,
+    required HiveProvider hiveProvider,
   })  : _firebaseAuth = firebaseAuth,
         _googleSignIn = googleSignIn,
-        _firebaseFirestore = firebaseFirestore;
+        _firebaseFirestoreDataProvider = firebaseFirestoreDataProvider,
+        _hiveProvider = hiveProvider;
 
   @override
   Future<UserEntity> signUpWithEmailAndPassword({
@@ -25,13 +29,13 @@ class AuthDataProviderImpl implements AuthDataProvider {
       password: password,
     );
 
-    await saveUser(
+    await _firebaseFirestoreDataProvider.saveUser(
       uid: credential.user?.uid ?? '',
       email: credential.user?.email ?? '',
       userName: userName,
     );
 
-    final UserEntity userEntity = await getUser(
+    final UserEntity userEntity = await _firebaseFirestoreDataProvider.getUser(
       uid: credential.user?.uid ?? '',
     );
     return userEntity;
@@ -47,7 +51,7 @@ class AuthDataProviderImpl implements AuthDataProvider {
       email: email,
       password: password,
     );
-    final UserEntity userEntity = await getUser(
+    final UserEntity userEntity = await _firebaseFirestoreDataProvider.getUser(
       uid: credential.user?.uid ?? '',
     );
     return userEntity;
@@ -57,6 +61,7 @@ class AuthDataProviderImpl implements AuthDataProvider {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
     await _googleSignIn.signOut();
+    await _hiveProvider.deleteUserFromLocal();
   }
 
   @override
@@ -74,12 +79,12 @@ class AuthDataProviderImpl implements AuthDataProvider {
     final UserCredential userCredential =
         await _firebaseAuth.signInWithCredential(credential);
 
-    await saveUser(
+    await _firebaseFirestoreDataProvider.saveUser(
       uid: userCredential.user?.uid ?? '',
       email: userCredential.user?.email ?? '',
       userName: userCredential.user?.displayName ?? '',
     );
-    final UserEntity userEntity = await getUser(
+    final UserEntity userEntity = await _firebaseFirestoreDataProvider.getUser(
       uid: userCredential.user?.uid ?? '',
     );
     return userEntity;
@@ -88,42 +93,5 @@ class AuthDataProviderImpl implements AuthDataProvider {
   @override
   Future<void> resetPassword({required String email}) async {
     await _firebaseAuth.sendPasswordResetEmail(email: email);
-  }
-
-  @override
-  Future<void> saveUser({
-    required String uid,
-    required String? email,
-    required String? userName,
-  }) async {
-    final DocumentReference<Map<String, dynamic>> userDataFirebase =
-        _firebaseFirestore.collection('users').doc(
-              uid,
-            );
-    final Map<String, String?> userData = {
-      'uid': uid,
-      'email': email,
-      'name': userName,
-    };
-    final DocumentSnapshot<Map<String, dynamic>> user =
-        await userDataFirebase.get();
-    if (!user.exists) {
-      userDataFirebase.set(userData);
-    }
-  }
-
-  @override
-  Future<UserEntity> getUser({
-    required String uid,
-  }) async {
-    final DocumentSnapshot<Map<String, dynamic>> userDoc =
-        await _firebaseFirestore.collection('users').doc(uid).get();
-    final Map<String, dynamic>? userData = userDoc.data();
-    final UserEntity userEntity = UserEntity(
-      uid: uid,
-      email: userData?['email'] ?? '',
-      userName: userData?['name'] ?? '',
-    );
-    return userEntity;
   }
 }

@@ -2,39 +2,39 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 class SettingsRepositoryImpl implements SettingsRepository {
-  final SettingsPreferencesProvider _settingsPreferencesProvider;
+  final HiveProvider _hiveProvider;
 
   SettingsRepositoryImpl({
-    required SettingsPreferencesProvider settingsPreferencesProvider,
-  }) : _settingsPreferencesProvider = settingsPreferencesProvider;
+    required HiveProvider hiveProvider,
+  }) : _hiveProvider = hiveProvider;
 
   @override
   Future<bool> checkThemeMode() async {
-    return _settingsPreferencesProvider.getThemeMode();
+    return _hiveProvider.getThemeMode();
   }
 
   @override
   Future<bool> checkThemeType() async {
-    return _settingsPreferencesProvider.getThemeType();
+    return _hiveProvider.getThemeType();
   }
 
   @override
   Future<void> setThemeMode(bool isDark) async {
-    return _settingsPreferencesProvider.setThemeMode(isDark);
+    return _hiveProvider.setThemeMode(isDark);
   }
 
   @override
   Future<void> setThemeType(bool isSystemTheme) async {
-    return _settingsPreferencesProvider.setThemeType(isSystemTheme);
+    return _hiveProvider.setThemeType(isSystemTheme);
   }
 
   @override
   Future<double> checkFontSize() async {
-    return _settingsPreferencesProvider.getFontSize();
+    return _hiveProvider.getFontSize();
   }
 
   @override
   Future<void> setFontSize(double textScale) async {
-    return _settingsPreferencesProvider.setFontSize(textScale);
+    return _hiveProvider.setFontSize(textScale);
   }
 }

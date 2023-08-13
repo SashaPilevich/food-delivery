@@ -41,6 +41,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     InitCart event,
     Emitter<CartState> emit,
   ) async {
+    emit(CartState.empty());
+
     final UserModel userFromStorage = await _getUserFromStorageUseCase.execute(
       const NoParams(),
     );

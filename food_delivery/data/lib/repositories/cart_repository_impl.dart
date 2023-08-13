@@ -3,21 +3,21 @@ import 'package:data/mappers/cart_dish_mapper.dart';
 import 'package:domain/domain.dart';
 
 class CartRepositoryImpl implements CartRepository {
-  final CartLocalDataProvider _cartLocalDataProvider;
+  final HiveProvider _hiveProvider;
 
   CartRepositoryImpl({
-    required CartLocalDataProvider cartLocalDataProvider,
-  }) : _cartLocalDataProvider = cartLocalDataProvider;
+    required HiveProvider hiveProvider,
+  }) : _hiveProvider = hiveProvider;
 
   @override
   Future<List<CartDish>> getDishesFromCart({
     required String userId,
   }) async {
     final List<CartDishEntity> cartDishEntity =
-        await _cartLocalDataProvider.getDishesFromCart(userId);
-    return cartDishEntity
-        .map((CartDishEntity dishEntity) => CartDishMapper.toModel(dishEntity))
-        .toList();
+        await _hiveProvider.getDishesFromCart(userId);
+    return cartDishEntity.map((CartDishEntity dishEntity) {
+      return CartDishMapper.toModel(dishEntity);
+    }).toList();
   }
 
   @override
@@ -26,7 +26,7 @@ class CartRepositoryImpl implements CartRepository {
     required String userId,
   }) async {
     final DishEntity dishEntity = DishMapper.toEntity(dish);
-    await _cartLocalDataProvider.addDishToCart(
+    await _hiveProvider.addDishToCart(
       dish: dishEntity,
       userId: userId,
     );
@@ -38,7 +38,7 @@ class CartRepositoryImpl implements CartRepository {
     required String userId,
   }) async {
     final CartDishEntity cartDishEntity = CartDishMapper.toEntity(cartDish);
-    await _cartLocalDataProvider.removeDishFromCart(
+    await _hiveProvider.removeDishFromCart(
       cartDishEntity: cartDishEntity,
       userId: userId,
     );
@@ -48,6 +48,6 @@ class CartRepositoryImpl implements CartRepository {
   Future<void> clearCart({
     required String userId,
   }) async {
-    await _cartLocalDataProvider.clearCart(userId);
+    await _hiveProvider.clearCart(userId);
   }
 }

@@ -24,15 +24,15 @@ class DeliveryFoodApp extends StatelessWidget {
           ),
         ),
         BlocProvider<CartBloc>(
-            create: (_) => CartBloc(
-                  getCartDishesUseCase: getIt.get<GetCartDishesUseCase>(),
-                  addCartDishUseCase: getIt.get<AddCartDishUseCase>(),
-                  removeCartDishUseCase: getIt.get<RemoveCartDishUseCase>(),
-                  clearCartUseCase: getIt.get<ClearCartUseCase>(),
-                  getUserFromStorageUseCase:
-                      getIt.get<GetUserFromStorageUseCase>(),
-                  appRouter: getIt.get<AppRouter>(),
-                )),
+          create: (_) => CartBloc(
+            getCartDishesUseCase: getIt.get<GetCartDishesUseCase>(),
+            addCartDishUseCase: getIt.get<AddCartDishUseCase>(),
+            removeCartDishUseCase: getIt.get<RemoveCartDishUseCase>(),
+            clearCartUseCase: getIt.get<ClearCartUseCase>(),
+            getUserFromStorageUseCase: getIt.get<GetUserFromStorageUseCase>(),
+            appRouter: getIt.get<AppRouter>(),
+          ),
+        ),
         BlocProvider<AuthBloc>(
           create: (_) => AuthBloc(
             signInUseCase: getIt.get<SignInUseCase>(),
@@ -52,7 +52,7 @@ class DeliveryFoodApp extends StatelessWidget {
           return MaterialApp.router(
             builder: (BuildContext context, Widget? child) {
               final MediaQueryData mediaQueryData = MediaQuery.of(context);
-
+              
               return MediaQuery(
                 data: mediaQueryData.copyWith(
                   textScaleFactor: state.textScale,

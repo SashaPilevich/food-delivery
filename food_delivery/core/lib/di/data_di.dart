@@ -10,14 +10,13 @@ class DataDI {
   Future<void> initDependencies() async {
     _initFirebase();
     _initGoogleSignIn();
+    _initHiveProvider();
     _initDataProvider();
     _initAuthDataProvider();
-    _initLocalDataProvider();
     _initDishes();
     _initHive();
     _initAdapter();
     _initSettings();
-    _initSettingsPreferencesProvider();
     _initCart();
     _initAuth();
     _initOrders();
@@ -77,39 +76,27 @@ class DataDI {
   }
 
   void _initDataProvider() {
-    getIt.registerLazySingleton<DataProvider>(
-      () => DataProviderImpl(
-        firebaseFirestore: getIt.get<FirebaseFirestore>(),
-      ),
-    );
-    getIt.registerLazySingleton<OrdersDataProvider>(
-      () => OrdersDataProviderImpl(
+    getIt.registerLazySingleton<FirebaseFirestoreDataProvider>(
+      () => FirebaseFirestoreDataProviderImpl(
         firebaseFirestore: getIt.get<FirebaseFirestore>(),
       ),
     );
   }
 
-  void _initLocalDataProvider() {
-    getIt.registerLazySingleton<LocalDataProvider>(
-      () => const LocalDataProviderImpl(),
-    );
-    getIt.registerLazySingleton<CartLocalDataProvider>(
-      () => const CartLocalDataProvider(),
-    );
-    getIt.registerLazySingleton<LocalAuthDataProvider>(
-      () => const LocalAuthDataProviderImpl(),
-    );
-    getIt.registerLazySingleton<LocalOrdersDataProvider>(
-      () => const LocalOrdersDataProviderImpl(),
+  void _initHiveProvider() {
+    getIt.registerLazySingleton<HiveProvider>(
+      () => HiveProviderImpl(),
     );
   }
 
   void _initAuthDataProvider() {
-    getIt.registerLazySingleton<AuthDataProvider>(
-      () => AuthDataProviderImpl(
+    getIt.registerLazySingleton<FirebaseAuthProvider>(
+      () => FirebaseAuthProviderImpl(
         firebaseAuth: getIt.get<FirebaseAuth>(),
         googleSignIn: getIt.get<GoogleSignIn>(),
-        firebaseFirestore: getIt.get<FirebaseFirestore>(),
+        firebaseFirestoreDataProvider:
+            getIt.get<FirebaseFirestoreDataProvider>(),
+        hiveProvider: getIt.get<HiveProvider>(),
       ),
     );
   }
@@ -117,8 +104,9 @@ class DataDI {
   void _initDishes() {
     getIt.registerLazySingleton<DishesRepository>(
       () => DishesRepositoryImpl(
-        dataProvider: getIt.get<DataProvider>(),
-        localDataProvider: getIt.get<LocalDataProvider>(),
+        hiveProvider: getIt.get<HiveProvider>(),
+        firebaseFirestoreDataProvider:
+            getIt.get<FirebaseFirestoreDataProvider>(),
       ),
     );
 
@@ -132,7 +120,7 @@ class DataDI {
   void _initCart() {
     getIt.registerLazySingleton<CartRepository>(
       () => CartRepositoryImpl(
-        cartLocalDataProvider: getIt.get<CartLocalDataProvider>(),
+        hiveProvider: getIt.get<HiveProvider>(),
       ),
     );
 
@@ -164,8 +152,9 @@ class DataDI {
   void _initOrders() {
     getIt.registerLazySingleton<OrderRepository>(
       () => OrderRepositoryImpl(
-        ordersDataProvider: getIt.get<OrdersDataProvider>(),
-        localOrdersDataProvider: getIt.get<LocalOrdersDataProvider>(),
+        hiveProvider: getIt.get<HiveProvider>(),
+        firebaseFirestoreDataProvider:
+            getIt.get<FirebaseFirestoreDataProvider>(),
       ),
     );
     getIt.registerLazySingleton<AddOrderUseCase>(
@@ -180,16 +169,10 @@ class DataDI {
     );
   }
 
-  void _initSettingsPreferencesProvider() {
-    getIt.registerLazySingleton<SettingsPreferencesProvider>(
-      () => const SettingsPreferencesProvider(),
-    );
-  }
-
   void _initSettings() {
     getIt.registerLazySingleton<SettingsRepository>(
       () => SettingsRepositoryImpl(
-        settingsPreferencesProvider: getIt.get<SettingsPreferencesProvider>(),
+        hiveProvider: getIt.get<HiveProvider>(),
       ),
     );
     getIt.registerLazySingleton<CheckThemeModeUseCase>(
@@ -227,8 +210,8 @@ class DataDI {
   void _initAuth() {
     getIt.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
-        authDataProvider: getIt.get<AuthDataProvider>(),
-        localAuthDataProvider: getIt.get<LocalAuthDataProvider>(),
+        hiveProvider: getIt.get<HiveProvider>(),
+        firebaseAuthProvider: getIt.get<FirebaseAuthProvider>(),
       ),
     );
     getIt.registerLazySingleton<SignInUseCase>(

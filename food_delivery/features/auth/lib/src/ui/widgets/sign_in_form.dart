@@ -73,14 +73,15 @@ class _SignInFormState extends State<SignInForm> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   TextButton(
-                      onPressed: () {
-                        bloc.add(
-                          ChangeResetPasswordPage(),
-                        );
-                      },
-                      child: Text(
-                        'authScreens.forgotPassword'.tr(),
-                      )),
+                    onPressed: () {
+                      bloc.add(
+                        ChangeResetPasswordPage(),
+                      );
+                    },
+                    child: Text(
+                      'authScreens.forgotPassword'.tr(),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(

@@ -18,7 +18,7 @@ class ButtonSubmit extends StatelessWidget {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return BlocBuilder<AuthBloc, AuthState>(
-      builder: (BuildContext context, AuthState state) {
+      builder: (_, AuthState state) {
         return state.formStatus is FormSubmitting
             ? const LoadingIndicator()
             : SizedBox(

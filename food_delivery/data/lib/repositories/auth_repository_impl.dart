@@ -2,14 +2,14 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthDataProvider _authDataProvider;
-  final LocalAuthDataProvider _localAuthDataProvider;
+  final FirebaseAuthProvider _firebaseAuthProvider;
+  final HiveProvider _hiveProvider;
 
   const AuthRepositoryImpl({
-    required AuthDataProvider authDataProvider,
-    required LocalAuthDataProvider localAuthDataProvider,
-  })  : _localAuthDataProvider = localAuthDataProvider,
-        _authDataProvider = authDataProvider;
+    required FirebaseAuthProvider firebaseAuthProvider,
+    required HiveProvider hiveProvider,
+  })  : _hiveProvider = hiveProvider,
+        _firebaseAuthProvider = firebaseAuthProvider;
 
   @override
   Future<UserModel> signUp({
@@ -18,13 +18,13 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
   }) async {
     final UserEntity userEntity =
-        await _authDataProvider.signUpWithEmailAndPassword(
+        await _firebaseAuthProvider.signUpWithEmailAndPassword(
       userName: userName,
       email: email,
       password: password,
     );
     final UserModel userModel = UserMapper.toModel(userEntity);
-    await _localAuthDataProvider.saveUserToLocal(userModel);
+    await _hiveProvider.saveUserToLocal(userModel);
     return userModel;
   }
 
@@ -34,40 +34,40 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
   }) async {
     final UserEntity userEntity =
-        await _authDataProvider.signInWithEmailAndPassword(
+        await _firebaseAuthProvider.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
     final UserModel userModel = UserMapper.toModel(userEntity);
-    await _localAuthDataProvider.saveUserToLocal(userModel);
+    await _hiveProvider.saveUserToLocal(userModel);
     return userModel;
   }
 
   @override
   Future<UserModel> signInWithGoogle() async {
-    final UserEntity userEntity = await _authDataProvider.signInWithGoogle();
+    final UserEntity userEntity =
+        await _firebaseAuthProvider.signInWithGoogle();
     final UserModel userModel = UserMapper.toModel(userEntity);
-    await _localAuthDataProvider.saveUserToLocal(userModel);
+    await _hiveProvider.saveUserToLocal(userModel);
     return userModel;
   }
 
   @override
   Future<void> signOut() async {
-    await _authDataProvider.signOut();
-    await _localAuthDataProvider.deleteUserFromLocal();
+    await _firebaseAuthProvider.signOut();
+    await _hiveProvider.deleteUserFromLocal();
   }
 
   @override
   Future<void> resetPassword({
     required String email,
   }) async {
-    await _authDataProvider.resetPassword(email: email);
+    await _firebaseAuthProvider.resetPassword(email: email);
   }
 
   @override
   Future<UserModel> getUserFromStorage() async {
-    final UserEntity userEntity =
-        await _localAuthDataProvider.getUserFromLocal();
+    final UserEntity userEntity = await _hiveProvider.getUserFromLocal();
     return UserMapper.toModel(userEntity);
   }
 }
