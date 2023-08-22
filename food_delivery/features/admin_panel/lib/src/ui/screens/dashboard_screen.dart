@@ -19,7 +19,9 @@ class DashboardScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hello, Admin!'),
+        title: Text(
+          '${'homeScreen.hello'.tr()}, Admin!',
+        ),
         actions: <Widget>[
           IconButton(
             onPressed: () {
