@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:data/data.dart';
 
-import 'firebase_firestore_data_provider.dart';
 
 class FirebaseFirestoreDataProviderImpl
     implements FirebaseFirestoreDataProvider {
@@ -36,6 +35,7 @@ class FirebaseFirestoreDataProviderImpl
       'id': newOrderDocument.id,
       'cart': orderEntity.cart.toJson(),
       'dateTime': orderEntity.dateTime,
+      'isComplete': orderEntity.isComplete,
     });
   }
 
@@ -69,6 +69,7 @@ class FirebaseFirestoreDataProviderImpl
       'uid': uid,
       'email': email,
       'name': userName,
+      'role': UserRole.user.getStringValue(),
     };
     final DocumentSnapshot<Map<String, dynamic>> user =
         await userDataFirebase.get();
@@ -88,6 +89,7 @@ class FirebaseFirestoreDataProviderImpl
       uid: uid,
       email: userData?['email'] ?? '',
       userName: userData?['name'] ?? '',
+      role: userData?['role'] ?? '',
     );
     return userEntity;
   }

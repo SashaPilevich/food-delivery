@@ -10,6 +10,7 @@ export 'entity/user/user_entity_adapter.dart';
 export 'entity/user/user_entity.dart';
 export 'entity/order/order_entity.dart';
 export 'entity/order/order_entity_adapter.dart';
+export 'entity/order/order_with_user_info_entity.dart';
 export 'mappers/dish_mapper.dart';
 export 'mappers/user_mapper.dart';
 export 'repositories/dishes_repository_impl.dart';
