@@ -16,7 +16,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final OrderBloc orderBloc = BlocProvider.of(context);
     final CartBloc cartBloc = BlocProvider.of(context);
-    
+
     return Scaffold(
       appBar: CustomAppBar(
         title: 'homePage.cart'.tr(),
@@ -49,6 +49,7 @@ class CartScreen extends StatelessWidget {
                           id: state.userUid,
                           cart: state.cart,
                           dateTime: DateTime.now(),
+                          isComplete: false,
                         ),
                       ),
                     );

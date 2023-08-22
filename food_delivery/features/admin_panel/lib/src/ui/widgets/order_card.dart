@@ -3,19 +3,21 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
-class OrderElement extends StatefulWidget {
-  final OrderModel orderItem;
+class OrderCard extends StatefulWidget {
+  final OrderWithUserInfoModel orderWithUserInfoModel;
+  final Widget widget;
 
-  const OrderElement({
-    required this.orderItem,
+  const OrderCard({
+    required this.widget,
+    required this.orderWithUserInfoModel,
     super.key,
   });
 
   @override
-  State<OrderElement> createState() => _OrderElementState();
+  State<OrderCard> createState() => _OrderCardState();
 }
 
-class _OrderElementState extends State<OrderElement>
+class _OrderCardState extends State<OrderCard>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
   late final Animation<double> _animation;
@@ -42,8 +44,13 @@ class _OrderElementState extends State<OrderElement>
     final ThemeData themeData = Theme.of(context);
 
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          AppSize.size20,
+        ),
+      ),
       margin: const EdgeInsets.symmetric(
-        horizontal: AppSize.size2,
+        horizontal: AppSize.size10,
         vertical: AppSize.size5,
       ),
       child: ExpansionTile(
@@ -57,18 +64,30 @@ class _OrderElementState extends State<OrderElement>
           AppPadding.padding10,
         ),
         title: ListTile(
-          title: Text(
-            '\$${widget.orderItem.cart.totalPrice}',
-            style: themeData.textTheme.titleMedium,
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                widget.orderWithUserInfoModel.userModel.email,
+                style: themeData.textTheme.titleMedium,
+              ),
+              const SizedBox(
+                height: AppSize.size5,
+              ),
+              Text(
+                DateFormat('dd/MM/yyyy hh:mm').format(
+                  widget.orderWithUserInfoModel.orderModel.dateTime,
+                ),
+                style: themeData.textTheme.headlineMedium!.copyWith(
+                  fontSize: 12,
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.size10,
+              ),
+            ],
           ),
-          subtitle: Text(
-            DateFormat('dd/MM/yyyy hh:mm').format(
-              widget.orderItem.dateTime,
-            ),
-            style: themeData.textTheme.headlineMedium!.copyWith(
-              fontSize: 12,
-            ),
-          ),
+          subtitle: widget.widget,
         ),
         childrenPadding: const EdgeInsets.all(
           AppPadding.padding30,
@@ -79,10 +98,10 @@ class _OrderElementState extends State<OrderElement>
             child: Column(
               children: <Widget>[
                 ...List.generate(
-                  widget.orderItem.cart.dishes.length,
+                  widget.orderWithUserInfoModel.orderModel.cart.dishes.length,
                   (int index) {
-                    final CartDish cartDish =
-                        widget.orderItem.cart.dishes[index];
+                    final CartDish cartDish = widget
+                        .orderWithUserInfoModel.orderModel.cart.dishes[index];
                     return AnimatedText(
                       dishTitle: cartDish.dish.title,
                       dishCost: '${cartDish.quantity}x \$${cartDish.dish.cost}',

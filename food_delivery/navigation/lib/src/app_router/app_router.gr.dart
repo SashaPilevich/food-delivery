@@ -35,6 +35,18 @@ class _$AppRouter extends RootStackRouter {
         child: const HomePage(),
       );
     },
+    AdminPanelScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const AdminPanelScreen(),
+      );
+    },
+    AddProductScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const AddProductScreen(),
+      );
+    },
     SelectDishScreenRoute.name: (routeData) {
       final args = routeData.argsAs<SelectDishScreenRouteArgs>();
       return MaterialPageX<dynamic>(
@@ -67,6 +79,30 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const SettingsScreen(),
+      );
+    },
+    DashboardScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const DashboardScreen(),
+      );
+    },
+    UsersScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const UsersScreen(),
+      );
+    },
+    OrdersScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const OrdersScreen(),
+      );
+    },
+    ProductsScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const ProductsScreen(),
       );
     },
   };
@@ -106,6 +142,36 @@ class _$AppRouter extends RootStackRouter {
               parent: HomePageRoute.name,
             ),
           ],
+        ),
+        RouteConfig(
+          AdminPanelScreenRoute.name,
+          path: '/admin-panel-screen',
+          children: [
+            RouteConfig(
+              DashboardScreenRoute.name,
+              path: 'dashboard-screen',
+              parent: AdminPanelScreenRoute.name,
+            ),
+            RouteConfig(
+              UsersScreenRoute.name,
+              path: 'users-screen',
+              parent: AdminPanelScreenRoute.name,
+            ),
+            RouteConfig(
+              OrdersScreenRoute.name,
+              path: 'orders-screen',
+              parent: AdminPanelScreenRoute.name,
+            ),
+            RouteConfig(
+              ProductsScreenRoute.name,
+              path: 'products-screen',
+              parent: AdminPanelScreenRoute.name,
+            ),
+          ],
+        ),
+        RouteConfig(
+          AddProductScreenRoute.name,
+          path: '/add-product-screen',
         ),
         RouteConfig(
           SelectDishScreenRoute.name,
@@ -149,6 +215,31 @@ class HomePageRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomePageRoute';
+}
+
+/// generated route for
+/// [AdminPanelScreen]
+class AdminPanelScreenRoute extends PageRouteInfo<void> {
+  const AdminPanelScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          AdminPanelScreenRoute.name,
+          path: '/admin-panel-screen',
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminPanelScreenRoute';
+}
+
+/// generated route for
+/// [AddProductScreen]
+class AddProductScreenRoute extends PageRouteInfo<void> {
+  const AddProductScreenRoute()
+      : super(
+          AddProductScreenRoute.name,
+          path: '/add-product-screen',
+        );
+
+  static const String name = 'AddProductScreenRoute';
 }
 
 /// generated route for
@@ -231,4 +322,52 @@ class SettingsScreenRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SettingsScreenRoute';
+}
+
+/// generated route for
+/// [DashboardScreen]
+class DashboardScreenRoute extends PageRouteInfo<void> {
+  const DashboardScreenRoute()
+      : super(
+          DashboardScreenRoute.name,
+          path: 'dashboard-screen',
+        );
+
+  static const String name = 'DashboardScreenRoute';
+}
+
+/// generated route for
+/// [UsersScreen]
+class UsersScreenRoute extends PageRouteInfo<void> {
+  const UsersScreenRoute()
+      : super(
+          UsersScreenRoute.name,
+          path: 'users-screen',
+        );
+
+  static const String name = 'UsersScreenRoute';
+}
+
+/// generated route for
+/// [OrdersScreen]
+class OrdersScreenRoute extends PageRouteInfo<void> {
+  const OrdersScreenRoute()
+      : super(
+          OrdersScreenRoute.name,
+          path: 'orders-screen',
+        );
+
+  static const String name = 'OrdersScreenRoute';
+}
+
+/// generated route for
+/// [ProductsScreen]
+class ProductsScreenRoute extends PageRouteInfo<void> {
+  const ProductsScreenRoute()
+      : super(
+          ProductsScreenRoute.name,
+          path: 'products-screen',
+        );
+
+  static const String name = 'ProductsScreenRoute';
 }
