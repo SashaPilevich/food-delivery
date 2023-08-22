@@ -15,7 +15,9 @@ class AddProductScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('adminPanelScreen.addProducts'.tr(),),
+        title: Text(
+          'adminPanelScreen.addProducts'.tr(),
+        ),
       ),
       body: ProductForm(
         onSave: (DishModel dishModel) {

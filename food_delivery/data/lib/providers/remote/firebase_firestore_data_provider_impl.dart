@@ -158,12 +158,11 @@ class FirebaseFirestoreDataProviderImpl
     final QuerySnapshot<Map<String, dynamic>> dataRef =
         await _firebaseFirestore.collection('users').get();
 
-    return dataRef.docs
-        .map((
-          QueryDocumentSnapshot<Map<String, dynamic>> user,
-        ) =>
-            UserEntity.fromFirebase(user))
-        .toList();
+    return dataRef.docs.map((
+      QueryDocumentSnapshot<Map<String, dynamic>> user,
+    ) {
+      return UserEntity.fromFirebase(user);
+    }).toList();
   }
 
   @override
@@ -173,6 +172,7 @@ class FirebaseFirestoreDataProviderImpl
   }) async {
     final CollectionReference<Map<String, dynamic>> usersDataFirebase =
         _firebaseFirestore.collection('users');
+
     await usersDataFirebase.doc(uid).update({
       "role": role,
     });

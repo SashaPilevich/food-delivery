@@ -12,7 +12,8 @@ abstract class OrderWithUserInfoMapper {
 
   static OrderWithUserInfoModel toModel(OrderWithUserInfoEntity entity) {
     return OrderWithUserInfoModel(
-        userModel: UserMapper.toModel(entity.userEntity),
-        orderModel: OrderMapper.toModel(entity.orderEntity));
+      userModel: UserMapper.toModel(entity.userEntity),
+      orderModel: OrderMapper.toModel(entity.orderEntity),
+    );
   }
 }

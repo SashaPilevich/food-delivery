@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class UserCard extends StatelessWidget {
   final UserModel userModel;
   final VoidCallback onPressed;
+
   const UserCard({
     required this.userModel,
     required this.onPressed,

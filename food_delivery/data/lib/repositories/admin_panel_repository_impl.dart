@@ -24,6 +24,7 @@ class AdminPanelRepositoryImpl implements AdminPanelRepository {
   Future<List<UserModel>> fetchAllUsers() async {
     final List<UserEntity> listOfUsers =
         await _firebaseFirestoreDataProvider.fetchAllUsers();
+
     return listOfUsers
         .map((UserEntity userEntity) => UserMapper.toModel(userEntity))
         .toList();
@@ -44,6 +45,7 @@ class AdminPanelRepositoryImpl implements AdminPanelRepository {
   Future<List<OrderWithUserInfoModel>> fetchAllOrders() async {
     final List<OrderWithUserInfoEntity> listOfOrders =
         await _firebaseFirestoreDataProvider.fetchAllOrders();
+
     return listOfOrders
         .map((OrderWithUserInfoEntity orderForAdminEntity) =>
             OrderWithUserInfoMapper.toModel(orderForAdminEntity))
