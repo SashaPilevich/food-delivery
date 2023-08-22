@@ -20,6 +20,7 @@ class DataDI {
     _initCart();
     _initAuth();
     _initOrders();
+    _initAdminPanel();
   }
 
   Future<void> _initFirebase() async {
@@ -242,6 +243,55 @@ class DataDI {
     getIt.registerLazySingleton<GetUserFromStorageUseCase>(
       () => GetUserFromStorageUseCase(
         authRepository: getIt.get<AuthRepository>(),
+      ),
+    );
+  }
+
+  void _initAdminPanel() {
+    getIt.registerLazySingleton<AdminPanelRepository>(
+      () => AdminPanelRepositoryImpl(
+        firebaseFirestoreDataProvider:
+            getIt.get<FirebaseFirestoreDataProvider>(),
+      ),
+    );
+    getIt.registerLazySingleton<UpdateProductUseCase>(
+      () => UpdateProductUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<FetchAllUsersUseCase>(
+      () => FetchAllUsersUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<UpdateUserRoleUseCase>(
+      () => UpdateUserRoleUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<FetchAllOrdersUseCase>(
+      () => FetchAllOrdersUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<UpdateOrderStatusUseCase>(
+      () => UpdateOrderStatusUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<AddProductUseCase>(
+      () => AddProductUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<UploadImageUseCase>(
+      () => UploadImageUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
+      ),
+    );
+    getIt.registerLazySingleton<DeleteProductUseCase>(
+      () => DeleteProductUseCase(
+        adminPanelRepository: getIt.get<AdminPanelRepository>(),
       ),
     );
   }

@@ -17,3 +17,5 @@ export 'package:connectivity_plus/connectivity_plus.dart';
 export 'internet_connection/internet_connection_info.dart';
 export 'package:firebase_auth/firebase_auth.dart';
 export 'package:google_sign_in/google_sign_in.dart';
+export 'package:firebase_storage/firebase_storage.dart';
+export 'package:image_picker/image_picker.dart';

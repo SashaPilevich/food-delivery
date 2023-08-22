@@ -1,6 +1,6 @@
+import 'dart:io';
 import 'package:core/core.dart';
 import 'package:data/data.dart';
-
 
 class FirebaseFirestoreDataProviderImpl
     implements FirebaseFirestoreDataProvider {
@@ -92,5 +92,149 @@ class FirebaseFirestoreDataProviderImpl
       role: userData?['role'] ?? '',
     );
     return userEntity;
+  }
+
+  @override
+  Future<void> addProduct({
+    required DishEntity dishEntity,
+  }) async {
+    final CollectionReference<Map<String, dynamic>> productsDataFirebase =
+        _firebaseFirestore.collection('dishes');
+
+    final DocumentReference<Map<String, dynamic>> newDocumentRef =
+        productsDataFirebase.doc();
+
+    await newDocumentRef.set({
+      "id": newDocumentRef.id,
+      "title": dishEntity.title,
+      "imageUrl": dishEntity.imageUrl,
+      "cost": dishEntity.cost,
+      "description": dishEntity.description,
+      "ingredients": dishEntity.ingredients,
+      "category": dishEntity.category,
+    });
+  }
+
+  @override
+  Future<void> updateProduct({
+    required DishEntity dishEntity,
+  }) async {
+    final CollectionReference<Map<String, dynamic>> productsDataFirebase =
+        _firebaseFirestore.collection('dishes');
+
+    await productsDataFirebase.doc(dishEntity.id).update({
+      "title": dishEntity.title,
+      "imageUrl": dishEntity.imageUrl,
+      "cost": dishEntity.cost,
+      "description": dishEntity.description,
+      "ingredients": dishEntity.ingredients,
+      "category": dishEntity.category,
+    });
+  }
+
+  @override
+  Future<void> deleteProduct({
+    required String id,
+  }) async {
+    await _firebaseFirestore.collection('dishes').doc(id).delete();
+  }
+
+  @override
+  Future<String> uploadImage({
+    required File imageUrl,
+  }) async {
+    final Reference reference =
+        FirebaseStorage.instance.ref().child('dishImages').child('$imageUrl');
+
+    await reference.putFile(imageUrl);
+
+    final String imageUrlFromRemote = await reference.getDownloadURL();
+
+    return imageUrlFromRemote;
+  }
+
+  @override
+  Future<List<UserEntity>> fetchAllUsers() async {
+    final QuerySnapshot<Map<String, dynamic>> dataRef =
+        await _firebaseFirestore.collection('users').get();
+
+    return dataRef.docs
+        .map((
+          QueryDocumentSnapshot<Map<String, dynamic>> user,
+        ) =>
+            UserEntity.fromFirebase(user))
+        .toList();
+  }
+
+  @override
+  Future<void> updateUserRole({
+    required String uid,
+    required String role,
+  }) async {
+    final CollectionReference<Map<String, dynamic>> usersDataFirebase =
+        _firebaseFirestore.collection('users');
+    await usersDataFirebase.doc(uid).update({
+      "role": role,
+    });
+  }
+
+  @override
+  Future<List<OrderWithUserInfoEntity>> fetchAllOrders() async {
+    final QuerySnapshot<Map<String, dynamic>> listOfDocuments =
+        await _firebaseFirestore.collection('users').get();
+    List<OrderWithUserInfoEntity> allOrders = [];
+
+    for (QueryDocumentSnapshot<Map<String, dynamic>> userDoc
+        in listOfDocuments.docs) {
+      final CollectionReference<Map<String, dynamic>> ordersCollection =
+          userDoc.reference.collection('orders');
+      final QuerySnapshot<Map<String, dynamic>> ordersSnapshot =
+          await ordersCollection.get();
+
+      for (QueryDocumentSnapshot<Map<String, dynamic>> orderDoc
+          in ordersSnapshot.docs) {
+        final Map<String, dynamic> orderData = orderDoc.data();
+        final Map<String, dynamic> userData = userDoc.data();
+
+        final UserEntity userEntity = UserEntity.fromJson(userData);
+        final OrderEntity orderEntity = OrderEntity.fromJson(orderData);
+
+        final OrderWithUserInfoEntity orderForAdmin = OrderWithUserInfoEntity(
+          userEntity: userEntity,
+          orderEntity: orderEntity,
+        );
+
+        allOrders.add(orderForAdmin);
+      }
+    }
+    return allOrders;
+  }
+
+  @override
+  Future<void> updateOrderStatus({
+    required String uid,
+    required bool isComplete,
+  }) async {
+    final QuerySnapshot<Map<String, dynamic>> usersSnapshot =
+        await _firebaseFirestore.collection('users').get();
+
+    for (QueryDocumentSnapshot<Map<String, dynamic>> userDoc
+        in usersSnapshot.docs) {
+      final CollectionReference<Map<String, dynamic>> ordersCollection =
+          userDoc.reference.collection('orders');
+      final QuerySnapshot<Map<String, dynamic>> ordersSnapshot =
+          await ordersCollection.get();
+
+      for (QueryDocumentSnapshot<Map<String, dynamic>> orderDoc
+          in ordersSnapshot.docs) {
+        final String orderUid = orderDoc.id;
+
+        if (orderUid == uid) {
+          await orderDoc.reference.update({
+            'isComplete': isComplete,
+          });
+        }
+      }
+    }
   }
 }
