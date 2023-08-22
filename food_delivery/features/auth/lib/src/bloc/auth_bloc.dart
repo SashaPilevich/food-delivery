@@ -41,6 +41,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<ResetPasswordSubmitted>(_resetPassword);
     on<NavigateToHomePage>(_navigateToHomePage);
     on<NavigateToSignInScreen>(_navigateToSignInScreen);
+    on<NavigateToAdminPanelScreen>(_navigateToAdminPanelScreen);
     on<ChangeSignPage>(_changeSignPage);
     on<ChangeResetPasswordPage>(_changeResetPasswordPage);
   }
@@ -59,12 +60,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               userModel: const UserModel.empty(),
             ),
           )
-        : emit(
-            state.copyWith(
-              isLogged: true,
-              userModel: userFromStorage,
-            ),
-          );
+        : userFromStorage.role == UserRole.admin.getStringValue()
+            ? emit(
+                state.copyWith(
+                  isAdmin: true,
+                  isLogged: true,
+                  userModel: userFromStorage,
+                ),
+              )
+            : emit(
+                state.copyWith(
+                  isAdmin: false,
+                  isLogged: true,
+                  userModel: userFromStorage,
+                ),
+              );
   }
 
   Future<void> _signInSubmitted(
@@ -84,12 +94,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ),
       );
 
-      emit(
-        state.copyWith(
-          formStatus: SubmissionSuccess(),
-          userModel: userModel,
-        ),
-      );
+      userModel.role == UserRole.admin.getStringValue()
+          ? emit(
+              state.copyWith(
+                formStatus: SubmissionSuccess(),
+                userModel: userModel,
+                isAdmin: true,
+              ),
+            )
+          : emit(
+              state.copyWith(
+                formStatus: SubmissionSuccess(),
+                userModel: userModel,
+                isAdmin: false,
+              ),
+            );
     } on FirebaseAuthException catch (error) {
       emit(
         state.copyWith(
@@ -154,9 +173,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           userModel: user,
         ),
       );
-      _appRouter.replace(
-        const HomePageRoute(),
-      );
+      user.role == UserRole.admin.getStringValue()
+          ? _appRouter.replace(
+              const AdminPanelScreenRoute(),
+            )
+          : _appRouter.replace(
+              const HomePageRoute(),
+            );
     } catch (error) {
       emit(
         state.copyWith(
@@ -209,6 +232,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         isSignInPage: !state.isSignInPage,
       ),
     );
+  }
+
+  void _navigateToAdminPanelScreen(
+    NavigateToAdminPanelScreen event,
+    Emitter<AuthState> emit,
+  ) {
+    _appRouter.replace(const AdminPanelScreenRoute());
   }
 
   void _changeResetPasswordPage(

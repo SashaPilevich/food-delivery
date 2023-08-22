@@ -1,3 +1,4 @@
+import 'package:admin_panel/admin_panel.dart';
 import 'package:auth/auth.dart';
 import 'package:cart/cart.dart';
 import 'package:core/core.dart';
@@ -46,13 +47,27 @@ class DeliveryFoodApp extends StatelessWidget {
               InitAuth(),
             ),
         ),
+        BlocProvider<AdminPanelBloc>(
+          create: (_) => AdminPanelBloc(
+            fetchAllDishesUseCase: getIt.get<FetchAllDishesUseCase>(),
+            updateProductUseCase: getIt.get<UpdateProductUseCase>(),
+            fetchAllUsersUseCase: getIt.get<FetchAllUsersUseCase>(),
+            updateUserRoleUseCase: getIt.get<UpdateUserRoleUseCase>(),
+            fetchAllOrdersUseCase: getIt.get<FetchAllOrdersUseCase>(),
+            updateOrderStatusUseCase: getIt.get<UpdateOrderStatusUseCase>(),
+            addProductUseCase: getIt.get<AddProductUseCase>(),
+            deleteProductUseCase: getIt.get<DeleteProductUseCase>(),
+            uploadImageUseCase: getIt.get<UploadImageUseCase>(),
+            appRouter: getIt.get<AppRouter>(),
+          ),
+        ),
       ],
       child: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (BuildContext context, SettingsState state) {
           return MaterialApp.router(
             builder: (BuildContext context, Widget? child) {
               final MediaQueryData mediaQueryData = MediaQuery.of(context);
-              
+
               return MediaQuery(
                 data: mediaQueryData.copyWith(
                   textScaleFactor: state.textScale,

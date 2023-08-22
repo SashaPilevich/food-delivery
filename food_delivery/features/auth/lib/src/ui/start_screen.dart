@@ -13,9 +13,13 @@ class StartScreen extends StatelessWidget {
     return Scaffold(
       body: BlocListener<AuthBloc, AuthState>(
         listener: (BuildContext context, AuthState state) {
-          if (state.isLogged) {
+          if (state.isLogged && !state.isAdmin) {
             authBloc.add(
               NavigateToHomePage(),
+            );
+          } else if (state.isLogged && state.isAdmin) {
+            authBloc.add(
+              NavigateToAdminPanelScreen(),
             );
           } else {
             authBloc.add(

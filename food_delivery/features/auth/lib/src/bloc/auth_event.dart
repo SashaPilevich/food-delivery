@@ -54,6 +54,10 @@ class NavigateToSignInScreen extends AuthEvent {
   NavigateToSignInScreen();
 }
 
+class NavigateToAdminPanelScreen extends AuthEvent {
+  NavigateToAdminPanelScreen();
+}
+
 class ChangeSignPage extends AuthEvent {
   ChangeSignPage();
 }
