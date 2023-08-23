@@ -1,0 +1,9 @@
+{
+  "id":"1",
+  "title":"Pizza",
+  "imageUrl":"image.png",
+  "cost":15,
+  "description":"Some description",
+  "ingredients":["ingredients 1","ingredients 2"],
+  "category":"Italian"
+}
