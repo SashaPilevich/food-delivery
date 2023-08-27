@@ -1,15 +1,19 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextFieldForAdd extends StatelessWidget {
+class CustomTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String hintText;
   final Icon icon;
+  final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
 
-  const CustomTextFieldForAdd({
+  const CustomTextField({
     required this.textEditingController,
     required this.hintText,
     required this.icon,
+    required this.validator,
+    this.onChanged,
     super.key,
   });
 
@@ -23,9 +27,6 @@ class CustomTextFieldForAdd extends StatelessWidget {
         horizontal: AppPadding.padding20,
         vertical: AppPadding.padding6,
       ),
-      margin: const EdgeInsets.only(
-        bottom: AppMargin.margin20,
-      ),
       width: mediaQueryData.size.width,
       child: TextFormField(
         maxLines: TextFieldLines.lines10,
@@ -36,15 +37,16 @@ class CustomTextFieldForAdd extends StatelessWidget {
               color: themeData.primaryColor,
             ),
           ),
-          border: InputBorder.none,
           hintStyle: themeData.textTheme.labelMedium!.copyWith(
-            color:AppColors.mediumGrey,
+            color: AppColors.mediumGrey,
           ),
           hintText: hintText,
           icon: icon,
           iconColor: themeData.primaryColor,
         ),
         controller: textEditingController,
+        validator: validator,
+        onChanged: onChanged,
       ),
     );
   }

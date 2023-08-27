@@ -53,28 +53,31 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final UserModel userFromStorage = await _getUserFromStorageUseCase.execute(
       const NoParams(),
     );
-    userFromStorage.uid == ''
-        ? emit(
-            state.copyWith(
-              isLogged: false,
-              userModel: const UserModel.empty(),
-            ),
-          )
-        : userFromStorage.role == UserRole.admin.getStringValue()
-            ? emit(
-                state.copyWith(
-                  isAdmin: true,
-                  isLogged: true,
-                  userModel: userFromStorage,
-                ),
-              )
-            : emit(
-                state.copyWith(
-                  isAdmin: false,
-                  isLogged: true,
-                  userModel: userFromStorage,
-                ),
-              );
+    if (userFromStorage.uid == '') {
+      emit(
+        state.copyWith(
+          isLogged: false,
+          userModel: const UserModel.empty(),
+        ),
+      );
+    } else if (userFromStorage.role == UserRole.admin.getStringValue() ||
+        userFromStorage.role == UserRole.superAdmin.getStringValue()) {
+      emit(
+        state.copyWith(
+          isAdmin: true,
+          isLogged: true,
+          userModel: userFromStorage,
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          isAdmin: false,
+          isLogged: true,
+          userModel: userFromStorage,
+        ),
+      );
+    }
   }
 
   Future<void> _signInSubmitted(
@@ -93,22 +96,24 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           password: event.password,
         ),
       );
-
-      userModel.role == UserRole.admin.getStringValue()
-          ? emit(
-              state.copyWith(
-                formStatus: SubmissionSuccess(),
-                userModel: userModel,
-                isAdmin: true,
-              ),
-            )
-          : emit(
-              state.copyWith(
-                formStatus: SubmissionSuccess(),
-                userModel: userModel,
-                isAdmin: false,
-              ),
-            );
+      if (userModel.role == UserRole.admin.getStringValue() ||
+          userModel.role == UserRole.superAdmin.getStringValue()) {
+        emit(
+          state.copyWith(
+            formStatus: SubmissionSuccess(),
+            userModel: userModel,
+            isAdmin: true,
+          ),
+        );
+      } else {
+        emit(
+          state.copyWith(
+            formStatus: SubmissionSuccess(),
+            userModel: userModel,
+            isAdmin: false,
+          ),
+        );
+      }
     } on FirebaseAuthException catch (error) {
       emit(
         state.copyWith(
@@ -173,7 +178,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           userModel: user,
         ),
       );
-      user.role == UserRole.admin.getStringValue()
+      user.role == UserRole.admin.getStringValue() ||
+              user.role == UserRole.superAdmin.getStringValue()
           ? _appRouter.replace(
               const AdminPanelScreenRoute(),
             )

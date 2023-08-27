@@ -1,23 +1,21 @@
 import 'package:admin_panel/src/bloc/bloc.dart';
+import 'package:admin_panel/src/ui/widgets/custom_dropdown_button_form_field.dart';
+import 'package:admin_panel/src/ui/widgets/custom_text_field_with_add_button.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'add_image_container.dart';
 import 'cancel_save_buttons.dart';
+import 'custom_text_field.dart';
 
 class ProductForm extends StatefulWidget {
   final DishModel? dishModel;
   final Function(DishModel dishModel) onSave;
-  final Widget Function(
-    DishPropertyTextField field,
-    TextEditingController controller,
-  ) textFieldBuilder;
 
   const ProductForm({
     this.dishModel,
     required this.onSave,
-    required this.textFieldBuilder,
     super.key,
   });
 
@@ -27,8 +25,10 @@ class ProductForm extends StatefulWidget {
 
 class _ProductFormState extends State<ProductForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late Map<DishPropertyTextField, TextEditingController>
+  final Map<DishPropertyTextField, TextEditingController>
       textEditingControllers = {};
+  List<String>? ingredients;
+  String? selectedCategory;
 
   @override
   void initState() {
@@ -41,6 +41,8 @@ class _ProductFormState extends State<ProductForm> {
         widget.dishModel,
       );
     }
+    ingredients = widget.dishModel?.ingredients ?? [];
+    selectedCategory = widget.dishModel?.category;
   }
 
   @override
@@ -62,11 +64,31 @@ class _ProductFormState extends State<ProductForm> {
               (int index) {
                 final DishPropertyTextField field =
                     DishPropertyTextField.values[index];
-
-                return widget.textFieldBuilder(
-                  field,
-                  textEditingControllers[field] ?? TextEditingController(),
+                return CustomTextField(
+                  textEditingController:
+                      textEditingControllers[field] ?? TextEditingController(),
+                  hintText: field.title,
+                  icon: field.icon,
+                  validator: ProductFormValidator.validate(field),
                 );
+              },
+            ),
+            const SizedBox(
+              height: AppSize.size10,
+            ),
+            CustomDropdownButtonFormField(
+              initialValue: widget.dishModel?.category ??
+                  'adminPanelScreen.category'.tr(),
+              onChanged: (String category) {
+                return selectedCategory = category;
+              },
+            ),
+            CustomTextFieldWithAddButton(
+              dishModel: widget.dishModel ?? DishModel.empty(),
+              onIngredientsUpdated: (
+                List<String>? ingredientsFromTextFields,
+              ) {
+                return ingredients = ingredientsFromTextFields;
               },
             ),
             const AddImageContainer(),
@@ -74,35 +96,32 @@ class _ProductFormState extends State<ProductForm> {
               builder: (_, AdminPanelState state) {
                 return CancelSaveButtons(
                   onPressedSave: () {
-                    widget.onSave(
-                      DishModel(
-                        title:
-                            textEditingControllers[DishPropertyTextField.title]
-                                    ?.text ??
-                                '',
-                        imageUrl: state.imageUrl == ''
-                            ? widget.dishModel?.imageUrl ?? ''
-                            : state.imageUrl,
-                        cost: int.parse(
-                            textEditingControllers[DishPropertyTextField.cost]
-                                    ?.text ??
-                                ''),
-                        category: textEditingControllers[
-                                DishPropertyTextField.category]
-                            ?.text,
-                        ingredients: textEditingControllers[
-                                DishPropertyTextField.ingredients]
-                            ?.text
-                            .split('\n'),
-                        description: textEditingControllers[
-                                DishPropertyTextField.description]
-                            ?.text,
-                        id: widget.dishModel?.id ?? '',
-                      ),
-                    );
-                    adminPanelBloc.add(
-                      const NavigateToCurrentScreen(),
-                    );
+                    if (_formKey.currentState!.validate()) {
+                      widget.onSave(
+                        DishModel(
+                          title: textEditingControllers[
+                                      DishPropertyTextField.title]
+                                  ?.text ??
+                              '',
+                          imageUrl: state.imageUrl == ''
+                              ? widget.dishModel?.imageUrl ?? ''
+                              : state.imageUrl,
+                          cost: int.parse(
+                              textEditingControllers[DishPropertyTextField.cost]
+                                      ?.text ??
+                                  ''),
+                          category: selectedCategory,
+                          ingredients: ingredients,
+                          description: textEditingControllers[
+                                  DishPropertyTextField.description]
+                              ?.text,
+                          id: widget.dishModel?.id ?? '',
+                        ),
+                      );
+                      adminPanelBloc.add(
+                        const NavigateToCurrentScreen(),
+                      );
+                    }
                   },
                   onPressedCancel: () {
                     adminPanelBloc.add(

@@ -6,15 +6,11 @@ extension DishPropertyTextFieldExtension on DishPropertyTextField {
   String get title {
     switch (this) {
       case DishPropertyTextField.title:
-        return 'Title';
+        return 'adminPanelScreen.title'.tr();
       case DishPropertyTextField.cost:
-        return 'Price';
+        return 'adminPanelScreen.price'.tr();
       case DishPropertyTextField.description:
-        return 'Description';
-      case DishPropertyTextField.category:
-        return 'Category';
-      case DishPropertyTextField.ingredients:
-        return 'Ingredients';
+        return 'adminPanelScreen.description'.tr();
       default:
         return '';
     }
@@ -28,10 +24,6 @@ extension DishPropertyTextFieldExtension on DishPropertyTextField {
         return const Icon(Icons.price_change_outlined);
       case DishPropertyTextField.description:
         return const Icon(Icons.description_outlined);
-      case DishPropertyTextField.category:
-        return const Icon(Icons.dining_sharp);
-      case DishPropertyTextField.ingredients:
-        return const Icon(Icons.list_alt_outlined);
       default:
         return const Icon(Icons.error);
     }
@@ -44,10 +36,6 @@ extension DishPropertyTextFieldExtension on DishPropertyTextField {
       case DishPropertyTextField.cost:
         return TextEditingController();
       case DishPropertyTextField.description:
-        return TextEditingController();
-      case DishPropertyTextField.category:
-        return TextEditingController();
-      case DishPropertyTextField.ingredients:
         return TextEditingController();
       default:
         return TextEditingController();
@@ -62,10 +50,7 @@ extension DishPropertyTextFieldExtension on DishPropertyTextField {
         return dishModel?.cost.toString()??'';
       case DishPropertyTextField.description:
         return dishModel?.description ?? '';
-      case DishPropertyTextField.category:
-        return dishModel?.category ?? '';
-      case DishPropertyTextField.ingredients:
-        return dishModel?.ingredients?.join('\n') ?? '';
+     
       default:
         return '';
     }

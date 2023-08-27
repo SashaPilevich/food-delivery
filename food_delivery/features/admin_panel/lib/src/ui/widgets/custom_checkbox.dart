@@ -23,7 +23,7 @@ class CustomCheckBoxState extends State<CustomCheckBox> {
     super.initState();
     isChecked = widget.isComplete;
   }
-  
+
   @override
   void didUpdateWidget(CustomCheckBox oldWidget) {
     super.didUpdateWidget(oldWidget);

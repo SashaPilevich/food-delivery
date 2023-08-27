@@ -26,8 +26,12 @@ class DashboardScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               context.locale == const Locale('en', 'US')
-                  ? context.setLocale(const Locale('pl', 'PL'))
-                  : context.setLocale(const Locale('en', 'US'));
+                  ? context.setLocale(
+                      const Locale('pl', 'PL'),
+                    )
+                  : context.setLocale(
+                      const Locale('en', 'US'),
+                    );
             },
             icon: const Icon(
               Icons.language,

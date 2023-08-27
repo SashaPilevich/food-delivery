@@ -83,3 +83,11 @@ class NavigateToAddProductsScreen extends AdminPanelEvent {
 class NavigateToCurrentScreen extends AdminPanelEvent {
   const NavigateToCurrentScreen();
 }
+
+class UpdateCategoryList extends AdminPanelEvent {
+  final String newCategoryItem;
+
+  const UpdateCategoryList({
+    required this.newCategoryItem,
+  });
+}

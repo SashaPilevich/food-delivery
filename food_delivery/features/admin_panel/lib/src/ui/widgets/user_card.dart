@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
@@ -42,14 +43,21 @@ class UserCard extends StatelessWidget {
                 ),
               ],
             ),
-            ElevatedButton.icon(
-              onPressed: onPressed,
-              icon: const Icon(
-                Icons.verified_user_outlined,
-              ),
-              label: Text(
-                'adminPanelScreen.changeRole'.tr(),
-              ),
+            BlocBuilder<AuthBloc, AuthState>(
+              builder: (_, AuthState state) {
+                return state.userModel.role ==
+                        UserRole.superAdmin.getStringValue()
+                    ? ElevatedButton.icon(
+                        onPressed: onPressed,
+                        icon: const Icon(
+                          Icons.verified_user_outlined,
+                        ),
+                        label: Text(
+                          'adminPanelScreen.changeRole'.tr(),
+                        ),
+                      )
+                    : const SizedBox.shrink();
+              },
             ),
           ],
         ),

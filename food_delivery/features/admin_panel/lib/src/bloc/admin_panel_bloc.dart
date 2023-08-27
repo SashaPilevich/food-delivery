@@ -52,6 +52,7 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
     on<InitOrders>(_initOrders);
     on<NavigateToAddProductsScreen>(_navigateToAddProductsScreen);
     on<NavigateToCurrentScreen>(_navigateToCurrentScreen);
+    on<UpdateCategoryList>(_updateCategoryList);
 
     add(const LoadProducts());
     add(const LoadUsers());
@@ -83,9 +84,17 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
       final List<DishModel> dishes = await _fetchAllDishesUseCase.execute(
         const NoParams(),
       );
+      final List<String> categories = dishes
+          .map((dish) {
+            return dish.category ?? '';
+          })
+          .toSet()
+          .toList();
+
       emit(
         state.copyWith(
           listOfProducts: dishes,
+          categories: categories,
         ),
       );
     } on FirebaseException catch (error) {
@@ -289,5 +298,16 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
     Emitter<AdminPanelState> emit,
   ) {
     _appRouter.pop();
+  }
+
+  void _updateCategoryList(
+    UpdateCategoryList event,
+    Emitter<AdminPanelState> emit,
+  ) {
+    final List<String> categories = List.of(state.categories)
+      ..add(event.newCategoryItem);
+    emit(
+      state.copyWith(categories: categories),
+    );
   }
 }

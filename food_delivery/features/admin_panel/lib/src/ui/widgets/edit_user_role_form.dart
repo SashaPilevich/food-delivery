@@ -11,8 +11,8 @@ class EditUserRoleForm extends StatefulWidget {
   const EditUserRoleForm({
     required this.role,
     required this.onSave,
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<EditUserRoleForm> createState() => _EditUserRoleFormState();
@@ -20,12 +20,12 @@ class EditUserRoleForm extends StatefulWidget {
 
 class _EditUserRoleFormState extends State<EditUserRoleForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController roleEditingController = TextEditingController();
+  late String selectedRole;
 
   @override
   void initState() {
     super.initState();
-    roleEditingController.text = widget.role;
+    selectedRole = widget.role;
   }
 
   @override
@@ -43,7 +43,7 @@ class _EditUserRoleFormState extends State<EditUserRoleForm> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextFormField(
+            DropdownButtonFormField<UserRole>(
               decoration: InputDecoration(
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -51,16 +51,29 @@ class _EditUserRoleFormState extends State<EditUserRoleForm> {
                   ),
                 ),
               ),
-              controller: roleEditingController,
+              value: UserRoleExtension.fromStringValue(
+                selectedRole,
+              ),
+              items: UserRole.values.map((UserRole role) {
+                return DropdownMenuItem<UserRole>(
+                  value: role,
+                  child: Text(
+                    role.getStringValue(),
+                  ),
+                );
+              }).toList(),
+              onChanged: (UserRole? value) {
+                if (value != null) {
+                  selectedRole = value.getStringValue();
+                }
+              },
             ),
             const SizedBox(
               height: AppSize.size30,
             ),
             CancelSaveButtons(
               onPressedSave: () {
-                widget.onSave(
-                  roleEditingController.text,
-                );
+                widget.onSave(selectedRole);
                 adminPanelBloc.add(
                   const NavigateToCurrentScreen(),
                 );
@@ -75,11 +88,5 @@ class _EditUserRoleFormState extends State<EditUserRoleForm> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    roleEditingController.dispose();
   }
 }

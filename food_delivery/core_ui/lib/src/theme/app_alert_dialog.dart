@@ -6,7 +6,7 @@ class AppAlertDialog {
       VoidCallback onCancel) {
     showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (_) {
         return AlertDialog(
           content: Text(message),
           actions: <Widget>[

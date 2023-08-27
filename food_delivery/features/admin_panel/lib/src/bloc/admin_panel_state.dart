@@ -11,6 +11,7 @@ class AdminPanelState {
   final File selectedImage;
   final String imageUrl;
   final String exception;
+  final List<String> categories;
 
   const AdminPanelState({
     required this.listOfProducts,
@@ -23,6 +24,7 @@ class AdminPanelState {
     required this.imageUrl,
     required this.selectedImage,
     required this.exception,
+    required this.categories,
   });
 
   AdminPanelState.empty()
@@ -35,7 +37,8 @@ class AdminPanelState {
         isLoading = true,
         imageUrl = '',
         selectedImage = File(''),
-        exception = '';
+        exception = '',
+        categories = [];
 
   AdminPanelState copyWith({
     List<DishModel>? listOfProducts,
@@ -48,6 +51,7 @@ class AdminPanelState {
     String? imageUrl,
     File? selectedImage,
     String? exception,
+    List<String>? categories,
   }) {
     return AdminPanelState(
       listOfProducts: listOfProducts ?? this.listOfProducts,
@@ -61,6 +65,7 @@ class AdminPanelState {
       imageUrl: imageUrl ?? this.imageUrl,
       selectedImage: selectedImage ?? this.selectedImage,
       exception: exception ?? this.exception,
+      categories: categories ?? this.categories,
     );
   }
 }

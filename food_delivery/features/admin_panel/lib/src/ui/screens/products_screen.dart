@@ -1,5 +1,4 @@
-import 'package:admin_panel/src/bloc/admin_panel_bloc.dart';
-import 'package:admin_panel/src/ui/widgets/custom_text_field_for_edit.dart';
+import 'package:admin_panel/admin_panel.dart';
 import 'package:admin_panel/src/ui/widgets/product_card.dart';
 import 'package:admin_panel/src/ui/widgets/product_form.dart';
 import 'package:core/core.dart';
@@ -38,7 +37,9 @@ class ProductsScreen extends StatelessWidget {
                           'adminPanelScreen.areYouSure'.tr(),
                           () {
                             adminPanelBloc.add(
-                              DeleteProduct(id: state.listOfProducts[index].id),
+                              DeleteProduct(
+                                id: state.listOfProducts[index].id,
+                              ),
                             );
                             adminPanelBloc.add(
                               const NavigateToCurrentScreen(),
@@ -65,14 +66,6 @@ class ProductsScreen extends StatelessWidget {
                                 UpdateProduct(
                                   dishModel: dishModel,
                                 ),
-                              );
-                            },
-                            textFieldBuilder: (DishPropertyTextField field,
-                                TextEditingController controller) {
-                              return CustomTextFieldForEdit(
-                                textEditingController: controller,
-                                title: field.title,
-                                icon: field.icon,
                               );
                             },
                           ),
