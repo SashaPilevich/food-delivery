@@ -54,14 +54,16 @@ class _EditUserRoleFormState extends State<EditUserRoleForm> {
               value: UserRoleExtension.fromStringValue(
                 selectedRole,
               ),
-              items: UserRole.values.map((UserRole role) {
-                return DropdownMenuItem<UserRole>(
-                  value: role,
-                  child: Text(
-                    role.getStringValue(),
-                  ),
-                );
-              }).toList(),
+              items: UserRole.values.map(
+                (UserRole role) {
+                  return DropdownMenuItem<UserRole>(
+                    value: role,
+                    child: Text(
+                      role.getStringValue(),
+                    ),
+                  );
+                },
+              ).toList(),
               onChanged: (UserRole? value) {
                 if (value != null) {
                   selectedRole = value.getStringValue();

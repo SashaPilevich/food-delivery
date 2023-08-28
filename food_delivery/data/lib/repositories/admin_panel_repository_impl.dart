@@ -25,9 +25,11 @@ class AdminPanelRepositoryImpl implements AdminPanelRepository {
     final List<UserEntity> listOfUsers =
         await _firebaseFirestoreDataProvider.fetchAllUsers();
 
-    return listOfUsers
-        .map((UserEntity userEntity) => UserMapper.toModel(userEntity))
-        .toList();
+    return listOfUsers.map(
+      (UserEntity userEntity) {
+        return UserMapper.toModel(userEntity);
+      },
+    ).toList();
   }
 
   @override
@@ -46,10 +48,11 @@ class AdminPanelRepositoryImpl implements AdminPanelRepository {
     final List<OrderWithUserInfoEntity> listOfOrders =
         await _firebaseFirestoreDataProvider.fetchAllOrders();
 
-    return listOfOrders
-        .map((OrderWithUserInfoEntity orderForAdminEntity) =>
-            OrderWithUserInfoMapper.toModel(orderForAdminEntity))
-        .toList();
+    return listOfOrders.map(
+      (OrderWithUserInfoEntity orderForAdminEntity) {
+        return OrderWithUserInfoMapper.toModel(orderForAdminEntity);
+      },
+    ).toList();
   }
 
   @override
@@ -85,6 +88,8 @@ class AdminPanelRepositoryImpl implements AdminPanelRepository {
   Future<void> deleteProduct({
     required String id,
   }) async {
-    await _firebaseFirestoreDataProvider.deleteProduct(id: id);
+    await _firebaseFirestoreDataProvider.deleteProduct(
+      id: id,
+    );
   }
 }

@@ -23,7 +23,7 @@ extension UserRoleExtension on UserRole {
       case 'user':
         return UserRole.user;
       default:
-        throw ArgumentError('Invalid UserRole value: $value');
+        return UserRole.user;
     }
   }
 }

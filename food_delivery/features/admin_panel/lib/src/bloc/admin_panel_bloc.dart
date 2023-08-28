@@ -17,6 +17,7 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
   final DeleteProductUseCase _deleteProductUseCase;
   final UploadImageUseCase _uploadImageUseCase;
   final AppRouter _appRouter;
+
   AdminPanelBloc({
     required FetchAllDishesUseCase fetchAllDishesUseCase,
     required UpdateProductUseCase updateProductUseCase,
@@ -219,8 +220,9 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
   ) async {
     final ImagePicker imagePicker = ImagePicker();
     try {
-      final XFile? file =
-          await imagePicker.pickImage(source: ImageSource.gallery);
+      final XFile? file = await imagePicker.pickImage(
+        source: ImageSource.gallery,
+      );
       emit(
         state.copyWith(
           selectedImage: File(file?.path ?? ''),

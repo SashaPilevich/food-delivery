@@ -38,9 +38,9 @@ class CustomCheckBoxState extends State<CustomCheckBox> {
           value: isChecked,
           onChanged: (bool? value) {
             setState(() {
-              isChecked = value!;
+              isChecked = value ?? true;
             });
-            widget.onChanged(value!);
+            widget.onChanged(value ?? true);
           },
           child: Text(
             'adminPanelScreen.changeOrderStatus'.tr(),

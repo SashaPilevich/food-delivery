@@ -45,12 +45,11 @@ extension DishPropertyTextFieldExtension on DishPropertyTextField {
   String getValueForField(DishPropertyTextField field, DishModel? dishModel) {
     switch (field) {
       case DishPropertyTextField.title:
-        return dishModel?.title??'';
+        return dishModel?.title ?? '';
       case DishPropertyTextField.cost:
-        return dishModel?.cost.toString()??'';
+        return dishModel?.cost.toString() ?? '';
       case DishPropertyTextField.description:
         return dishModel?.description ?? '';
-     
       default:
         return '';
     }
