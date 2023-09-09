@@ -97,9 +97,11 @@ class _SignInFormState extends State<SignInForm> {
                     );
                   }
                   if (formStatus is SubmissionSuccess) {
-                    bloc.add(
-                      NavigateToHomePage(),
-                    );
+                    if (state.isAdmin) {
+                      bloc.add(NavigateToAdminPanelScreen());
+                    } else {
+                      bloc.add(NavigateToHomePage());
+                    }
                   }
                 },
                 listenWhen: (AuthState previous, AuthState current) {

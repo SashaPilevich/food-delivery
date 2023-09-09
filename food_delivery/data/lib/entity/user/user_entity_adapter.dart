@@ -7,10 +7,10 @@ class UserEntityAdapter extends TypeAdapter<UserEntity> {
 
   @override
   UserEntity read(BinaryReader reader) {
-    final fieldsCount = reader.readByte();
+    final int fieldsCount = reader.readByte();
     Map<String, dynamic> data = {};
     for (int i = 0; i < fieldsCount; i++) {
-      final key = reader.readString();
+      final String key = reader.readString();
       final value = reader.read();
       data[key] = value;
     }
@@ -18,17 +18,20 @@ class UserEntityAdapter extends TypeAdapter<UserEntity> {
       uid: data['uid'] ?? '',
       email: data['email'] ?? '',
       userName: data['userName'] ?? '',
+      role: data['role'] ?? '',
     );
   }
 
   @override
   void write(BinaryWriter writer, UserEntity obj) {
-    writer.writeByte(3);
+    writer.writeByte(4);
     writer.writeString('uid');
     writer.write(obj.uid);
     writer.writeString('email');
     writer.write(obj.email);
     writer.writeString('userName');
     writer.write(obj.userName);
+    writer.writeString('role');
+    writer.write(obj.role);
   }
 }

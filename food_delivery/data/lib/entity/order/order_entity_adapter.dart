@@ -10,11 +10,13 @@ class OrderEntityAdapter extends TypeAdapter<OrderEntity> {
     final String id = reader.read() as String;
     final CartEntity cart = reader.read() as CartEntity;
     final DateTime dateTime = reader.read() as DateTime;
+    final bool isComplete = reader.read() as bool;
 
     return OrderEntity(
       id: id,
       cart: cart,
       dateTime: dateTime,
+      isComplete: isComplete,
     );
   }
 
@@ -23,5 +25,6 @@ class OrderEntityAdapter extends TypeAdapter<OrderEntity> {
     writer.write(obj.id);
     writer.write(obj.cart);
     writer.write(obj.dateTime);
+    writer.write(obj.isComplete);
   }
 }

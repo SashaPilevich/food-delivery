@@ -5,17 +5,20 @@ class OrderEntity {
   final String id;
   final CartEntity cart;
   final DateTime dateTime;
+  final bool isComplete;
 
   const OrderEntity({
     required this.id,
     required this.cart,
     required this.dateTime,
+    required this.isComplete,
   });
 
   List<Object?> get props => [
         id,
         cart,
         dateTime,
+        isComplete,
       ];
 
   Map<String, dynamic> toJson() {
@@ -23,6 +26,7 @@ class OrderEntity {
       'id': id,
       'cart': cart,
       'dateTime': dateTime,
+      'isComplete': isComplete,
     };
   }
 
@@ -33,6 +37,7 @@ class OrderEntity {
       id: json['id'] ?? '',
       cart: CartEntity.fromJson(json['cart']),
       dateTime: (json['dateTime'] as Timestamp).toDate(),
+      isComplete: json['isComplete'] ?? false,
     );
   }
 

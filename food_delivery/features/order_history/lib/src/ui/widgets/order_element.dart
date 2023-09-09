@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'animated_text.dart';
 
 class OrderElement extends StatefulWidget {
   final OrderModel orderItem;

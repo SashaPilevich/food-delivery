@@ -26,7 +26,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
           );
         })
         .toList()
-        .map((BottomNavigationBarItem item) => item.icon)
+        .map((BottomNavigationBarItem item) {
+          return item.icon;
+        })
         .toList();
 
     return CurvedNavigationBar(

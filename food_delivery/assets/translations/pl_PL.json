@@ -60,5 +60,37 @@
   },
   "orderHistoryScreen":{
     "orderHistoryEmpty":"Twoja historia zamówień jest pusta"
+  },
+  "adminPanelScreen":{
+    "category":"Kategoria",
+    "title": "Tytuł",
+    "price": "Price",
+    "description": "Opis",
+    "addIngredient":"Dodaj składnik",
+    "addSomeValue":"Musisz dodać jakąś wartość!",
+    "haveToBeNumber":"Wartość musi być liczbą!",
+    "addImage":"Dodaj obraz",
+    "addProducts":"Dodaj produkty",
+    "cancel":"Anuluj",
+    "save":"Zapisz",
+    "changeOrderStatus":"Oznacz jako zakończone",
+    "activeUsers":"Aktywni użytkownicy",
+    "totalSales":"Całkowita sprzedaż",
+    "noOrders":"Nie ma nowych zamówień",
+    "orderCompleted":"Zamówienie zostało zakończone",
+    "orderUncompleted":"Zamówienie nie zostało ukończone",
+    "newOrders":"Nowe zamówienia",
+    "selectImage":"Wybierz obraz",
+    "uploadImage":"Prześlij obraz",
+    "imageUpload":"Obraz jest załadowany",
+    "changeRole":"Zmień rolę",
+    "productAdded":"Dodano nowy produkt!",
+    "products":"Produkty",
+    "removeProduct":"Produkt został usunięty!",
+    "areYouSure":"Czy na pewno chcesz usunąć ten produkt?",
+    "delete":"Usunąć",
+    "users":"Użytkownicy",
+    "orders":"Zamówienia",
+    "userRoleChanged":"Rola użytkownika została zmieniona!"
   }
 }

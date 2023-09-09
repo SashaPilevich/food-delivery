@@ -1,3 +1,4 @@
+import 'package:admin_panel/admin_panel.dart';
 import 'package:auth/auth.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cart/cart.dart';
@@ -15,13 +16,20 @@ part 'app_router.gr.dart';
     AutoRoute(page: SignInScreen),
     AutoRoute(
       page: HomePage,
-      children: [
+      children: <AutoRoute>[
         AutoRoute(page: HomeScreen),
         AutoRoute(page: CartScreen),
         AutoRoute(page: OrderHistoryScreen),
         AutoRoute(page: SettingsScreen),
       ],
     ),
+    AutoRoute(page: AdminPanelScreen, children: <AutoRoute>[
+      AutoRoute(page: DashboardScreen),
+      AutoRoute(page: UsersScreen),
+      AutoRoute(page: OrdersScreen),
+      AutoRoute(page: ProductsScreen),
+    ]),
+    AutoRoute(page: AddProductScreen),
     AutoRoute(page: SelectDishScreen),
   ],
 )

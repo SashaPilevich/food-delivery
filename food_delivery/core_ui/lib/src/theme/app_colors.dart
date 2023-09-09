@@ -12,4 +12,7 @@ class AppColors {
   static const Color green = Color.fromARGB(255, 76, 175, 80);
   static const Color red = Color.fromRGBO(244, 67, 54, 1);
   static const Color transparent = Color.fromRGBO(0, 0, 0, 0);
+  static const Color pinkAccent = Color.fromRGBO(255, 64, 129, 1);
+  static const Color darkPink = Color.fromRGBO(194, 24, 91, 1);
+  static const Color mediumGrey = Color.fromARGB(255, 115, 109, 109);
 }

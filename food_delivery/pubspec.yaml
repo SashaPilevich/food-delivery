@@ -25,14 +25,23 @@ dependencies:
     path: ./features/auth
   order_history:
     path: ./features/order_history
+  admin_panel:
+    path: ./features/admin_panel
   domain:
     path: ./domain
+  data:
+    path: ./data
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  integration_test:
+    sdk: flutter
   flutter_lints: ^2.0.0
+  mockito: ^5.4.2
+  mocktail: ^1.0.0
+  bloc_test: ^9.1.4
 
 flutter:
   uses-material-design: true

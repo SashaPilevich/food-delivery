@@ -8,6 +8,7 @@ abstract class OrderMapper {
       id: model.id,
       cart: CartMapper.toEntity(model.cart),
       dateTime: model.dateTime,
+      isComplete: model.isComplete,
     );
   }
 
@@ -16,6 +17,7 @@ abstract class OrderMapper {
       id: entity.id,
       cart: CartMapper.toModel(entity.cart),
       dateTime: entity.dateTime,
+      isComplete: entity.isComplete,
     );
   }
 }

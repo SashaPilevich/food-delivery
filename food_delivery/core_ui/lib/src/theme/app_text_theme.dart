@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 class AppTextTheme {
   static const String _mulishFamily = 'Mulish';
 
+  static const TextStyle mulish14SemiBold = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    fontFamily: _mulishFamily,
+  );
+
   static const TextStyle mulish16SemiBold = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,

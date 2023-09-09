@@ -63,4 +63,13 @@ class DishModel {
       category: json['category'] ?? '',
     );
   }
+
+  DishModel.empty()
+      : id = '',
+        title = '',
+        imageUrl = '',
+        cost = 0,
+        category = '',
+        description = '',
+        ingredients = [];
 }
